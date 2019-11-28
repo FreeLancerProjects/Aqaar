@@ -21,11 +21,7 @@ public class SignUpModel extends BaseObservable {
     private String phone_code;
     private String phone;
     private String password;
-    private String city_id;
-    private boolean isAcceptTerms ;
-    private Uri image_license;
-    private Uri image_form;
-    private Uri image_identity;
+
 
 
     public ObservableField<String> error_name = new ObservableField<>();
@@ -33,7 +29,6 @@ public class SignUpModel extends BaseObservable {
     public ObservableField<String> error_phone_code = new ObservableField<>();
     public ObservableField<String> error_phone = new ObservableField<>();
     public ObservableField<String> error_password = new ObservableField<>();
-    public ObservableField<String> error_about_me = new ObservableField<>();
 
 
 
@@ -44,12 +39,7 @@ public class SignUpModel extends BaseObservable {
                 Patterns.EMAIL_ADDRESS.matcher(email).matches()&&
                 !TextUtils.isEmpty(phone_code)&&
                 !TextUtils.isEmpty(phone)&&
-                password.length()>=6&&
-                !TextUtils.isEmpty(city_id)&&
-                image_license!=null&&
-                image_form!=null&&
-                image_identity!=null&&
-                isAcceptTerms
+                password.length()>=6
         )
         {
             error_name.set(null);
@@ -57,7 +47,6 @@ public class SignUpModel extends BaseObservable {
             error_phone_code.set(null);
             error_phone.set(null);
             error_password.set(null);
-            error_about_me.set(null);
 
             return true;
         }else
@@ -113,32 +102,6 @@ public class SignUpModel extends BaseObservable {
 
 
 
-            if (city_id.isEmpty())
-            {
-                Toast.makeText(context, R.string.ch_dept, Toast.LENGTH_SHORT).show();
-
-            }
-
-            if (!isAcceptTerms)
-            {
-                Toast.makeText(context, R.string.cnt_sign_accept, Toast.LENGTH_SHORT).show();
-
-            }
-
-
-            if (image_license==null)
-            {
-                Toast.makeText(context, R.string.ch_img_license, Toast.LENGTH_SHORT).show();
-            }
-
-            if (image_identity==null)
-            {
-                Toast.makeText(context, R.string.ch_img_identity, Toast.LENGTH_SHORT).show();
-            }
-            if (image_form==null)
-            {
-                Toast.makeText(context, R.string.ch_img_form, Toast.LENGTH_SHORT).show();
-            }
 
 
             return false;
@@ -156,10 +119,6 @@ public class SignUpModel extends BaseObservable {
         notifyPropertyChanged(BR.name);
         this.email = "";
         notifyPropertyChanged(BR.email);
-        this.city_id ="";
-        image_form = null;
-        image_identity = null;
-        image_license = null;
 
 
 
@@ -222,44 +181,6 @@ public class SignUpModel extends BaseObservable {
     }
 
 
-    public String getCity_id() {
-        return city_id;
-    }
-
-    public void setCity_id(String city_id) {
-        this.city_id = city_id;
-    }
 
 
-    public boolean isAcceptTerms() {
-        return isAcceptTerms;
-    }
-
-    public void setAcceptTerms(boolean acceptTerms) {
-        isAcceptTerms = acceptTerms;
-    }
-
-    public Uri getImage_license() {
-        return image_license;
-    }
-
-    public void setImage_license(Uri image_license) {
-        this.image_license = image_license;
-    }
-
-    public Uri getImage_form() {
-        return image_form;
-    }
-
-    public void setImage_form(Uri image_form) {
-        this.image_form = image_form;
-    }
-
-    public Uri getImage_identity() {
-        return image_identity;
-    }
-
-    public void setImage_identity(Uri image_identity) {
-        this.image_identity = image_identity;
-    }
 }
