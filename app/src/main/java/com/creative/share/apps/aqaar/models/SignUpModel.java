@@ -31,6 +31,14 @@ public class SignUpModel extends BaseObservable {
     public ObservableField<String> error_password = new ObservableField<>();
 
 
+    public SignUpModel(String name, String phone_code, String phone,String email, String password) {
+        setName(name);
+        setPhone_code(phone_code);
+        setPhone(phone);
+        setEmail(email);
+        setPassword(password);
+       =
+    }
 
     public boolean isDataValid(Context context)
     {

@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import com.creative.share.apps.aqaar.R;
 
 
+import com.creative.share.apps.aqaar.activities_fragments.activity_sign_in.activities.SignInActivity;
 import com.creative.share.apps.aqaar.databinding.FragmentSignUpBinding;
 import com.creative.share.apps.aqaar.models.SignUpModel;
 import com.creative.share.apps.aqaar.preferences.Preferences;
@@ -133,7 +134,7 @@ public class Fragment_Sign_Up extends Fragment implements Listeners.SignUpListen
      /*   if (phone.startsWith("0")) {
             phone = phone.replaceFirst("0", "");
         }*/
-        signUpModel = new SignUpModel(name,city_id,phone_code,phone,email,password,isAcceptTerms);
+        signUpModel = new SignUpModel(name,phone_code,phone,email,password);
         binding.setSignUpModel(signUpModel);
         if (signUpModel.isDataValid(activity))
         {
