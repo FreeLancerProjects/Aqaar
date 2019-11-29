@@ -22,6 +22,7 @@ import com.creative.share.apps.aqaar.R;
 
 import com.creative.share.apps.aqaar.activities_fragments.activity_sign_in.activities.SignInActivity;
 import com.creative.share.apps.aqaar.databinding.FragmentSignUpBinding;
+import com.creative.share.apps.aqaar.interfaces.Listeners;
 import com.creative.share.apps.aqaar.models.SignUpModel;
 import com.creative.share.apps.aqaar.preferences.Preferences;
 import com.mukesh.countrypicker.Country;

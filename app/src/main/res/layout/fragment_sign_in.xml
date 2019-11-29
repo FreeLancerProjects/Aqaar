@@ -94,7 +94,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         android:paddingStart="2dp"
                         android:paddingEnd="2dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
 
 
                         android:textSize="15sp"
@@ -272,6 +272,24 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp"
                 android:text="@string/signup"
+                />
+            <TextView
+                android:id="@+id/tv_skip"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/skip"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvNoAccount"
+                app:layout_constraintVertical_bias="0"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:onClick="@{()->skipListener.skip()}"
                 />
 
 

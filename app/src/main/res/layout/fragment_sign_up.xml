@@ -174,7 +174,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         android:paddingStart="2dp"
                         android:paddingEnd="2dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
 
 
                         android:textSize="15sp"

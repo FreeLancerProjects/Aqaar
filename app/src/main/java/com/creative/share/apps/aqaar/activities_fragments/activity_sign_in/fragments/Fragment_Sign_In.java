@@ -46,7 +46,7 @@ public class Fragment_Sign_In extends Fragment implements Listeners.LoginListene
     private Preferences preferences;
     private CountryPicker countryPicker;
     private LoginModel loginModel;
-
+private UserModel userModel;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_in, container, false);
@@ -57,6 +57,7 @@ public class Fragment_Sign_In extends Fragment implements Listeners.LoginListene
 
     private void initView() {
         loginModel = new LoginModel();
+        userModel=new UserModel();
         activity = (SignInActivity) getActivity();
         preferences = Preferences.newInstance();
         Paper.init(activity);
@@ -119,7 +120,17 @@ public class Fragment_Sign_In extends Fragment implements Listeners.LoginListene
 
         if (loginModel.isDataValid(activity))
         {
-            login(phone_code,phone,password);
+            if(phone.startsWith("0")){
+                phone=phone.replaceFirst("0","");
+
+            }
+
+            phone_code=phone_code.replace("+","00");
+userModel.setCode(phone_code);
+userModel.setPhone(phone);
+activity.displayFragmentCodeVerification(userModel);
+
+            //login(phone_code,phone,password);
         }
     }
 

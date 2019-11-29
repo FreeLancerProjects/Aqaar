@@ -8,11 +8,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.creative.share.apps.aqaar.R;
+import com.creative.share.apps.aqaar.activities_fragments.activity_home.HomeActivity;
+import com.creative.share.apps.aqaar.activities_fragments.activity_sign_in.fragments.Fragment_Code_Verification;
 import com.creative.share.apps.aqaar.activities_fragments.activity_sign_in.fragments.Fragment_Language;
 import com.creative.share.apps.aqaar.activities_fragments.activity_sign_in.fragments.Fragment_Sign_In;
 import com.creative.share.apps.aqaar.activities_fragments.activity_sign_in.fragments.Fragment_Sign_Up;
-import com.creative.share.apps.aqaar.language.Language;
+import com.creative.share.apps.aqaar.activities_fragments.activity_splash.SplashActivity;
 import com.creative.share.apps.aqaar.language.LanguageHelper;
+import com.creative.share.apps.aqaar.models.UserModel;
 import com.creative.share.apps.aqaar.preferences.Preferences;
 
 import java.util.Locale;
@@ -26,12 +29,15 @@ public class SignInActivity extends AppCompatActivity {
     private int fragment_count = 0;
     private Fragment_Sign_In fragment_sign_in;
     private Fragment_Sign_Up fragment_sign_up;
+    private Fragment_Language fragment_language;
     private String cuurent_language;
     private Preferences preferences;
+    private Fragment_Code_Verification fragment_code_verification;
+
     @Override
     protected void attachBaseContext(Context newBase) {
         Paper.init(newBase);
-        super.attachBaseContext(LanguageHelper.updateResources(newBase, Paper.book().read("lang", "ar")));
+        super.attachBaseContext(LanguageHelper.updateResources(newBase, Paper.book().read("lang", Locale.getDefault().getLanguage())));
 
     }
 
@@ -44,19 +50,19 @@ public class SignInActivity extends AppCompatActivity {
 
         initView();
         if (savedInstanceState == null) {
-           /* if (!preferences.isLanguageSelected(this))
+            if (!preferences.isLanguageSelected(this))
             {
                 DisplayFragmentLanguage();
             }else
             {
                 DisplayFragmentSignIn();
 
-            }*/
-            DisplayFragmentSignIn();
+            }
+          //  DisplayFragmentSignIn();
 
         }
 
-getDataFromIntent();
+        getDataFromIntent();
     }
     private void getDataFromIntent() {
         Intent intent = getIntent();
@@ -98,13 +104,40 @@ getDataFromIntent();
         }
     }
 
+    public void DisplayFragmentLanguage() {
+        fragment_language = Fragment_Language.newInstance();
+        if (fragment_language.isAdded()) {
+            fragmentManager.beginTransaction().show(fragment_language).commit();
+        } else {
+            fragmentManager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_language, "fragment_language").addToBackStack("fragment_language").commit();
+        }
+    }
+
+    public void displayFragmentCodeVerification(UserModel userModel) {
+        fragment_count ++;
+        fragment_code_verification = Fragment_Code_Verification.newInstance(userModel);
+        fragmentManager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_code_verification, "fragment_code_verification").addToBackStack("fragment_code_verification").commit();
+
+    }
+    public void RefreshActivity(String selected_language) {
+        Paper.book().write("lang", selected_language);
+        LanguageHelper.setNewLocale(this, selected_language);
+        preferences.setIsLanguageSelected(this);
+
+
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+
+
+    }
     @Override
     public void onBackPressed() {
         Back();
     }
 
     public void Back() {
-        if (fragment_sign_in!=null&&fragment_sign_in.isAdded()&&fragment_sign_in.isVisible())
+        if (fragment_language!=null&&fragment_language.isAdded()&&fragment_language.isVisible())
         {
             finish();
 
@@ -117,11 +150,17 @@ getDataFromIntent();
 
             } else  {
 
-                finishAffinity();
+                finish();
 
             }
         }
 
 
+    }
+
+    public void NavigateToHomeActivity() {
+        Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

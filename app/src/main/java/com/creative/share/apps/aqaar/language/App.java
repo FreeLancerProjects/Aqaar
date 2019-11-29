@@ -3,8 +3,10 @@ package com.creative.share.apps.aqaar.language;
 import android.app.Application;
 import android.content.Context;
 
+import androidx.multidex.MultiDexApplication;
 
-public class App extends Application {
+
+public class App extends MultiDexApplication {
 
     @Override
     protected void attachBaseContext(Context base) {

@@ -37,7 +37,7 @@ public class SignUpModel extends BaseObservable {
         setPhone(phone);
         setEmail(email);
         setPassword(password);
-       =
+
     }
 
     public boolean isDataValid(Context context)
