@@ -214,7 +214,7 @@ activity.displayFragmentCodeVerification(userModel);
     private void navigateToHomeActivity() {
         Intent intent = new Intent(activity, HomeActivity.class);
         startActivity(intent);
-        activity.finish();
+       // activity.finish();
     }
 
     @Override
