@@ -23,6 +23,11 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
+        <activity android:name=".activities_fragments.activity_ad_details.AdDetailsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            />
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
@@ -34,13 +39,10 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".activities_fragments.activity_search.SearchActivity"
+        <activity
+            android:name=".activities_fragments.activity_search.SearchActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
-
-
-
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activities_fragments.activity_home.HomeActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"

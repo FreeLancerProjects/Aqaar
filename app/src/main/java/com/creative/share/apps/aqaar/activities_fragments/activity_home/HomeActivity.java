@@ -26,6 +26,7 @@ import com.creative.share.apps.aqaar.activities_fragments.activity_home.fragment
 import com.creative.share.apps.aqaar.activities_fragments.activity_search.SearchActivity;
 import com.creative.share.apps.aqaar.databinding.ActivityHomeBinding;
 import com.creative.share.apps.aqaar.language.LanguageHelper;
+import com.creative.share.apps.aqaar.models.CityDataModel;
 import com.creative.share.apps.aqaar.models.UserModel;
 import com.creative.share.apps.aqaar.preferences.Preferences;
 import com.creative.share.apps.aqaar.share.Common;
@@ -48,6 +49,10 @@ public class HomeActivity extends AppCompatActivity {
     private Fragment_Profile fragment_profile;
     private Fragment_Main_Map_Area fragment_main_map_area;
     private Fragment_Chat fragment_chat;
+    private boolean isCitySelected = false;
+    public String city_id,lat,lng,category_id;
+    private AHBottomNavigationItem item1;
+    private CityDataModel.CityModel cityModel;
 
 
     @Override
@@ -62,7 +67,7 @@ public class HomeActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         initView();
         if (savedInstanceState == null) {
-            DisplayFragmentMainMap();
+            DisplayFragmentArea();
         }
     }
 
@@ -85,7 +90,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void setUpBottomNavigation() {
 
-        AHBottomNavigationItem item1 = new AHBottomNavigationItem(getString(R.string.list), R.drawable.ic_list);
+        item1 = new AHBottomNavigationItem(getString(R.string.list), R.drawable.ic_list);
         AHBottomNavigationItem item2 = new AHBottomNavigationItem(getString(R.string.areas), R.drawable.ic_area_with_pins);
         AHBottomNavigationItem item3 = new AHBottomNavigationItem(getString(R.string.location), R.drawable.ic_gps);
         AHBottomNavigationItem item4 = new AHBottomNavigationItem(getString(R.string.chat), R.drawable.ic_comment);
@@ -108,26 +113,32 @@ public class HomeActivity extends AppCompatActivity {
             userModel = preferences.getUserData(this);
             switch (position) {
                 case 0:
-                    if (isNormal) {
-                        isNormal = false;
 
-                        item1.setTitle(getString(R.string.list));
-                        item1.setDrawable(R.drawable.ic_list);
-                        binding.ahBottomNav.refresh();
-                        DisplayFragmentMainMap();
+                    if (isCitySelected) {
+                        if (isNormal) {
+                            isNormal = false;
 
+                            item1.setTitle(getString(R.string.list));
+                            item1.setDrawable(R.drawable.ic_list);
+                            binding.ahBottomNav.refresh();
+                            DisplayFragmentMainMap(cityModel);
+
+                        } else {
+
+
+                            item1.setTitle(getString(R.string.map));
+                            item1.setDrawable(R.drawable.ic_map);
+                            binding.ahBottomNav.refresh();
+
+                            isNormal = true;
+                            DisplayFragmentMainAds();
+
+
+                        }
                     } else {
-
-
-                        item1.setTitle(getString(R.string.map));
-                        item1.setDrawable(R.drawable.ic_map);
-                        binding.ahBottomNav.refresh();
-
-                        isNormal = true;
-                        DisplayFragmentMainAds();
-
-
+                        DisplayFragmentArea();
                     }
+
                     break;
                 case 1:
 
@@ -171,9 +182,10 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-    private void DisplayFragmentMainMap() {
-
-        fragment_main_map = Fragment_Main_Map.newInstance();
+    public void DisplayFragmentMainMap(CityDataModel.CityModel cityModel) {
+        this.cityModel = cityModel;
+        isCitySelected = true;
+        fragment_main_map = Fragment_Main_Map.newInstance(cityModel);
 
         if (fragment_profile != null && fragment_profile.isAdded()) {
             manager.beginTransaction().hide(fragment_profile).commit();
@@ -209,7 +221,9 @@ public class HomeActivity extends AppCompatActivity {
 
     private void DisplayFragmentMainAds() {
 
-        fragment_main_ads = Fragment_Main_Ads.newInstance();
+        isCitySelected = true;
+
+        fragment_main_ads = Fragment_Main_Ads.newInstance(city_id,lat,lng,category_id);
 
         if (fragment_profile != null && fragment_profile.isAdded()) {
             manager.beginTransaction().hide(fragment_profile).commit();
@@ -245,6 +259,13 @@ public class HomeActivity extends AppCompatActivity {
 
     private void DisplayFragmentArea() {
 
+        isNormal = false;
+
+        item1.setTitle(getString(R.string.list));
+        item1.setDrawable(R.drawable.ic_list);
+        binding.ahBottomNav.refresh();
+
+        isCitySelected = false;
         fragment_main_map_area = Fragment_Main_Map_Area.newInstance();
 
         if (fragment_main_map != null && fragment_main_map.isAdded()) {
@@ -281,6 +302,12 @@ public class HomeActivity extends AppCompatActivity {
 
     private void DisplayFragmentMyLocation() {
 
+        isNormal = false;
+
+        item1.setTitle(getString(R.string.list));
+        item1.setDrawable(R.drawable.ic_list);
+        binding.ahBottomNav.refresh();
+        isCitySelected = false;
         fragment_main_map_myLocation = Fragment_Main_Map_MyLocation.newInstance();
 
         if (fragment_main_map != null && fragment_main_map.isAdded()) {
@@ -317,6 +344,12 @@ public class HomeActivity extends AppCompatActivity {
 
     private void DisplayFragmentChat() {
 
+        isNormal = false;
+
+        item1.setTitle(getString(R.string.list));
+        item1.setDrawable(R.drawable.ic_list);
+        binding.ahBottomNav.refresh();
+        isCitySelected = false;
         if (fragment_chat == null) {
             fragment_chat = Fragment_Chat.newInstance();
         }
@@ -356,6 +389,12 @@ public class HomeActivity extends AppCompatActivity {
 
     private void DisplayFragmentProfile() {
 
+        isNormal = false;
+
+        item1.setTitle(getString(R.string.list));
+        item1.setDrawable(R.drawable.ic_list);
+        binding.ahBottomNav.refresh();
+        isCitySelected = false;
         if (fragment_profile == null) {
             fragment_profile = Fragment_Profile.newInstance();
         }
@@ -393,12 +432,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -426,24 +459,11 @@ public class HomeActivity extends AppCompatActivity {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            if (fragment_main_map != null && fragment_main_map.isAdded() && fragment_main_map.isVisible()) {
-                if (userModel == null) {
-                    navigateToSignInActivity();
-                } else {
-                    finish();
-                }
-            } else if (fragment_main_ads != null && fragment_main_ads.isAdded() && fragment_main_ads.isVisible()) {
-                if (userModel == null) {
-                    navigateToSignInActivity();
-                } else {
-                    finish();
-                }
+
+            if (userModel == null) {
+                navigateToSignInActivity();
             } else {
-                if (isNormal) {
-                    DisplayFragmentMainMap();
-                } else {
-                    DisplayFragmentMainAds();
-                }
+                finish();
             }
         }
     }

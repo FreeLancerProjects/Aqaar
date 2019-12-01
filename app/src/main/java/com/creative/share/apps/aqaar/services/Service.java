@@ -1,11 +1,17 @@
 package com.creative.share.apps.aqaar.services;
 
 
+import com.creative.share.apps.aqaar.models.AdDataModel;
+import com.creative.share.apps.aqaar.models.CategoryDataModel;
+import com.creative.share.apps.aqaar.models.CityDataModel;
 import com.creative.share.apps.aqaar.models.PlaceGeocodeData;
 import com.creative.share.apps.aqaar.models.PlaceMapDetailsData;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface Service {
@@ -24,7 +30,20 @@ public interface Service {
                                       @Query(value = "key") String key);
 
 
+    @GET("api/all_cities")
+    Call<CityDataModel> getAllCities();
 
+
+    @FormUrlEncoded
+    @POST("api/fillter")
+    Call<AdDataModel> getAdsByCityAndCategory(@Field("city_id") String city_id,
+                                              @Field("lat") String lat,
+                                              @Field("lng") String lng,
+                                              @Field("category_id") String category_id
+    );
+
+    @GET("api/aqarat_category")
+    Call<CategoryDataModel> getAllCategories();
 }
 
 

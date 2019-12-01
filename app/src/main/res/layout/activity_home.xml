@@ -102,7 +102,9 @@
             android:layout_gravity="start"
             android:background="@color/white"
             android:fitsSystemWindows="true"
-            app:menu="@menu/activity_home_drawer">
+            app:menu="@menu/activity_home_drawer"
+
+            >
 
             <ScrollView
                 android:layout_width="match_parent"

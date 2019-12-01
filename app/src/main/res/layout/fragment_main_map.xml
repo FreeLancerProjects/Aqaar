@@ -16,7 +16,9 @@
             app:tabTextColor="@color/gray4"
             app:tabSelectedTextColor="@color/colorPrimary"
             app:tabIndicatorColor="@color/colorPrimary"
-            app:tabIndicatorHeight="2dp"/>
+            app:tabIndicatorHeight="2dp"
+            android:background="@color/white"
+            />
 
         <FrameLayout
             android:layout_width="match_parent"

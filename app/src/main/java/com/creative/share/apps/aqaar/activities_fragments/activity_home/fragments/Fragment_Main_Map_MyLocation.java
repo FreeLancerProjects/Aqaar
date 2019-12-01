@@ -8,11 +8,16 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.PorterDuff;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,10 +28,16 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.creative.share.apps.aqaar.R;
+import com.creative.share.apps.aqaar.activities_fragments.activity_ad_details.AdDetailsActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_home.HomeActivity;
 import com.creative.share.apps.aqaar.databinding.FragmentMainMapMyLocationBinding;
+import com.creative.share.apps.aqaar.models.AdDataModel;
+import com.creative.share.apps.aqaar.models.AdModel;
+import com.creative.share.apps.aqaar.models.CategoryDataModel;
 import com.creative.share.apps.aqaar.models.UserModel;
 import com.creative.share.apps.aqaar.preferences.Preferences;
+import com.creative.share.apps.aqaar.remote.Api;
+import com.creative.share.apps.aqaar.tags.Tags;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -48,12 +59,20 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.tabs.TabLayout;
 import com.google.maps.android.SphericalUtil;
 import com.google.maps.android.ui.IconGenerator;
+import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import io.paperdb.Paper;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Fragment_Main_Map_MyLocation extends Fragment implements OnMapReadyCallback ,GoogleApiClient.OnConnectionFailedListener,GoogleApiClient.ConnectionCallbacks, LocationListener {
     private FragmentMainMapMyLocationBinding binding;
@@ -68,6 +87,8 @@ public class Fragment_Main_Map_MyLocation extends Fragment implements OnMapReady
     private GoogleApiClient googleApiClient;
     private LocationRequest locationRequest;
     private LocationCallback locationCallback;
+    private List<CategoryDataModel.CategoryModel> categoryModelList;
+    private double lat=0.0,lng = 0.0;
 
 
 
@@ -85,6 +106,7 @@ public class Fragment_Main_Map_MyLocation extends Fragment implements OnMapReady
     }
 
     private void initView() {
+        categoryModelList = new ArrayList<>();
         activity = (HomeActivity) getActivity();
         preferences = Preferences.newInstance();
         userModel = preferences.getUserData(activity);
@@ -92,6 +114,35 @@ public class Fragment_Main_Map_MyLocation extends Fragment implements OnMapReady
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
         initMap();
+
+        binding.tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int pos = tab.getPosition();
+                if (pos==0)
+                {
+                    getAds("all",String.valueOf(lat),String.valueOf(lng),"all");
+
+                }else
+                {
+                    CategoryDataModel.CategoryModel categoryModel = categoryModelList.get(pos);
+
+                    getAds("all","all","all",String.valueOf(categoryModel.getId()));
+
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
 
 
     }
@@ -118,34 +169,261 @@ public class Fragment_Main_Map_MyLocation extends Fragment implements OnMapReady
             mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(activity,R.raw.maps));
             mMap.setTrafficEnabled(false);
+            mMap.setMyLocationEnabled(true);
+            mMap.setInfoWindowAdapter(new WindowInfo());
+            mMap.setOnInfoWindowClickListener(marker -> {
+                AdModel adModel = (AdModel) marker.getTag();
+                if (adModel!=null)
+                {
+                    Intent intent = new Intent(activity, AdDetailsActivity.class);
+                    intent.putExtra("data",adModel);
+                    startActivity(intent);
+                }
+            });
+            getAllCategories();
             checkPermission();
 
 
         }
     }
 
+    private void getAllCategories() {
 
-    private void getNearByAds(Location myLocation) {
+        Api.getService(Tags.base_url)
+                .getAllCategories()
+                .enqueue(new Callback<CategoryDataModel>() {
+                    @Override
+                    public void onResponse(Call<CategoryDataModel> call, Response<CategoryDataModel> response) {
+                        if (response.isSuccessful() && response.body() != null && response.body().getData() != null) {
+
+                            updateTabUI(response.body().getData());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CategoryDataModel> call, Throwable t) {
+
+                        try {
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage());
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                        } catch (Exception e) {
+                        }
+                    }
+                });
+
+
 
     }
 
-    private void addMyMarker(LatLng latLng)
+    private void getAds(String city_id,String lat,String lng,String category_id) {
+        mMap.clear();
+        binding.progBar.setVisibility(View.VISIBLE);
+        Api.getService(Tags.base_url)
+                .getAdsByCityAndCategory(city_id,lat,lng,category_id)
+                .enqueue(new Callback<AdDataModel>() {
+                    @Override
+                    public void onResponse(Call<AdDataModel> call, Response<AdDataModel> response) {
+                        binding.progBar.setVisibility(View.GONE);
+                        if (response.isSuccessful() && response.body() != null && response.body().getData() != null) {
+                            updateDataMapUI(response.body().getData());
+                        }else
+                        {
+                            binding.progBar.setVisibility(View.GONE);
+
+                            try {
+                                Log.e("Error code",response.code()+"__"+response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            if (response.code()==500)
+                            {
+                                Toast.makeText(activity, "Server error", Toast.LENGTH_SHORT).show();
+                            }else
+                            {
+                                Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<AdDataModel> call, Throwable t) {
+                        binding.progBar.setVisibility(View.GONE);
+
+                        try {
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage());
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                        } catch (Exception e) {
+                        }
+                    }
+                });
+
+    }
+
+
+    private void updateTabUI(List<CategoryDataModel.CategoryModel> data) {
+        CategoryDataModel.CategoryModel categoryModel = new CategoryDataModel.CategoryModel(0,"الكل","All");
+        data.add(0,categoryModel);
+        categoryModelList.clear();
+        categoryModelList.addAll(data);
+        for (CategoryDataModel.CategoryModel categoryModel1:data)
+        {
+            if (lang.equals("ar"))
+            {
+                binding.tab.addTab(binding.tab.newTab().setText(categoryModel1.getTitle_ar()));
+
+            }else
+            {
+                binding.tab.addTab(binding.tab.newTab().setText(categoryModel1.getTite_en()));
+
+            }
+        }
+
+
+    }
+
+    private void updateDataMapUI(List<AdModel> data)
     {
-        mMap.addMarker(new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,15.0f));
+        if (data.size()>0)
+        {
+            for (AdModel adModel :data)
+            {
+                addMarker(adModel);
+            }
 
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat,lng),6.3f));
+        }else
+        {
+            Toast.makeText(activity, R.string.no_ads, Toast.LENGTH_LONG).show();
+        }
     }
-
-    private void addMarker(LatLng latLng,String title)
+    private void addMarker(AdModel adModel)
     {
         IconGenerator iconGenerator = new IconGenerator(activity);
-        iconGenerator.setContentPadding(5,3,5,3);
+        iconGenerator.setContentPadding(15,15,15,15);
+        iconGenerator.setTextAppearance(R.style.iconGenText);
         iconGenerator.setBackground(ContextCompat.getDrawable(activity,R.drawable.marker1_bg));
-        marker = mMap.addMarker(new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(title))));
+        Marker marker;
+        if (adModel.getMetr_price()!=null&&!adModel.getMetr_price().isEmpty())
+        {
+             marker = mMap.addMarker(new MarkerOptions().position(new LatLng(adModel.getAqar_lat(),adModel.getAqar_long())).icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(adModel.getMetr_price()+" "+getString(R.string.sar)))));
 
+        }else
+        {
+             marker = mMap.addMarker(new MarkerOptions().position(new LatLng(adModel.getAqar_lat(),adModel.getAqar_long())).icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(getString(R.string.no_price)))));
+
+        }
+        marker.setTag(adModel);
     }
+    public  class WindowInfo implements GoogleMap.InfoWindowAdapter
+    {
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+
+            return null;
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+            AdModel adModel = (AdModel) marker.getTag();
+            if (adModel==null)
+            {
+                return null;
+            }else
+            {
+                View view = LayoutInflater.from(activity).inflate(R.layout.window_info_view,null);
+                TextView tvTitle = view.findViewById(R.id.tvTitle);
+                TextView tvPrice = view.findViewById(R.id.tvPrice);
+                TextView tvDetails = view.findViewById(R.id.tvDetails);
+                TextView tvAddress = view.findViewById(R.id.tvAddress);
+                ImageView image = view.findViewById(R.id.image);
+
+                ProgressBar progBar = view.findViewById(R.id.progBar);
+
+                try {
+                    if (adModel.getAqar_title()!=null&&!adModel.getAqar_title().isEmpty())
+                    {
+                        tvTitle.setText(adModel.getAqar_title());
+
+                    }else
+                    {
+                        tvTitle.setText(getString(R.string.no_name));
+
+                    }
+
+                    if (adModel.getMetr_price()!=null&&!adModel.getMetr_price().isEmpty())
+                    {
+                        tvPrice.setText(String.format("%s %s",adModel.getMetr_price(),getString(R.string.sar)));
+
+                    }else
+                    {
+                        tvPrice.setText(getString(R.string.no_price));
+
+                    }
 
 
+
+                    if (adModel.getAqar_text()!=null&&!adModel.getAqar_text().isEmpty())
+                    {
+                        tvDetails.setText(adModel.getAqar_text());
+
+                    }else
+                    {
+                        tvDetails.setText(getString(R.string.no_details));
+
+                    }
+
+                    if (adModel.getAqar_makan()!=null&&!adModel.getAqar_makan().isEmpty())
+                    {
+                        tvAddress.setText(String.format("%s %s",adModel.getAqar_makan(),adModel.getCity_name()));
+
+                    }else
+                    {
+                        tvAddress.setText(adModel.getCity_name());
+
+                    }
+
+
+                    Picasso.with(activity).load(Uri.parse(Tags.base_url+adModel.getImage())).fit().into(image, new com.squareup.picasso.Callback() {
+                        @Override
+                        public void onSuccess() {
+                            progBar.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onError() {
+                            progBar.setVisibility(View.GONE);
+
+                        }
+                    });
+
+                }catch (Exception e)
+                {
+                    if (e!=null&&e.getMessage()!=null)
+                    {
+                        Log.e("error",e.getMessage());
+                    }
+                }
+
+                return view;
+            }
+
+        }
+    }
     private void initGoogleApiClient()
     {
         googleApiClient = new GoogleApiClient.Builder(activity)
@@ -250,9 +528,10 @@ public class Fragment_Main_Map_MyLocation extends Fragment implements OnMapReady
 
     @Override
     public void onLocationChanged(Location location) {
+        lat = location.getLatitude();
+        lng = location.getLongitude();
+        getAds("all",String.valueOf(lat),String.valueOf(lng),"all");
         stopUpdateLocation();
-        addMyMarker(new LatLng(location.getLatitude(),location.getLongitude()));
-        getNearByAds(location);
     }
 
 

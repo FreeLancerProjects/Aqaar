@@ -156,4 +156,13 @@
     <string name="ad_today">Ad today</string>
     <string name="search2">Search</string>
     <string name="search_by_advertisement_num_n_ad_owner">Search by advertisement num\nad owner phone</string>
+    <string name="no_ads">No ads to display</string>
+    <string name="sar">SAR</string>
+    <string name="no_price">No price</string>
+    <string name="metre_price">Metre price</string>
+    <string name="land_type">Land type</string>
+    <string name="space">Space</string>
+    <string name="interface1">Interface</string>
+    <string name="location_on_map">Location on map</string>
+
 </resources>

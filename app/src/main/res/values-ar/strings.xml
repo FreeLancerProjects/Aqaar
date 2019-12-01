@@ -166,4 +166,13 @@
     <string name="ad_today">إعلان اليوم</string>
     <string name="search2">بحث</string>
     <string name="search_by_advertisement_num_n_ad_owner">برجاء إدخال رقم الاعلان\n او جوال المعلن</string>
+    <string name="no_ads">لا توجد إعلانات لعرضها</string>
+    <string name="sar">ر.س</string>
+    <string name="no_price">لا يوجد سعر</string>
+    <string name="metre_price">سعر المتر</string>
+    <string name="land_type">نوع الارض</string>
+    <string name="space">المساحة</string>
+    <string name="interface1">الواجهة</string>
+    <string name="location_on_map">الموقع على الخريطة</string>
+
 </resources>
