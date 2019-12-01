@@ -114,4 +114,7 @@ public class AdDetailsActivity extends AppCompatActivity implements Listeners.Ba
         finish();
     }
 
+
+
+
 }
