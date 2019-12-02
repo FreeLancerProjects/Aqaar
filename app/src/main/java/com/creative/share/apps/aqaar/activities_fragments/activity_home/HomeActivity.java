@@ -3,6 +3,8 @@ package com.creative.share.apps.aqaar.activities_fragments.activity_home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +19,8 @@ import androidx.fragment.app.FragmentManager;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.creative.share.apps.aqaar.R;
+import com.creative.share.apps.aqaar.activities_fragments.activity_about.AboutActivity;
+import com.creative.share.apps.aqaar.activities_fragments.activity_contact.ContactActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_home.fragments.Fragment_Chat;
 import com.creative.share.apps.aqaar.activities_fragments.activity_home.fragments.Fragment_Main_Ads;
 import com.creative.share.apps.aqaar.activities_fragments.activity_home.fragments.Fragment_Main_Map;
@@ -24,14 +28,20 @@ import com.creative.share.apps.aqaar.activities_fragments.activity_home.fragment
 import com.creative.share.apps.aqaar.activities_fragments.activity_home.fragments.Fragment_Main_Map_MyLocation;
 import com.creative.share.apps.aqaar.activities_fragments.activity_home.fragments.Fragment_Profile;
 import com.creative.share.apps.aqaar.activities_fragments.activity_search.SearchActivity;
+import com.creative.share.apps.aqaar.activities_fragments.activity_sign_in.activities.SignInActivity;
+import com.creative.share.apps.aqaar.activities_fragments.activity_terms.TermsActivity;
 import com.creative.share.apps.aqaar.databinding.ActivityHomeBinding;
 import com.creative.share.apps.aqaar.language.LanguageHelper;
 import com.creative.share.apps.aqaar.models.UserModel;
 import com.creative.share.apps.aqaar.preferences.Preferences;
 import com.creative.share.apps.aqaar.share.Common;
+import com.creative.share.apps.aqaar.tags.Tags;
+import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import io.paperdb.Paper;
 
@@ -62,6 +72,11 @@ public class HomeActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         initView();
         if (savedInstanceState == null) {
+            if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                // Log.e("user", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getPhoneNumber());
+                FirebaseAuth.getInstance().getCurrentUser().delete();
+                FirebaseAuth.getInstance().signOut();
+            }
             DisplayFragmentMainMap();
         }
     }
@@ -73,15 +88,51 @@ public class HomeActivity extends AppCompatActivity {
         toggle = new ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolbar, R.string.open, R.string.close);
         toggle.syncState();
         setUpBottomNavigation();
-
+        if (userModel != null) {
+            Picasso.with(this).load(Tags.base_url + userModel.getUser_photo()).placeholder(R.drawable.ic_user_drawer).into(binding.imageUser);
+        }
         binding.imageSearch.setOnClickListener(view ->
         {
             Intent intent = new Intent(this, SearchActivity.class);
             startActivity(intent);
         });
-
-
+        binding.llAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, AboutActivity.class);
+                startActivity(intent);
+            }
+        });
+        binding.llTerms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, TermsActivity.class);
+                startActivity(intent);
+            }
+        });
+        binding.llContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, ContactActivity.class);
+                startActivity(intent);
+            }
+        });
+        binding.llLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logout();
+            }
+        });
     }
+
+    private void Logout() {
+        preferences.create_update_userData(HomeActivity.this, null);
+        preferences.createSession(HomeActivity.this, Tags.session_logout);
+        Intent intent = new Intent(HomeActivity.this, SignInActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 
     private void setUpBottomNavigation() {
 
@@ -391,12 +442,6 @@ public class HomeActivity extends AppCompatActivity {
         binding.tvTitle.setText(getString(R.string.profile));
 
     }
-
-
-
-
-
-
 
 
     @Override

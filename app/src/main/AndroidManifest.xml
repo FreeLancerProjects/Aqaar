@@ -39,7 +39,10 @@
             android:windowSoftInputMode="stateAlwaysHidden"
             />
 
-
+        <activity
+            android:name=".activities_fragments.activity_contact.ContactActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
             android:name=".activities_fragments.activity_home.HomeActivity"
@@ -47,6 +50,14 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activities_fragments.activity_sign_in.activities.SignInActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activities_fragments.activity_about.AboutActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activities_fragments.activity_terms.TermsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity

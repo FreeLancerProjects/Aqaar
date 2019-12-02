@@ -1,10 +1,12 @@
 package com.creative.share.apps.aqaar.services;
 
 
+import com.creative.share.apps.aqaar.models.App_Data_Model;
 import com.creative.share.apps.aqaar.models.PlaceGeocodeData;
 import com.creative.share.apps.aqaar.models.PlaceMapDetailsData;
 import com.creative.share.apps.aqaar.models.UserModel;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -42,7 +44,18 @@ public interface Service {
 
     );
 
+    @GET("api/terms")
+    Call<App_Data_Model> getterms();
 
+    @GET("api/about_us")
+    Call<App_Data_Model> getabout();
+    @FormUrlEncoded
+    @POST("api/contact_us")
+    Call<ResponseBody> sendContact(@Field("name") String name,
+                                   @Field("email") String email,
+                                   @Field("subject") String subject,
+                                   @Field("message") String message
+    );
 
 
 }
