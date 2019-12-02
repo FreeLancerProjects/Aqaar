@@ -8,7 +8,9 @@
     <string name="signup">إنشاء حساب جديد</string>
     <string name="are_you_forgot_password">نسيت كلمة المرور؟</string>
 
-    <string name="user_name">الإسم</string>
+    <string name="user_name"> الإسم بالكامل</string>
+    <string name="user_name2">اسم المستخدم</string>
+
     <string name="phone">رقم الجوال</string>
     <string name="you_already_have_an_account_log_in">لدي حساب بالفعل ! سجل الدخول</string>
     <string name="home">الرئيسية</string>
@@ -166,4 +168,6 @@
     <string name="ad_today">إعلان اليوم</string>
     <string name="search2">بحث</string>
     <string name="search_by_advertisement_num_n_ad_owner">برجاء إدخال رقم الاعلان\n او جوال المعلن</string>
+    <string name="inc_phone_pas">رقم الجوال او كلمة المرور غير صحيحة</string>
+
 </resources>

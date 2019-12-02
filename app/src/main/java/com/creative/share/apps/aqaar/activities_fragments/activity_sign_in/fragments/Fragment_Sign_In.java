@@ -46,7 +46,6 @@ public class Fragment_Sign_In extends Fragment implements Listeners.LoginListene
     private Preferences preferences;
     private CountryPicker countryPicker;
     private LoginModel loginModel;
-private UserModel userModel;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_in, container, false);
@@ -57,7 +56,6 @@ private UserModel userModel;
 
     private void initView() {
         loginModel = new LoginModel();
-        userModel=new UserModel();
         activity = (SignInActivity) getActivity();
         preferences = Preferences.newInstance();
         Paper.init(activity);
@@ -126,57 +124,53 @@ private UserModel userModel;
             }
 
             phone_code=phone_code.replace("+","00");
-userModel.setCode(phone_code);
-userModel.setPhone(phone);
-activity.displayFragmentCodeVerification(userModel);
 
-            //login(phone_code,phone,password);
+
+            login(phone_code,phone,password);
         }
     }
 
     private void login(String phone_code, String phone, String password)
     {
-     /*   ProgressDialog dialog = Common.createProgressDialog(activity,getString(R.string.wait));
+        ProgressDialog dialog = Common.createProgressDialog(activity,getString(R.string.wait));
         dialog.setCancelable(false);
         dialog.show();
         try {
 
             Api.getService(Tags.base_url)
-                    .login(phone,password)
+                    .login(phone,phone_code,password)
                     .enqueue(new Callback<UserModel>() {
                         @Override
                         public void onResponse(Call<UserModel> call, Response<UserModel> response) {
                             dialog.dismiss();
                             if (response.isSuccessful()&&response.body()!=null)
                             {
-                                preferences.create_update_userdata(activity,response.body());
-                                preferences.create_update_session(activity, Tags.session_login);
-                                Intent intent = new Intent(activity,HomeActivity.class);
-                                startActivity(intent);
-                                activity.finish();
+                              activity.displayFragmentCodeVerification(response.body());
 
                             }else
                             {
+                                try {
+
+                                    Log.e("error",response.code()+"_"+response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                                 if (response.code() == 422) {
-                                    Toast.makeText(activity, getString(R.string.inc_phone_pas), Toast.LENGTH_SHORT).show();
-                                } else if (response.code() == 500) {
-                                    Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //  Log.e("error",response.code()+"_"+response.errorBody()+response.message()+password+phone+phone_code);
 
-
-                                }else if (response.code()==401||response.code()==404)
+                                }else if (response.code()==404)
                                 {
                                     Toast.makeText(activity, R.string.inc_phone_pas, Toast.LENGTH_SHORT).show();
+
+                                }else if (response.code() == 500) {
+                                    Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
 
                                 }else
                                 {
                                     Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
-                                    try {
 
-                                        Log.e("error",response.code()+"_"+response.errorBody().string());
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
                                 }
                             }
                         }
@@ -203,7 +197,7 @@ activity.displayFragmentCodeVerification(userModel);
         }catch (Exception e){
             dialog.dismiss();
 
-        }*/
+        }
     }
 
     @Override

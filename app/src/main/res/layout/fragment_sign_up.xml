@@ -136,6 +136,52 @@
                         android:hint="@string/user_name"
                         android:textSize="14sp"
                         android:textColorHint="@color/gray3"
+                        android:text="@={signUpModel.user_full_name}"
+                        error="@{signUpModel.error_user_full_name}"
+
+                        />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/colorPrimary"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    >
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_user"
+                        android:padding="5dp"
+                        android:tint="@color/colorPrimary"
+                        />
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:background="@color/colorPrimary"/>
+
+                    <EditText
+                        android:id="@+id/edtfullName"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:singleLine="true"
+                        android:background="@color/transparent"
+                        android:textColor="@color/black"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:hint="@string/user_name"
+                        android:textSize="14sp"
+                        android:textColorHint="@color/gray3"
                         android:text="@={signUpModel.name}"
                         error="@{signUpModel.error_name}"
 
@@ -148,7 +194,6 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     />
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
@@ -387,7 +432,7 @@
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 android:text="@string/signup"
-                android:onClick="@{()->signUpListener.checkDataSignUp(signUpModel.name,signUpModel.phone_code,signUpModel.phone,signUpModel.email,signUpModel.password)}"
+                android:onClick="@{()->signUpListener.checkDataSignUp(signUpModel.user_full_name,signUpModel.user_name,signUpModel.phone_code,signUpModel.phone,signUpModel.email,signUpModel.password)}"
                 />
 
 

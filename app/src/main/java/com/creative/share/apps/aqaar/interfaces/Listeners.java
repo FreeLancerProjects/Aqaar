@@ -27,7 +27,7 @@ public interface Listeners {
 
     interface SignUpListener
     {
-        void checkDataSignUp(String name, String phone_code, String phone,String email, String password);
+        void checkDataSignUp(String full_name,String user_name, String phone_code, String phone,String email, String password);
 
     }
     interface EditprofileListener

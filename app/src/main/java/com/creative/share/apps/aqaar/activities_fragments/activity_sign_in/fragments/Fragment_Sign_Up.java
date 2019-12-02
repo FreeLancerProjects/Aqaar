@@ -24,12 +24,17 @@ import com.creative.share.apps.aqaar.activities_fragments.activity_sign_in.activ
 import com.creative.share.apps.aqaar.databinding.FragmentSignUpBinding;
 import com.creative.share.apps.aqaar.interfaces.Listeners;
 import com.creative.share.apps.aqaar.models.SignUpModel;
+import com.creative.share.apps.aqaar.models.UserModel;
 import com.creative.share.apps.aqaar.preferences.Preferences;
+import com.creative.share.apps.aqaar.remote.Api;
+import com.creative.share.apps.aqaar.share.Common;
+import com.creative.share.apps.aqaar.tags.Tags;
 import com.mukesh.countrypicker.Country;
 import com.mukesh.countrypicker.CountryPicker;
 import com.mukesh.countrypicker.listeners.OnCountryPickerListener;
 
 
+import java.io.IOException;
 import java.util.Locale;
 
 import io.paperdb.Paper;
@@ -131,11 +136,11 @@ public class Fragment_Sign_Up extends Fragment implements Listeners.SignUpListen
     }
 
     @Override
-    public void checkDataSignUp(String name, String phone_code, String phone,String email, String password) {
-     /*   if (phone.startsWith("0")) {
+    public void checkDataSignUp(String full_name,String user_name, String phone_code, String phone,String email, String password) {
+        if (phone.startsWith("0")) {
             phone = phone.replaceFirst("0", "");
-        }*/
-        signUpModel = new SignUpModel(name,phone_code,phone,email,password);
+        }
+        signUpModel = new SignUpModel(full_name,user_name,phone_code,phone,email,password);
         binding.setSignUpModel(signUpModel);
         if (signUpModel.isDataValid(activity))
         {
@@ -144,7 +149,62 @@ public class Fragment_Sign_Up extends Fragment implements Listeners.SignUpListen
     }
 
     private void signUp(SignUpModel signUpModel) {
+        try {
+            ProgressDialog dialog = Common.createProgressDialog(activity, getString(R.string.wait));
+            dialog.setCancelable(false);
+            dialog.show();
+            Api.getService(Tags.base_url)
+                    .signUp(signUpModel.getUser_full_name(),signUpModel.getUser_name(),signUpModel.getEmail(),signUpModel.getPassword(),signUpModel.getPhone(),signUpModel.getPhone_code())
+                    .enqueue(new Callback<UserModel>() {
+                        @Override
+                        public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                            dialog.dismiss();
+                            if (response.isSuccessful() && response.body() != null) {
+activity.displayFragmentCodeVerification(response.body());
 
+                            } else {
+                                if (response.code() == 422) {
+                                    Toast.makeText(activity,getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                } else if (response.code() == 500) {
+                                    Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
+
+                                }else if (response.code() == 406) {
+                                    Toast.makeText(activity,getString(R.string.em_exist), Toast.LENGTH_SHORT).show();
+
+                                }else
+                                {
+                                    Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+                                    try {
+
+                                        Log.e("error",response.code()+"_"+response.errorBody().string());
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<UserModel> call, Throwable t) {
+                            try {
+                                dialog.dismiss();
+                                if (t.getMessage() != null) {
+                                    Log.e("error", t.getMessage());
+                                    if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                        Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                            } catch (Exception e) {
+                            }
+                        }
+                    });
+        } catch (Exception e) {
+        }
     }
 
     @Override
