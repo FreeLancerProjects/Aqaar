@@ -2,6 +2,7 @@ package com.creative.share.apps.aqaar.activities_fragments.activity_ad_details;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import com.creative.share.apps.aqaar.databinding.ActivityAdDetailsBinding;
 import com.creative.share.apps.aqaar.interfaces.Listeners;
 import com.creative.share.apps.aqaar.language.LanguageHelper;
 import com.creative.share.apps.aqaar.models.AdModel;
+import com.creative.share.apps.aqaar.tags.Tags;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -19,6 +21,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
 
@@ -28,7 +31,7 @@ public class AdDetailsActivity extends AppCompatActivity implements Listeners.Ba
     private ActivityAdDetailsBinding binding;
     private String lang;
     private AdModel adModel;
-    private final float zoom = 15.6f;
+    private final float zoom = 11.0f;
     private FragmentMapTouchListener fragment;
     private GoogleMap mMap;
 
@@ -37,6 +40,7 @@ public class AdDetailsActivity extends AppCompatActivity implements Listeners.Ba
         Paper.init(newBase);
         super.attachBaseContext(LanguageHelper.updateResources(newBase, Paper.book().read("lang", Locale.getDefault().getLanguage())));
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,31 +51,27 @@ public class AdDetailsActivity extends AppCompatActivity implements Listeners.Ba
 
     private void getDataFromIntent() {
         Intent intent = getIntent();
-        if (intent!=null)
-        {
+        if (intent != null) {
             adModel = (AdModel) intent.getSerializableExtra("data");
         }
     }
 
 
-    private void initView()
-    {
+    private void initView() {
         Paper.init(this);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setBackListener(this);
         binding.setLang(lang);
         binding.setAdModel(adModel);
+        Picasso.with(this).load(Uri.parse(Tags.base_url+adModel.getImage())).fit().into(binding.image);
         initMap();
 
     }
 
-
-    private void initMap()
-    {
+    private void initMap() {
 
         fragment = (FragmentMapTouchListener) getSupportFragmentManager().findFragmentById(R.id.map);
-        if (fragment!=null)
-        {
+        if (fragment != null) {
             fragment.getMapAsync(this);
 
         }
@@ -79,8 +79,7 @@ public class AdDetailsActivity extends AppCompatActivity implements Listeners.Ba
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap)
-    {
+    public void onMapReady(GoogleMap googleMap) {
         if (googleMap != null) {
             mMap = googleMap;
             mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.maps));
@@ -88,23 +87,20 @@ public class AdDetailsActivity extends AppCompatActivity implements Listeners.Ba
             mMap.setBuildingsEnabled(false);
             mMap.setIndoorEnabled(true);
             fragment.setListener(() -> binding.scrollView.requestDisallowInterceptTouchEvent(true));
-            AddMarker(adModel.getAqar_lat(),adModel.getAqar_long(),adModel.getAqar_title());
+            AddMarker(adModel.getAqar_lat(), adModel.getAqar_long(), adModel.getAqar_title());
         }
     }
-    private void AddMarker(double lat, double lng,String title)
-    {
 
-        if (title!=null&&!title.isEmpty())
-        {
+    private void AddMarker(double lat, double lng, String title) {
+
+        if (title != null && !title.isEmpty()) {
             mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))).setTitle(title);
 
-        }else
-            {
-                mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+        } else {
+            mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lng)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
-            }
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), zoom));
-
+        }
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), zoom));
 
 
     }
@@ -113,8 +109,6 @@ public class AdDetailsActivity extends AppCompatActivity implements Listeners.Ba
     public void back() {
         finish();
     }
-
-
 
 
 }
