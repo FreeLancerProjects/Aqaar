@@ -106,6 +106,7 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.Service_Holder> 
             {
                 Log.e("error",e.getMessage());
             }
+
         }
 
         holder.itemView.setOnClickListener(view -> {
