@@ -16,24 +16,27 @@ public class LoginModel extends BaseObservable {
     private String phone_code;
     private String phone;
     private String password;
-
     public ObservableField<String> error_phone_code = new ObservableField<>();
     public ObservableField<String> error_phone = new ObservableField<>();
     public ObservableField<String> error_password = new ObservableField<>();
 
 
-
     public LoginModel() {
         this.phone_code = "";
-        notifyPropertyChanged(BR.phone_code);
         this.phone="";
-        notifyPropertyChanged(BR.phone);
-        this.password = "";
-        notifyPropertyChanged(BR.password);
-
+        this.password="";
     }
 
+    public LoginModel(String phone_code, String phone, String password) {
+        this.phone_code = phone_code;
+        notifyPropertyChanged(BR.phone_code);
+        this.phone = phone;
+        notifyPropertyChanged(BR.phone);
+        this.password = password;
+        notifyPropertyChanged(BR.password);
 
+
+    }
 
     @Bindable
     public String getPhone_code() {
@@ -56,6 +59,7 @@ public class LoginModel extends BaseObservable {
         notifyPropertyChanged(BR.phone);
 
     }
+
     @Bindable
     public String getPassword() {
         return password;
@@ -106,9 +110,8 @@ public class LoginModel extends BaseObservable {
             }else
             {
                 error_password.set(null);
+
             }
-
-
             return false;
         }
     }

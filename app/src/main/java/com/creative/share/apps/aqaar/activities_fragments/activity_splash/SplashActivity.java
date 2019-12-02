@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.creative.share.apps.aqaar.R;
 import com.creative.share.apps.aqaar.activities_fragments.activity_home.HomeActivity;
+import com.creative.share.apps.aqaar.activities_fragments.activity_sign_in.activities.SignInActivity;
 import com.creative.share.apps.aqaar.databinding.ActivitySplashBinding;
 import com.creative.share.apps.aqaar.language.LanguageHelper;
 import com.creative.share.apps.aqaar.preferences.Preferences;
@@ -52,11 +53,11 @@ public class SplashActivity extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 String session = preferences.getSession(SplashActivity.this);
                 if (session.equals(Tags.session_login)) {
-                    /*Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
-                    startActivity(intent);
-                    finish();*/
-                } else {
                     Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Intent intent = new Intent(SplashActivity.this, SignInActivity.class);
                     startActivity(intent);
                     finish();
                 }

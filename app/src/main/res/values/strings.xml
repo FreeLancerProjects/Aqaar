@@ -6,7 +6,9 @@
     <string name="login">Login</string>
     <string name="signup">Sign Up</string>
     <string name="are_you_forgot_password">Forgot password ?</string>
-    <string name="user_name">Name</string>
+    <string name="user_name">Full Name</string>
+    <string name="user_name2">User Name</string>
+
     <string name="phone">Phone Number</string>
     <string name="you_already_have_an_account_log_in">Already have an account! login</string>
     <string name="home">Home</string>
@@ -156,6 +158,8 @@
     <string name="ad_today">Ad today</string>
     <string name="search2">Search</string>
     <string name="search_by_advertisement_num_n_ad_owner">Search by advertisement num\nad owner phone</string>
+    <string name="inc_phone_pas">Incorrect phone number or password</string>
+
     <string name="no_ads">No ads to display</string>
     <string name="sar">SAR</string>
     <string name="no_price">No price</string>
