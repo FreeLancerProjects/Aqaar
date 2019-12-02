@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class UserModel implements Serializable {
     private int user_id;
-    private String phone_code;
+    private String user_phone_code;
     private String user_phone;
     private String user_name;
     private String user_username;
@@ -19,8 +19,8 @@ public class UserModel implements Serializable {
         return user_id;
     }
 
-    public String getPhone_code() {
-        return phone_code;
+    public String getUser_phone_code() {
+        return user_phone_code;
     }
 
     public String getUser_phone() {

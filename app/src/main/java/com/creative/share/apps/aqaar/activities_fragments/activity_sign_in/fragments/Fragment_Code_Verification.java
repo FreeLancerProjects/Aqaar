@@ -114,10 +114,10 @@ public class Fragment_Code_Verification extends Fragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (userModel.getPhone_code().startsWith("00")) {
-                    phone_code = userModel.getPhone_code().replaceFirst("00", "+");
+                if (userModel.getUser_phone_code().startsWith("00")) {
+                    phone_code = userModel.getUser_phone_code().replaceFirst("00", "+");
                 } else {
-                    phone_code = userModel.getPhone_code();
+                    phone_code = userModel.getUser_phone_code();
                 }
                 sendverficationcode(userModel.getUser_phone(), phone_code);
             }
@@ -231,7 +231,7 @@ public class Fragment_Code_Verification extends Fragment {
             @Override
             public void onFinish() {
                 canResend = true;
-                binding.btnResend.setText(getString(R.string.resend));
+                binding.btnResend.setText(activity.getResources().getString(R.string.resend));
             }
         }.start();
     }
