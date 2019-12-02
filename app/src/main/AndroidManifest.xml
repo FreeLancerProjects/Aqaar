@@ -38,6 +38,10 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden"
             />
+        <activity android:name=".activities_fragments.bank_activity.BanksActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            />
 
         <activity
             android:name=".activities_fragments.activity_contact.ContactActivity"
