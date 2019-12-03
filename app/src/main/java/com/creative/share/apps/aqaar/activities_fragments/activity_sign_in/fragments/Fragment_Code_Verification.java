@@ -148,7 +148,7 @@ public class Fragment_Code_Verification extends Fragment {
                 if (phoneAuthCredential.getSmsCode() != null) {
                     code = phoneAuthCredential.getSmsCode();
                     binding.edtCode.setText(code);
-                    verfiycode(code);
+                  //  verfiycode(code);
                 }
 
 
