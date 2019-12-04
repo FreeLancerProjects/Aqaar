@@ -91,8 +91,12 @@ public class Fragment_Code_Verification extends Fragment {
         preferences = Preferences.newInstance();
         Paper.init(activity);
         binding.btnConfirm.setOnClickListener(v -> {
-
-            checkData();
+            preferences.create_update_userData(activity, userModel);
+            preferences.createSession(activity, Tags.session_login);
+            Intent intent = new Intent(activity, HomeActivity.class);
+            startActivity(intent);
+            activity.finish();
+           // checkData();
 
         });
 
@@ -144,7 +148,7 @@ public class Fragment_Code_Verification extends Fragment {
                 if (phoneAuthCredential.getSmsCode() != null) {
                     code = phoneAuthCredential.getSmsCode();
                     binding.edtCode.setText(code);
-                    verfiycode(code);
+                  //  verfiycode(code);
                 }
 
 
