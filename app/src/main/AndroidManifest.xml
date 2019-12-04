@@ -23,10 +23,14 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
-        <activity android:name=".activities_fragments.activity_ad_details.AdDetailsActivity"
+        <activity android:name=".activities_fragments.activity_ad2_details.Ad2DetailsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden"
             />
+        <activity
+            android:name=".activities_fragments.activity_ad_details.AdDetailsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -43,17 +47,14 @@
             android:name=".activities_fragments.activity_search.SearchActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden" />
-
-        <activity android:name=".activities_fragments.bank_activity.BanksActivity"
+        <activity
+            android:name=".activities_fragments.bank_activity.BanksActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
-
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".activities_fragments.activity_contact.ContactActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden" />
-
         <activity
             android:name=".activities_fragments.activity_home.HomeActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"

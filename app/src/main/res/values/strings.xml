@@ -163,10 +163,38 @@
     <string name="no_ads">No ads to display</string>
     <string name="sar">SAR</string>
     <string name="no_price">No price</string>
-    <string name="metre_price">Metre price</string>
+    <string name="metre_price">Metre price from</string>
     <string name="land_type">Land type</string>
     <string name="space">Space</string>
     <string name="interface1">Interface</string>
     <string name="location_on_map">Location on map</string>
+    <string name="metre_price_to">Metre price to</string>
+    <string name="size_from">Size from</string>
+    <string name="size_to">Size to</string>
+    <string name="type">Type</string>
+    <string name="sakany">Residential</string>
+    <string name="trade">Trade</string>
+    <string name="num_bathroom">Num-bathroom</string>
+    <string name="ad_type">Ad type</string>
+    <string name="sale">Sale</string>
+    <string name="buy">Buy</string>
+    <string name="indemnity">Indemnity</string>
+    <string name="complement">Complement</string>
+    <string name="accommodation">Accommodation</string>
+    <string name="families">Families</string>
+    <string name="single">Single</string>
+    <string name="found">Found</string>
+    <string name="not_found">Not Found</string>
+    <string name="garage">Garage</string>
+    <string name="year">A Year</string>
+    <string name="year2">2 Year</string>
+    <string name="rent_period">Rent period</string>
+    <string name="num_rooms">Num-rooms</string>
+    <string name="kitchen">Kitchen</string>
+    <string name="lift">Lift</string>
+    <string name="metre_price2">Metre price</string>
+    <string name="size">Size</string>
+    <string name="street_width">Street width</string>
+
 
 </resources>

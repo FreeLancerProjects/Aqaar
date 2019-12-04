@@ -146,9 +146,10 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     >
+
                     <TextView
                         android:id="@+id/tv2"
                         android:layout_width="0dp"
@@ -158,19 +159,20 @@
                         android:paddingRight="5dp"
                         android:textColor="@color/black"
                         android:textSize="14sp"
-                        android:text="@string/land_type"
+                        android:text="@string/metre_price_to"
                         android:background="@color/white"
                         android:minHeight="50dp"
                         android:gravity="center_vertical"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/tvType"
+                        app:layout_constraintEnd_toStartOf="@id/tvPriceTo"
                         app:layout_constraintHorizontal_weight=".2"
+                        app:layout_constraintBottom_toBottomOf="parent"
 
                         />
+
                     <TextView
-                        android:id="@+id/tvType"
+                        android:id="@+id/tvPriceTo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.2"
@@ -178,31 +180,30 @@
                         android:paddingRight="5dp"
                         android:textColor="@color/black"
                         android:textSize="14sp"
+                        android:text='@{adModel.metr_price_to!=null?adModel.metr_price_to+" "+@string/sar:@string/no_price}'
                         android:background="@color/white"
                         android:minHeight="50dp"
                         android:gravity="center_vertical"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
-                        android:layout_gravity="top"
-                        android:text="@{adModel.aqar_title}"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/tv2"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_weight=".3"
 
 
                         />
 
+
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     >
+
                     <TextView
                         android:id="@+id/tv3"
                         android:layout_width="0dp"
@@ -212,20 +213,20 @@
                         android:paddingRight="5dp"
                         android:textColor="@color/black"
                         android:textSize="14sp"
-                        android:text="@string/space"
+                        android:text="@string/size_from"
                         android:background="@color/gray2"
                         android:minHeight="50dp"
                         android:gravity="center_vertical"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/tvSpace"
+                        app:layout_constraintEnd_toStartOf="@id/tvSize"
                         app:layout_constraintHorizontal_weight=".2"
-
+                        app:layout_constraintBottom_toBottomOf="parent"
 
                         />
+
                     <TextView
-                        android:id="@+id/tvSpace"
+                        android:id="@+id/tvSize"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.2"
@@ -233,31 +234,30 @@
                         android:paddingRight="5dp"
                         android:textColor="@color/black"
                         android:textSize="14sp"
+                        android:text='@{adModel.aqar_size!=null?adModel.aqar_size:""}'
                         android:background="@color/gray2"
                         android:minHeight="50dp"
                         android:gravity="center_vertical"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
-                        android:layout_gravity="top"
-                        android:text="@{adModel.aqar_size}"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/tv3"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_weight=".3"
 
 
                         />
 
+
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     >
+
                     <TextView
                         android:id="@+id/tv4"
                         android:layout_width="0dp"
@@ -267,19 +267,20 @@
                         android:paddingRight="5dp"
                         android:textColor="@color/black"
                         android:textSize="14sp"
-                        android:text="@string/interface1"
+                        android:text="@string/size_to"
                         android:background="@color/white"
                         android:minHeight="50dp"
                         android:gravity="center_vertical"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/tvInterface"
+                        app:layout_constraintEnd_toStartOf="@id/tvSizeTo"
                         app:layout_constraintHorizontal_weight=".2"
+                        app:layout_constraintBottom_toBottomOf="parent"
 
                         />
+
                     <TextView
-                        android:id="@+id/tvInterface"
+                        android:id="@+id/tvSizeTo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.2"
@@ -287,30 +288,30 @@
                         android:paddingRight="5dp"
                         android:textColor="@color/black"
                         android:textSize="14sp"
+                        android:text='@{adModel.aqar_size_to!=null?adModel.aqar_size_to:""}'
                         android:background="@color/white"
                         android:minHeight="50dp"
                         android:gravity="center_vertical"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
-                        android:layout_gravity="top"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/tv4"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_weight=".3"
 
 
                         />
 
+
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
                     >
+
                     <TextView
                         android:id="@+id/tv5"
                         android:layout_width="0dp"
@@ -320,12 +321,606 @@
                         android:paddingRight="5dp"
                         android:textColor="@color/black"
                         android:textSize="14sp"
-                        android:text="@string/detials"
+                        android:text="@string/type"
                         android:background="@color/gray2"
                         android:minHeight="50dp"
                         android:gravity="center_vertical"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tvType"
+                        app:layout_constraintHorizontal_weight=".2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tvType"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text='@{adModel.aqar_type==2?@string/sakany:(adModel.aqar_type==1?@string/trade:"")}'
+                        android:background="@color/gray2"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight=".3"
+
+
+                        />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv6"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight=".8"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text="@string/num_bathroom"
+                        android:background="@color/white"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tvBathroom"
+                        app:layout_constraintHorizontal_weight=".2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tvBathroom"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text='@{adModel.num_bathroom!=null?adModel.num_bathroom:""}'
+                        android:background="@color/white"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv6"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight=".3"
+
+
+                        />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv7"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight=".8"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text="@string/ad_type"
+                        android:background="@color/gray2"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tvAdType"
+                        app:layout_constraintHorizontal_weight=".2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tvAdType"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text='@{adModel.type_advertise!=null?(adModel.type_advertise.equals("1")?@string/sale:(adModel.type_advertise.equals("2")?@string/buy:@string/indemnity)):""}'
+                        android:background="@color/gray2"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv7"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight=".3"
+
+
+                        />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv8"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight=".8"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text="@string/complement"
+                        android:background="@color/white"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tvComplement"
+                        app:layout_constraintHorizontal_weight=".2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tvComplement"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text='@{adModel.complement!=null?(adModel.complement.equals("1")?@string/found:@string/not_found):""}'
+                        android:background="@color/white"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv8"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight=".3"
+
+
+                        />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv9"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight=".8"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text="@string/accommodation"
+                        android:background="@color/gray2"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tvAccomType"
+                        app:layout_constraintHorizontal_weight=".2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tvAccomType"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text='@{adModel.type_sakn!=null?(adModel.type_sakn.equals("1")?@string/families:@string/single):""}'
+                        android:background="@color/gray2"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv9"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight=".3"
+
+
+                        />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv10"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight=".8"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text="@string/garage"
+                        android:background="@color/white"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tvGarage"
+                        app:layout_constraintHorizontal_weight=".2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tvGarage"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text='@{adModel.garag!=null?(adModel.garag.equals("1")?@string/found:@string/not_found):""}'
+                        android:background="@color/white"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv10"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight=".3"
+
+
+                        />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv11"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight=".8"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text="@string/rent_period"
+                        android:background="@color/gray2"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tvRent"
+                        app:layout_constraintHorizontal_weight=".2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tvRent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text='@{adModel.egar_peroid!=null?(adModel.egar_peroid.equals("1")?@string/year:@string/year2):""}'
+                        android:background="@color/gray2"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv11"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight=".3"
+
+
+                        />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv12"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight=".8"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text="@string/num_rooms"
+                        android:background="@color/white"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tvRooms"
+                        app:layout_constraintHorizontal_weight=".2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tvRooms"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text='@{adModel.num_rooms??""}'
+                        android:background="@color/white"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv12"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight=".3"
+
+
+                        />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv13"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight=".8"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text="@string/kitchen"
+                        android:background="@color/gray2"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tvKitchen"
+                        app:layout_constraintHorizontal_weight=".2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tvKitchen"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text='@{adModel.kitchen!=null?(adModel.kitchen.equals("1")?@string/found:@string/not_found):""}'
+                        android:background="@color/gray2"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv13"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight=".3"
+
+
+                        />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv14"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight=".8"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text="@string/num_rooms"
+                        android:background="@color/white"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tvSalon"
+                        app:layout_constraintHorizontal_weight=".2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tvSalon"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text='@{adModel.num_salon??""}'
+                        android:background="@color/white"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv14"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight=".3"
+
+
+                        />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv15"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight=".8"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text="@string/lift"
+                        android:background="@color/gray2"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/tvLift"
+                        app:layout_constraintHorizontal_weight=".2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/tvLift"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.2"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text='@{adModel.lift!=null?(adModel.lift.equals("1")?@string/found:@string/not_found):""}'
+                        android:background="@color/gray2"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv15"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight=".3"
+
+
+                        />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv16"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight=".8"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:text="@string/detials"
+                        android:background="@color/white"
+                        android:minHeight="50dp"
+                        android:gravity="center_vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/tvDetails"
                         app:layout_constraintHorizontal_weight=".2"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -341,21 +936,24 @@
                         android:paddingRight="5dp"
                         android:textColor="@color/black"
                         android:textSize="14sp"
-                        android:background="@color/gray2"
+                        android:text='@{adModel.aqar_text??""}'
+                        android:background="@color/white"
                         android:minHeight="50dp"
                         android:gravity="center_vertical"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
-                        android:layout_gravity="top"
-                        android:text="@{adModel.aqar_text}"
-                        app:layout_constraintStart_toEndOf="@id/tv5"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv16"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_weight=".3"
 
 
                         />
+
+
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

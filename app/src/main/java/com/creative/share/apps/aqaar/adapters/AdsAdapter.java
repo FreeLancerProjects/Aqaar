@@ -54,27 +54,55 @@ public class AdsAdapter extends RecyclerView.Adapter<AdsAdapter.Service_Holder> 
 
             }
 
-            if (adModel.getMetr_price()!=null&&!adModel.getMetr_price().isEmpty())
+            if (adModel.getMain_cat_id_fk()==1)
             {
-                holder.binding.tvPrice.setText(String.format("%s %s",adModel.getMetr_price(),context.getString(R.string.sar)));
+
+                if (adModel.getOther_metr_price()!=null&&!adModel.getOther_metr_price().isEmpty())
+                {
+                    holder.binding.tvPrice.setText(String.format("%s %s",adModel.getOther_metr_price(),context.getString(R.string.sar)));
+
+                }else
+                {
+                    holder.binding.tvPrice.setText(context.getString(R.string.no_price));
+
+                }
+
+                if (adModel.getOther_aqar_text()!=null&&!adModel.getOther_aqar_text().isEmpty())
+                {
+                    holder.binding.tvDetails.setText(adModel.getOther_aqar_text());
+
+                }else
+                {
+                    holder.binding.tvDetails.setText(context.getString(R.string.no_details));
+
+                }
 
             }else
-            {
-                holder.binding.tvPrice.setText(context.getString(R.string.no_price));
+                {
+                    if (adModel.getMetr_price()!=null&&!adModel.getMetr_price().isEmpty())
+                    {
+                        holder.binding.tvPrice.setText(String.format("%s %s",adModel.getMetr_price(),context.getString(R.string.sar)));
 
-            }
+                    }else
+                    {
+                        holder.binding.tvPrice.setText(context.getString(R.string.no_price));
+
+                    }
+
+                    if (adModel.getAqar_text()!=null&&!adModel.getAqar_text().isEmpty())
+                    {
+                        holder.binding.tvDetails.setText(adModel.getAqar_text());
+
+                    }else
+                    {
+                        holder.binding.tvDetails.setText(context.getString(R.string.no_details));
+
+                    }
+                }
 
 
 
-            if (adModel.getAqar_text()!=null&&!adModel.getAqar_text().isEmpty())
-            {
-                holder.binding.tvDetails.setText(adModel.getAqar_text());
 
-            }else
-            {
-                holder.binding.tvDetails.setText(context.getString(R.string.no_details));
-
-            }
 
             if (adModel.getAqar_makan()!=null&&!adModel.getAqar_makan().isEmpty())
             {

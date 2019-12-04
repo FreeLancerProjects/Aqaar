@@ -98,7 +98,7 @@ public class Fragment_Main_Map_Area extends Fragment implements OnMapReadyCallba
             mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(activity, R.raw.maps));
             mMap.setTrafficEnabled(false);
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.885942,45.079163),6.3f));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(23.885942,45.079163),3.3f));
 
 
             getAllCities();
@@ -156,7 +156,7 @@ public class Fragment_Main_Map_Area extends Fragment implements OnMapReadyCallba
             bounds.include(new LatLng(cityModel.getGoogle_latitude(),cityModel.getGoogle_longitude()));
             addMarker(cityModel);
         }
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bounds.build().getCenter(),6.3f));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(),80));
 
 
     }

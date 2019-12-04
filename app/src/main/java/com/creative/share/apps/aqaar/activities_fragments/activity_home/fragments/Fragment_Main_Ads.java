@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.creative.share.apps.aqaar.R;
+import com.creative.share.apps.aqaar.activities_fragments.activity_ad2_details.Ad2DetailsActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_ad_details.AdDetailsActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_home.HomeActivity;
 import com.creative.share.apps.aqaar.adapters.AdsAdapter;
@@ -164,9 +165,18 @@ public class Fragment_Main_Ads extends Fragment{
     public void setItemData(AdModel adModel) {
         if (adModel!=null)
         {
-            Intent intent = new Intent(activity, AdDetailsActivity.class);
-            intent.putExtra("data",adModel);
-            startActivity(intent);
+            if (adModel.getMain_cat_id_fk()==1)
+            {
+                Intent intent = new Intent(activity, Ad2DetailsActivity.class);
+                intent.putExtra("data",adModel);
+                startActivity(intent);
+            }else
+                {
+                    Intent intent = new Intent(activity, AdDetailsActivity.class);
+                    intent.putExtra("data",adModel);
+                    startActivity(intent);
+                }
+
         }
     }
 }

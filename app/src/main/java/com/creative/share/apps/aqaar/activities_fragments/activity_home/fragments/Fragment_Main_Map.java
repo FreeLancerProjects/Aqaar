@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.creative.share.apps.aqaar.R;
+import com.creative.share.apps.aqaar.activities_fragments.activity_ad2_details.Ad2DetailsActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_ad_details.AdDetailsActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_home.HomeActivity;
 import com.creative.share.apps.aqaar.databinding.FragmentMainMapBinding;
@@ -165,9 +167,19 @@ public class Fragment_Main_Map extends Fragment implements OnMapReadyCallback {
                 AdModel adModel = (AdModel) marker.getTag();
                 if (adModel!=null)
                 {
-                    Intent intent = new Intent(activity, AdDetailsActivity.class);
-                    intent.putExtra("data",adModel);
-                    startActivity(intent);
+                    if (adModel.getMain_cat_id_fk()==1)
+                    {
+                        Intent intent = new Intent(activity, Ad2DetailsActivity.class);
+                        intent.putExtra("data",adModel);
+                        startActivity(intent);
+                    }else
+                    {
+                        Intent intent = new Intent(activity, AdDetailsActivity.class);
+                        intent.putExtra("data",adModel);
+                        startActivity(intent);
+                    }
+
+
                 }
             });
             getAllCategories();
@@ -287,6 +299,9 @@ public class Fragment_Main_Map extends Fragment implements OnMapReadyCallback {
                 }
         }
 
+        new Handler().postDelayed(
+                () -> binding.tab.getTabAt(0).select(), 100);
+
 
     }
 
@@ -313,7 +328,37 @@ public class Fragment_Main_Map extends Fragment implements OnMapReadyCallback {
         iconGenerator.setContentPadding(15,15,15,15);
         iconGenerator.setTextAppearance(R.style.iconGenText);
         iconGenerator.setBackground(ContextCompat.getDrawable(activity,R.drawable.marker1_bg));
-        Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(adModel.getAqar_lat(),adModel.getAqar_long())).icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(adModel.getMetr_price()+" "+getString(R.string.sar)))));
+
+        Marker marker;
+
+        if (adModel!=null&&adModel.getMain_cat_id_fk()==1)
+        {
+
+            if (adModel.getOther_metr_price()!=null&&!adModel.getOther_metr_price().isEmpty())
+            {
+                marker = mMap.addMarker(new MarkerOptions().position(new LatLng(adModel.getAqar_lat(),adModel.getAqar_long())).icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(adModel.getOther_metr_price()+" "+getString(R.string.sar)))));
+
+            }else
+            {
+                marker = mMap.addMarker(new MarkerOptions().position(new LatLng(adModel.getAqar_lat(),adModel.getAqar_long())).icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(getString(R.string.no_price)))));
+
+            }
+
+        }else
+        {
+
+            if (adModel!=null&&adModel.getMetr_price()!=null&&!adModel.getMetr_price().isEmpty())
+            {
+                marker = mMap.addMarker(new MarkerOptions().position(new LatLng(adModel.getAqar_lat(),adModel.getAqar_long())).icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(adModel.getMetr_price()+" "+getString(R.string.sar)))));
+
+            }else
+            {
+                marker = mMap.addMarker(new MarkerOptions().position(new LatLng(adModel.getAqar_lat(),adModel.getAqar_long())).icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(getString(R.string.no_price)))));
+
+            }
+
+
+        }
         marker.setTag(adModel);
     }
 
@@ -344,21 +389,27 @@ public class Fragment_Main_Map extends Fragment implements OnMapReadyCallback {
                     ProgressBar progBar = view.findViewById(R.id.progBar);
 
                     try {
+
                         if (adModel.getAqar_title()!=null&&!adModel.getAqar_title().isEmpty())
                         {
                             tvTitle.setText(adModel.getAqar_title());
 
                         }else
-                            {
-                                tvTitle.setText(getString(R.string.no_name));
-
-                            }
-
-                        if (adModel.getMetr_price()!=null&&!adModel.getMetr_price().isEmpty())
                         {
-                            tvPrice.setText(String.format("%s %s",adModel.getMetr_price(),getString(R.string.sar)));
+                            tvTitle.setText(getString(R.string.no_name));
 
-                        }else
+                        }
+
+                        if (adModel.getMain_cat_id_fk()==1)
+                        {
+
+
+
+                            if (adModel.getOther_metr_price()!=null&&!adModel.getOther_metr_price().isEmpty())
+                            {
+                                tvPrice.setText(String.format("%s %s",adModel.getOther_metr_price(),getString(R.string.sar)));
+
+                            }else
                             {
                                 tvPrice.setText(getString(R.string.no_price));
 
@@ -366,25 +417,72 @@ public class Fragment_Main_Map extends Fragment implements OnMapReadyCallback {
 
 
 
-                        if (adModel.getAqar_text()!=null&&!adModel.getAqar_text().isEmpty())
-                        {
-                            tvDetails.setText(adModel.getAqar_text());
+                            if (adModel.getOther_aqar_text()!=null&&!adModel.getOther_aqar_text().isEmpty())
+                            {
+                                tvDetails.setText(adModel.getOther_aqar_text());
+
+                            }else
+                            {
+                                tvDetails.setText(getString(R.string.no_details));
+
+                            }
+
+                            if (adModel.getAqar_makan()!=null&&!adModel.getAqar_makan().isEmpty())
+                            {
+                                tvAddress.setText(String.format("%s %s",adModel.getAqar_makan(),adModel.getCity_name()));
+
+                            }else
+                            {
+                                tvAddress.setText(adModel.getCity_name());
+
+                            }
+
 
                         }else
-                        {
-                            tvDetails.setText(getString(R.string.no_details));
+                            {
+                                if (adModel.getAqar_title()!=null&&!adModel.getAqar_title().isEmpty())
+                                {
+                                    tvTitle.setText(adModel.getAqar_title());
 
-                        }
+                                }else
+                                {
+                                    tvTitle.setText(getString(R.string.no_name));
 
-                        if (adModel.getAqar_makan()!=null&&!adModel.getAqar_makan().isEmpty())
-                        {
-                            tvAddress.setText(String.format("%s %s",adModel.getAqar_makan(),adModel.getCity_name()));
+                                }
 
-                        }else
-                        {
-                            tvAddress.setText(adModel.getCity_name());
+                                if (adModel.getMetr_price()!=null&&!adModel.getMetr_price().isEmpty())
+                                {
+                                    tvPrice.setText(String.format("%s %s",adModel.getMetr_price(),getString(R.string.sar)));
 
-                        }
+                                }else
+                                {
+                                    tvPrice.setText(getString(R.string.no_price));
+
+                                }
+
+
+
+                                if (adModel.getAqar_text()!=null&&!adModel.getAqar_text().isEmpty())
+                                {
+                                    tvDetails.setText(adModel.getAqar_text());
+
+                                }else
+                                {
+                                    tvDetails.setText(getString(R.string.no_details));
+
+                                }
+
+                                if (adModel.getAqar_makan()!=null&&!adModel.getAqar_makan().isEmpty())
+                                {
+                                    tvAddress.setText(String.format("%s %s",adModel.getAqar_makan(),adModel.getCity_name()));
+
+                                }else
+                                {
+                                    tvAddress.setText(adModel.getCity_name());
+
+                                }
+                            }
+
 
 
                         Picasso.with(activity).load(Uri.parse(Tags.base_url+adModel.getImage())).fit().into(image, new com.squareup.picasso.Callback() {
