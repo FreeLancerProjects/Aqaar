@@ -208,7 +208,7 @@ public class Fragment_Sign_In extends Fragment implements Listeners.LoginListene
     private void navigateToHomeActivity() {
         Intent intent = new Intent(activity, HomeActivity.class);
         startActivity(intent);
-       // activity.finish();
+        activity.finish();
     }
 
     @Override

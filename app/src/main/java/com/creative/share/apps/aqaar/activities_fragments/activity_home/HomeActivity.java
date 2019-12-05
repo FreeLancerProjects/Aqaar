@@ -1,25 +1,14 @@
 package com.creative.share.apps.aqaar.activities_fragments.activity_home;
 
 import android.Manifest;
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
@@ -29,6 +18,8 @@ import androidx.fragment.app.FragmentManager;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.creative.share.apps.aqaar.R;
+import com.creative.share.apps.aqaar.activities_fragments.activity_about.AboutActivity;
+import com.creative.share.apps.aqaar.activities_fragments.activity_contact.ContactActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_home.fragments.Fragment_Chat;
 import com.creative.share.apps.aqaar.activities_fragments.activity_home.fragments.Fragment_Main_Ads;
 import com.creative.share.apps.aqaar.activities_fragments.activity_home.fragments.Fragment_Main_Map;
@@ -37,29 +28,22 @@ import com.creative.share.apps.aqaar.activities_fragments.activity_home.fragment
 import com.creative.share.apps.aqaar.activities_fragments.activity_home.fragments.Fragment_Profile;
 import com.creative.share.apps.aqaar.activities_fragments.activity_search.SearchActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_sign_in.activities.SignInActivity;
+import com.creative.share.apps.aqaar.activities_fragments.activity_terms.TermsActivity;
+import com.creative.share.apps.aqaar.activities_fragments.bank_activity.BanksActivity;
 import com.creative.share.apps.aqaar.databinding.ActivityHomeBinding;
-import com.creative.share.apps.aqaar.databinding.DialogSelectImageBinding;
 import com.creative.share.apps.aqaar.language.LanguageHelper;
 import com.creative.share.apps.aqaar.models.CityDataModel;
 import com.creative.share.apps.aqaar.models.UserModel;
 import com.creative.share.apps.aqaar.preferences.Preferences;
-import com.creative.share.apps.aqaar.remote.Api;
 import com.creative.share.apps.aqaar.share.Common;
 import com.creative.share.apps.aqaar.tags.Tags;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
 import io.paperdb.Paper;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
     private FragmentManager manager;
@@ -122,6 +106,37 @@ public class HomeActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SearchActivity.class);
             startActivity(intent);
         });
+
+        binding.llContact.setOnClickListener(view ->
+        {
+            Intent intent = new Intent(this, ContactActivity.class);
+            startActivity(intent);
+        });
+
+        binding.llBanks.setOnClickListener(view ->
+        {
+            Intent intent = new Intent(this, BanksActivity.class);
+            startActivity(intent);
+        });
+
+        binding.llTerms.setOnClickListener(view ->
+        {
+            Intent intent = new Intent(this, TermsActivity.class);
+            startActivity(intent);
+        });
+
+        binding.llAbout.setOnClickListener(view ->
+        {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
+        });
+
+        binding.llLogout.setOnClickListener(view ->
+        {
+            Logout();
+        });
+
+
 
 
     }
@@ -521,14 +536,14 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void navigateToSignInActivity() {
+        Intent intent = new Intent(HomeActivity.this, SignInActivity.class);
+        startActivity(intent);
         finish();
     }
     private void Logout() {
         preferences.create_update_userData(HomeActivity.this, null);
         preferences.createSession(HomeActivity.this, Tags.session_logout);
-        Intent intent = new Intent(HomeActivity.this, SignInActivity.class);
-        startActivity(intent);
-        finish();
+        navigateToSignInActivity();
     }
 
 

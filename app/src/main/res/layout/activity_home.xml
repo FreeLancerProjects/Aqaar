@@ -316,7 +316,7 @@
                         >
 
                         <LinearLayout
-                            android:id="@+id/ll_terms"
+                            android:id="@+id/llTerms"
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_marginStart="3dp"
@@ -349,7 +349,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/ll_about"
+                            android:id="@+id/llAbout"
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_marginStart="3dp"
@@ -394,7 +394,7 @@
                         >
 
                         <LinearLayout
-                            android:id="@+id/ll_contact"
+                            android:id="@+id/llContact"
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_marginStart="3dp"
@@ -427,7 +427,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/ll_logout"
+                            android:id="@+id/llLogout"
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_marginStart="3dp"
@@ -472,7 +472,7 @@
                         >
 
                         <LinearLayout
-                            android:id="@+id/ll_banks"
+                            android:id="@+id/llBanks"
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_marginStart="3dp"

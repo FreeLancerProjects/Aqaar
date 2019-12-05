@@ -171,7 +171,6 @@ public class Fragment_Main_Map_MyLocation extends Fragment implements OnMapReady
             mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(activity,R.raw.maps));
             mMap.setTrafficEnabled(false);
-            mMap.setMyLocationEnabled(true);
             mMap.setInfoWindowAdapter(new WindowInfo());
             mMap.setOnInfoWindowClickListener(marker -> {
                 AdModel adModel = (AdModel) marker.getTag();
@@ -539,6 +538,7 @@ public class Fragment_Main_Map_MyLocation extends Fragment implements OnMapReady
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == req_loc&&grantResults.length>0&&grantResults[0]==PackageManager.PERMISSION_GRANTED)
         {
+            mMap.setMyLocationEnabled(true);
             initGoogleApiClient();
         }else
         {
