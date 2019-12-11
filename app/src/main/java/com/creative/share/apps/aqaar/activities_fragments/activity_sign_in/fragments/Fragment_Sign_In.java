@@ -209,6 +209,7 @@ public class Fragment_Sign_In extends Fragment implements Listeners.LoginListene
         Intent intent = new Intent(activity, HomeActivity.class);
         startActivity(intent);
         activity.finish();
+
     }
 
     @Override
