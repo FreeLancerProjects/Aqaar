@@ -53,7 +53,10 @@ getdatafromintent();
             type=getIntent().getStringExtra("type");
             if(type.equals("1")){
                 depart_id=getIntent().getStringExtra("depart");
+            }
+            else {
                 binding.btnapplay.setVisibility(View.GONE);
+
             }
         }
     }
