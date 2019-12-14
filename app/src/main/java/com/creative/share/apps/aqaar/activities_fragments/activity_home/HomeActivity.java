@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentManager;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.creative.share.apps.aqaar.R;
+import com.creative.share.apps.aqaar.activities_fragments.Department.DepartmentActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_about.AboutActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_contact.ContactActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_home.fragments.Fragment_Chat;
@@ -133,9 +134,18 @@ public class HomeActivity extends AppCompatActivity {
 
         binding.llLogout.setOnClickListener(view ->
         {
-            Logout();
-        });
+            if(userModel!=null){
+            Logout();}
+            else {
 
+            }
+        });
+        binding.llAddad.setOnClickListener(view ->
+        {            if(userModel!=null){
+
+            Intent intent = new Intent(this, DepartmentActivity.class);
+            startActivity(intent);}
+        });
 
 
 
@@ -144,7 +154,7 @@ public class HomeActivity extends AppCompatActivity {
     private void updateuserimage()
     {
 
-        Picasso.with(this).load(Tags.base_url + userModel.getUser_photo()).placeholder(R.drawable.ic_user_drawer).into(binding.imageUser);
+      //  Picasso.with(this).load(Tags.base_url + userModel.getUser_photo()).placeholder(R.drawable.ic_user_drawer).into(binding.imageUser);
 
     }
 

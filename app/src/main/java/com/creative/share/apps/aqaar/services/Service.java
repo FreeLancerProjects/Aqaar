@@ -2,13 +2,16 @@ package com.creative.share.apps.aqaar.services;
 
 
 import com.creative.share.apps.aqaar.models.AdDataModel;
+import com.creative.share.apps.aqaar.models.AllMessageModel;
 import com.creative.share.apps.aqaar.models.App_Data_Model;
 import com.creative.share.apps.aqaar.models.BankDataModel;
 import com.creative.share.apps.aqaar.models.CategoryDataModel;
 import com.creative.share.apps.aqaar.models.CityDataModel;
+import com.creative.share.apps.aqaar.models.MessageModel;
 import com.creative.share.apps.aqaar.models.PlaceGeocodeData;
 import com.creative.share.apps.aqaar.models.PlaceMapDetailsData;
 import com.creative.share.apps.aqaar.models.UserModel;
+import com.creative.share.apps.aqaar.models.UserRoomModelData;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -51,7 +54,16 @@ public interface Service {
                            @Field("user_phone_code") String user_phone_code
 
     );
+    @FormUrlEncoded
+    @POST("api/check_code")
+    Call<ResponseBody> confirmCode(@Field("user_id") int user_id,
+                                   @Field("confirm_code") String confirm_code
+    );
 
+    @FormUrlEncoded
+    @POST("api/rest_code")
+    Call<ResponseBody> resendCode(@Field("user_id") int user_id
+    );
     @GET("api/all_cities")
     Call<CityDataModel> getAllCities();
 
@@ -83,6 +95,28 @@ public interface Service {
     @POST("api/user_image")
     Call<UserModel> editUserImage(@Part("user_id") RequestBody user_id,
                                   @Part MultipartBody.Part image);
+    @FormUrlEncoded
+    @POST("api/allRoms")
+    Call<UserRoomModelData> getRooms(@Field("user_id") String user_id
+    );
+    @FormUrlEncoded
+    @POST("api/send_messsage")
+    Call<MessageModel> sendmessagetext
+            (
+                    @Field("send_message_id") String send_message_id,
+                    @Field("receive_message_id") String receive_message_id,
+                    @Field("message") String message
+
+//
+            );
+    @FormUrlEncoded
+    @POST("api/my_message")
+    Call<AllMessageModel> getMessge(
+            @Field("receive_message_id") String receive_message_id,
+            @Field("send_message_id") String send_message_id
+    );
+
+
 }
 
 

@@ -205,5 +205,9 @@
     <string name="metre_price2">سعر المتر</string>
     <string name="size">المساحة</string>
     <string name="street_width">عرض الشارع</string>
+    <string name="type_amessage">اكتب الرساله</string>
+    <string name="choose_departmnet">اختر القسم </string>
+    <string name="no_department_to_select">لا يوجد قسم </string>
+    <string name="applay">Applay</string>
 
 </resources>

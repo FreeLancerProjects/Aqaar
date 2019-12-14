@@ -30,6 +30,8 @@ import retrofit2.Response;
 public class TermsActivity extends AppCompatActivity implements Listeners.BackListener {
     private ActivityTermsBinding binding;
     private String lang;
+    private String type;
+    private String depart_id;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -42,7 +44,18 @@ public class TermsActivity extends AppCompatActivity implements Listeners.BackLi
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_terms);
         initView();
+getdatafromintent();
 
+    }
+
+    private void getdatafromintent() {
+        if(getIntent().getStringExtra("type")!=null){
+            type=getIntent().getStringExtra("type");
+            if(type.equals("1")){
+                depart_id=getIntent().getStringExtra("depart");
+                binding.btnapplay.setVisibility(View.GONE);
+            }
+        }
     }
 
 

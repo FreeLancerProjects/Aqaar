@@ -195,6 +195,10 @@
     <string name="metre_price2">Metre price</string>
     <string name="size">Size</string>
     <string name="street_width">Street width</string>
+    <string name="type_amessage">Type Amessage</string>
+    <string name="choose_departmnet">Choose Departmnet</string>
+    <string name="no_department_to_select">No Department To Select</string>
+    <string name="applay">Applay</string>
 
 
 </resources>
