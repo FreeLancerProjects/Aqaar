@@ -11,6 +11,7 @@ import androidx.databinding.BindingAdapter;
 
 import com.creative.share.apps.aqaar.R;
 import com.creative.share.apps.aqaar.tags.Tags;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -84,7 +85,12 @@ public class UI_General_Method {
     }
 
 
+    @BindingAdapter("url")
+    public static void imageUrl(RoundedImageView imageView, String url)
+    {
+        Picasso.with(imageView.getContext()).load(Uri.parse(url)).fit().into(imageView);
 
+    }
 
 
 

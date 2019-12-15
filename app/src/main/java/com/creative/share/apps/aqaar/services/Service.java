@@ -10,8 +10,11 @@ import com.creative.share.apps.aqaar.models.CityDataModel;
 import com.creative.share.apps.aqaar.models.MessageModel;
 import com.creative.share.apps.aqaar.models.PlaceGeocodeData;
 import com.creative.share.apps.aqaar.models.PlaceMapDetailsData;
+import com.creative.share.apps.aqaar.models.TypeDataModel;
 import com.creative.share.apps.aqaar.models.UserModel;
 import com.creative.share.apps.aqaar.models.UserRoomModelData;
+
+import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -116,7 +119,46 @@ public interface Service {
             @Field("send_message_id") String send_message_id
     );
 
+    @GET("api/advertisement_types")
+    Call<TypeDataModel> gettype();
+    @FormUrlEncoded
+    @POST("api/add_advertisement")
+    Call<ResponseBody> sendorderwithoutimage
+            (
+                    @Field("user_id") String user_id,
+                    @Field("main_cat_id_fk") String main_cat_id_fk,
+                    @Field("city") String city,
+                    @Field("aqar_type") String aqar_type,
+                    @Field("aqar_title") String aqar_title,
+                    @Field("aqar_text") String aqar_text,
+                    @Field("metr_price") String metr_price,
+                    @Field("aqar_makan") String aqar_makan,
+                    @Field("aqar_long") String aqar_long,
+                    @Field("aqar_lat") String aqar_lat,
+                    @Field("num_rooms") String num_rooms,
+                    @Field("type_sakn") String type_sakn
 
+//
+            );
+    @Multipart
+    @POST("api/add_ad")
+    Call<ResponseBody> Sendorder
+            (@Part("user_id") RequestBody user_id,
+             @Part("main_cat_id_fk") RequestBody main_cat_id_fk,
+             @Part("city") RequestBody city,
+             @Part("aqar_type") RequestBody aqar_type,
+             @Part("aqar_title") RequestBody aqar_title,
+             @Part("aqar_text") RequestBody aqar_text,
+             @Part("metr_price") RequestBody metr_price,
+             @Part("aqar_makan") RequestBody aqar_makan,
+             @Part("aqar_long") RequestBody aqar_long,
+             @Part("aqar_lat") RequestBody aqar_lat,
+             @Part("num_rooms") RequestBody num_rooms,
+             @Part("type_sakn") RequestBody type_sakn,
+             @Part List<MultipartBody.Part> partimageInsideList
+
+//
+            );
 }
 
 

@@ -170,5 +170,6 @@ public class DepartmentActivity extends AppCompatActivity implements Listeners.B
         intent.putExtra("type","1");
         intent.putExtra("depart",s);
         startActivity(intent);
+        finish();
     }
 }

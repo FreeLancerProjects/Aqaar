@@ -1,6 +1,7 @@
 package com.creative.share.apps.aqaar.activities_fragments.activity_terms;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.creative.share.apps.aqaar.R;
+import com.creative.share.apps.aqaar.activities_fragments.activity_add_ads.AddAdsActivity;
 import com.creative.share.apps.aqaar.databinding.ActivityTermsBinding;
 import com.creative.share.apps.aqaar.interfaces.Listeners;
 import com.creative.share.apps.aqaar.language.LanguageHelper;
@@ -70,7 +72,15 @@ getdatafromintent();
         binding.setBackListener(this);
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
         getTerms();
-
+binding.btnapplay.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(TermsActivity.this, AddAdsActivity.class);
+        intent.putExtra("depart",depart_id);
+        startActivity(intent);
+        finish();
+    }
+});
 
     }
 

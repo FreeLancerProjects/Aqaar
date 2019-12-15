@@ -199,6 +199,12 @@
     <string name="choose_departmnet">Choose Departmnet</string>
     <string name="no_department_to_select">No Department To Select</string>
     <string name="applay">Applay</string>
+    <string name="description">Description</string>
+    <string name="building_and_contracting">Building and contracting</string>
+    <string name="title">Title</string>
+    <string name="metr_price">Metr Price</string>
+    <string name="accommodation_type">Accommodation type</string>
+    <string name="Choose_aqaar_type">Choose Aqaar Type</string>
 
 
 </resources>
