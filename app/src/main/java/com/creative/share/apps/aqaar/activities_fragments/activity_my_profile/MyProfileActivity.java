@@ -54,7 +54,7 @@ public class MyProfileActivity extends AppCompatActivity implements Listeners.Ba
     private UserModel userModel;
     private Preferences preferences;
 
-private List<AdModel> adModels;
+private List<UserModel.AdModel> adModels;
 private MyAdsAdapter myAdsAdapter;
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -166,11 +166,13 @@ binding.recMyads.setAdapter(myAdsAdapter);
 
     private void updateprofile(UserModel userModel) {
         binding.setUsermodel(userModel.getUser());
+this.userModel=userModel;
+if(userModel.getAds()!=null) {
+    adModels.clear();
 
-adModels.clear();
-adModels.addAll(userModel.getData());
-myAdsAdapter.notifyDataSetChanged();
-
+    adModels.addAll(userModel.getAds());
+    myAdsAdapter.notifyDataSetChanged();
+}
     }
 
     @Override

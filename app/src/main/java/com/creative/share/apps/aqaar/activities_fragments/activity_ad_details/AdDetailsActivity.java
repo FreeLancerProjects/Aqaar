@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.creative.share.apps.aqaar.R;
+import com.creative.share.apps.aqaar.activities_fragments.activity_ad2_details.Ad2DetailsActivity;
+import com.creative.share.apps.aqaar.activities_fragments.other_profile.OtherProfileActivity;
 import com.creative.share.apps.aqaar.databinding.ActivityAdDetailsBinding;
 import com.creative.share.apps.aqaar.interfaces.Listeners;
 import com.creative.share.apps.aqaar.language.LanguageHelper;
@@ -65,7 +68,15 @@ public class AdDetailsActivity extends AppCompatActivity implements Listeners.Ba
         binding.setAdModel(adModel);
         Picasso.with(this).load(Uri.parse(Tags.base_url+adModel.getImage())).fit().into(binding.image);
         initMap();
-
+        binding.tvuser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdDetailsActivity.this, OtherProfileActivity.class);
+                intent.putExtra("id",adModel.getUser_id()+"");
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void initMap() {

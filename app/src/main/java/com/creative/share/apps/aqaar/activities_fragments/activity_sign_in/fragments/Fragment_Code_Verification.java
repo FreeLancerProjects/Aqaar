@@ -106,7 +106,7 @@ public class Fragment_Code_Verification extends Fragment {
             dialog.setCancelable(false);
             dialog.show();
             Api.getService(Tags.base_url)
-                    .confirmCode(userModel.getId(), code)
+                    .confirmCode(userModel.getUser().getId(), code)
                     .enqueue(new Callback<ResponseBody>() {
                         @Override
                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -196,7 +196,7 @@ public class Fragment_Code_Verification extends Fragment {
         dialog.setCancelable(false);
         dialog.show();
         Api.getService(Tags.base_url)
-                .resendCode(userModel.getId())
+                .resendCode(userModel.getUser().getId())
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

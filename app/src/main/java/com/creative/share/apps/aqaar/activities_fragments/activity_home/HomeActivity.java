@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentManager;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.creative.share.apps.aqaar.R;
+import com.creative.share.apps.aqaar.activities_fragments.activity_my_profile.MyProfileActivity;
 import com.creative.share.apps.aqaar.activities_fragments.department.DepartmentActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_about.AboutActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_contact.ContactActivity;
@@ -130,7 +131,15 @@ public class HomeActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
         });
+        binding.imageUser.setOnClickListener(view ->
+        {
+            if(userModel!=null){
+                Intent intent = new Intent(this, MyProfileActivity.class);
+                startActivity(intent);}
+            else {
 
+            }
+        });
         binding.llLogout.setOnClickListener(view ->
         {
             if(userModel!=null){

@@ -44,7 +44,7 @@ public class OtherProfileActivity extends AppCompatActivity implements Listeners
     private UserModel userModel;
     private Preferences preferences;
 private String other_id;
-private List<AdModel> adModels;
+private List<UserModel.AdModel> adModels;
 private MyAdsAdapter myAdsAdapter;
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -172,9 +172,12 @@ binding.btnemail.setOnClickListener(new View.OnClickListener() {
         this.userModel=userModel;
         binding.setUsermodel(userModel.getUser());
 
-adModels.clear();
-adModels.addAll(userModel.getData());
-myAdsAdapter.notifyDataSetChanged();
+        if(userModel.getAds()!=null) {
+            adModels.clear();
+
+            adModels.addAll(userModel.getAds());
+            myAdsAdapter.notifyDataSetChanged();
+        }
 
     }
 

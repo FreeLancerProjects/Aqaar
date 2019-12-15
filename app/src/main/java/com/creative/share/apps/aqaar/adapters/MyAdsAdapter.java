@@ -15,17 +15,18 @@ import com.creative.share.apps.aqaar.R;
 import com.creative.share.apps.aqaar.activities_fragments.activity_home.fragments.Fragment_Main_Ads;
 import com.creative.share.apps.aqaar.databinding.AdRowBinding;
 import com.creative.share.apps.aqaar.models.AdModel;
+import com.creative.share.apps.aqaar.models.UserModel;
 import com.creative.share.apps.aqaar.tags.Tags;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class MyAdsAdapter extends RecyclerView.Adapter<MyAdsAdapter.Service_Holder> {
-    private List<AdModel> list;
+    private List<UserModel.AdModel> list;
     private Context context;
     private Fragment_Main_Ads fragment_main_ads;
 
-    public MyAdsAdapter(List<AdModel> list, Context context) {
+    public MyAdsAdapter(List<UserModel.AdModel> list, Context context) {
         this.list = list;
         this.context = context;
 
@@ -41,7 +42,7 @@ public class MyAdsAdapter extends RecyclerView.Adapter<MyAdsAdapter.Service_Hold
 
     @Override
     public void onBindViewHolder(@NonNull final Service_Holder holder, final int i) {
-        AdModel adModel = list.get(i);
+        UserModel.AdModel adModel = list.get(i);
 
         try {
             if (adModel.getAqar_title()!=null&&!adModel.getAqar_title().isEmpty())
@@ -137,11 +138,7 @@ public class MyAdsAdapter extends RecyclerView.Adapter<MyAdsAdapter.Service_Hold
 
         }
 
-        holder.itemView.setOnClickListener(view -> {
-            AdModel adModel1 = list.get(holder.getAdapterPosition());
-            fragment_main_ads.setItemData(adModel1);
 
-        });
 
 
     }

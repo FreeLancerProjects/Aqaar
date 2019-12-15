@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.creative.share.apps.aqaar.R;
 import com.creative.share.apps.aqaar.activities_fragments.activity_ad_details.FragmentMapTouchListener;
+import com.creative.share.apps.aqaar.activities_fragments.activity_terms.TermsActivity;
+import com.creative.share.apps.aqaar.activities_fragments.other_profile.OtherProfileActivity;
 import com.creative.share.apps.aqaar.databinding.ActivityAd2DetailsBinding;
 import com.creative.share.apps.aqaar.interfaces.Listeners;
 import com.creative.share.apps.aqaar.language.LanguageHelper;
@@ -66,6 +69,15 @@ public class Ad2DetailsActivity extends AppCompatActivity implements Listeners.B
         binding.setAdModel(adModel);
         Picasso.with(this).load(Uri.parse(Tags.base_url+adModel.getImage())).fit().into(binding.image);
         initMap();
+        binding.tvuser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Ad2DetailsActivity.this, OtherProfileActivity.class);
+                intent.putExtra("id",adModel.getUser_id()+"");
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 
