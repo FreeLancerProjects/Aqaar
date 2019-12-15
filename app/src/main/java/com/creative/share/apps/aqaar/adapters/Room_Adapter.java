@@ -62,16 +62,16 @@ private Preferences preferences;
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         EventHolder eventHolder = (EventHolder) holder;
-        if(userRoomModels.get(position).getReceiver_id()==userModel.getId()){
+        if(userRoomModels.get(position).getReceiver_id()==userModel.getUser().getId()){
             userRoomModels.get(position).setReceiver_photo(userRoomModels.get(position).getSender_photo());
             userRoomModels.get(position).setReceiver_id(userRoomModels.get(position).getSender_id());
             userRoomModels.get(position).setReceiver_name(userRoomModels.get(position).getSender_name());
             userRoomModels.get(position).setReceiver_mobile(userRoomModels.get(position).getSender_mobile());
 
-            userRoomModels.get(position).setSender_id(userModel.getId());
+            userRoomModels.get(position).setSender_id(userModel.getUser().getId());
           //  userRoomModels.get(position).setSender_avatar(userModel.getUser_photo());
-            userRoomModels.get(position).setSender_name(userModel.getUser_name());
-            userRoomModels.get(position).setSender_mobile(userModel.getUser_phone());
+            userRoomModels.get(position).setSender_name(userModel.getUser().getUser_name());
+            userRoomModels.get(position).setSender_mobile(userModel.getUser().getUser_phone());
 
             userRoomModels.get(position).setLast_message(userRoomModels.get(position).getLast_message());
 

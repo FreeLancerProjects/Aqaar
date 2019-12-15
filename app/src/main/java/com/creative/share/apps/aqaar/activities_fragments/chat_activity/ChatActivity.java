@@ -96,7 +96,7 @@ public class ChatActivity extends AppCompatActivity implements Listeners.BackLis
 
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
         binding.recView.setLayoutManager(manager);
-        chat_adapter = new Chat_Adapter(messagedatalist, userModel.getId(), this);
+        chat_adapter = new Chat_Adapter(messagedatalist, userModel.getUser().getId(), this);
         binding.recView.setItemViewCacheSize(25);
         binding.recView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         binding.recView.setDrawingCacheEnabled(true);
@@ -139,7 +139,7 @@ public class ChatActivity extends AppCompatActivity implements Listeners.BackLis
 
     public void getmessge() {
         //   Common.CloseKeyBoard(homeActivity, edt_name);
-        Log.e("lkk", reciver_id + " " + userModel.getId());
+        Log.e("lkk", reciver_id + " " + userModel.getUser().getId());
         messagedatalist.clear();
         chat_adapter.notifyDataSetChanged();
         binding.progBar.setVisibility(View.VISIBLE);
@@ -149,7 +149,7 @@ public class ChatActivity extends AppCompatActivity implements Listeners.BackLis
 
 
             Api.getService(Tags.base_url)
-                    .getMessge(reciver_id, userModel.getId() + "")
+                    .getMessge(reciver_id, userModel.getUser().getId() + "")
                     .enqueue(new Callback<AllMessageModel>() {
                         @Override
                         public void onResponse(Call<AllMessageModel> call, Response<AllMessageModel> response) {
@@ -218,7 +218,7 @@ public class ChatActivity extends AppCompatActivity implements Listeners.BackLis
 
         try {
             Api.getService(Tags.base_url)
-                    .sendmessagetext(userModel.getId() + "", reciver_id, message).enqueue(new Callback<MessageModel>() {
+                    .sendmessagetext(userModel.getUser().getId() + "", reciver_id, message).enqueue(new Callback<MessageModel>() {
                 @Override
                 public void onResponse(Call<MessageModel> call, Response<MessageModel> response) {
                     dialog.dismiss();

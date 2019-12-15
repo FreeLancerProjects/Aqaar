@@ -18,7 +18,7 @@ import androidx.fragment.app.FragmentManager;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.creative.share.apps.aqaar.R;
-import com.creative.share.apps.aqaar.activities_fragments.Department.DepartmentActivity;
+import com.creative.share.apps.aqaar.activities_fragments.department.DepartmentActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_about.AboutActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_contact.ContactActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_home.fragments.Fragment_Chat;
@@ -39,7 +39,6 @@ import com.creative.share.apps.aqaar.preferences.Preferences;
 import com.creative.share.apps.aqaar.share.Common;
 import com.creative.share.apps.aqaar.tags.Tags;
 import com.google.firebase.auth.FirebaseAuth;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.Locale;

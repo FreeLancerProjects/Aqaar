@@ -215,5 +215,7 @@
     <string name="metr_price">سعر المتر </string>
     <string name="accommodation_type">نوع السكن</string>
     <string name="Choose_aqaar_type">اختر نوع العقار</string>
+    <string name="email_the_advertiser">مراسلة المعلن</string>
+    <string name="last_show">اخر ظهور</string>
 
 </resources>

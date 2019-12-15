@@ -141,7 +141,7 @@ public interface Service {
 //
             );
     @Multipart
-    @POST("api/add_ad")
+    @POST("api/add_advertisement")
     Call<ResponseBody> Sendorder
             (@Part("user_id") RequestBody user_id,
              @Part("main_cat_id_fk") RequestBody main_cat_id_fk,
@@ -159,6 +159,12 @@ public interface Service {
 
 //
             );
+    @FormUrlEncoded
+    @POST("api/my_account")
+    Call<UserModel> getmyprofile(
+            @Field("user_id") String user_id
+
+    );
 }
 
 

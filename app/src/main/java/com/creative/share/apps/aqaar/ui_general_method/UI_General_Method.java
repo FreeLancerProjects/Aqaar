@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.databinding.BindingAdapter;
 
 import com.creative.share.apps.aqaar.R;
+import com.creative.share.apps.aqaar.share.TimeAgo;
 import com.creative.share.apps.aqaar.tags.Tags;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
@@ -83,7 +84,14 @@ public class UI_General_Method {
         String sTime = dateFormat.format(new Date(time*1000));
         textView.setText(sTime);
     }
+    @BindingAdapter("dateago")
+    public static void convertToNotDate(TextView textView,long date)
+    {
+        long d = date*1000;
+        String n_date = TimeAgo.getTimeAgo(d,textView.getContext());
+        textView.setText(textView.getContext().getResources().getString(R.string.last_show)+n_date);
 
+    }
 
     @BindingAdapter("url")
     public static void imageUrl(RoundedImageView imageView, String url)

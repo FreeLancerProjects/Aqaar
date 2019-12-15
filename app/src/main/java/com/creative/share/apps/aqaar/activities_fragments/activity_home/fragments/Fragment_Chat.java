@@ -81,7 +81,7 @@ public class Fragment_Chat extends Fragment{
     }
     public void getRooms() {
         Api.getService(Tags.base_url)
-                .getRooms(userModel.getId()+"")
+                .getRooms(userModel.getUser().getId()+"")
                 .enqueue(new Callback<UserRoomModelData>() {
                     @Override
                     public void onResponse(Call<UserRoomModelData> call, Response<UserRoomModelData> response) {

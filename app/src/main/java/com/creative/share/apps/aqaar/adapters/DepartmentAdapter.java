@@ -1,8 +1,6 @@
 package com.creative.share.apps.aqaar.adapters;
 
 import android.content.Context;
-import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +10,9 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.creative.share.apps.aqaar.R;
-import com.creative.share.apps.aqaar.activities_fragments.Department.DepartmentActivity;
-import com.creative.share.apps.aqaar.activities_fragments.activity_home.fragments.Fragment_Main_Ads;
-import com.creative.share.apps.aqaar.databinding.AdRowBinding;
+import com.creative.share.apps.aqaar.activities_fragments.department.DepartmentActivity;
 import com.creative.share.apps.aqaar.databinding.DepartmnetRowBinding;
-import com.creative.share.apps.aqaar.models.AdModel;
 import com.creative.share.apps.aqaar.models.CategoryDataModel;
-import com.creative.share.apps.aqaar.tags.Tags;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.Locale;

@@ -164,13 +164,22 @@ private UserModel userModel;
     }
 
     private void updatetypeAdapter(TypeDataModel body) {
+        if(lang.equals("ar")){
+        typeModelList.add(new TypeDataModel.TypeModel("اختر"));}
+        else {
+
+            typeModelList.add(new TypeDataModel.TypeModel("choose"));}
+
+        if(body.getData()!=null){
+            typeModelList.addAll(body.getData());
+            typeAdapter.notifyDataSetChanged();}
     }
 
     private void initView() {
         order_upload_model=new Order_Upload_Model();
         preferences=Preferences.newInstance();
         userModel=preferences.getUserData(this);
-
+urlList=new ArrayList<>();
 cDataList=new ArrayList<>();
 typeModelList=new ArrayList<>();
         Paper.init(this);
@@ -185,7 +194,7 @@ typeModelList=new ArrayList<>();
 
         binding.recView.setLayoutManager(manager);
         imagesAdapter = new ImagesAdapter(urlList,this);
-
+binding.recView.setAdapter(imagesAdapter);
         cityadapter=new CityAdapter(cDataList,this);
         typeAdapter=new Spinner_Type_Adapter(typeModelList,this);
         binding.spinneradcity.setAdapter(cityadapter);
@@ -283,7 +292,7 @@ binding.spinnertype.setAdapter(typeAdapter);
 
         try {
             Api.getService(Tags.base_url)
-                    .sendorderwithoutimage(userModel.getId()+"",cat_id,order_upload_model.getCity_id(),type_id, order_upload_model.getTitle(), order_upload_model.getDetails(),order_upload_model.getPrice(),order_upload_model.getAddress(),order_upload_model.getLongitude(),order_upload_model.getLatitude(),order_upload_model.getNum_rooms(),order_upload_model.getType_skan()).enqueue(new Callback<ResponseBody>() {
+                    .sendorderwithoutimage(userModel.getUser().getId()+"",cat_id,order_upload_model.getCity_id(),type_id, order_upload_model.getTitle(), order_upload_model.getDetails(),order_upload_model.getPrice(),order_upload_model.getAddress(),order_upload_model.getLongitude(),order_upload_model.getLatitude(),order_upload_model.getNum_rooms(),order_upload_model.getType_skan()).enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     dialog.dismiss();
@@ -300,7 +309,7 @@ binding.spinnertype.setAdapter(typeAdapter);
                         try {
 
                             Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
-                            Log.e("Error", response.toString()+" "+response.code() + "" + response.message() + "" + response.errorBody() + response.raw() + response.body() + response.headers()+" "+response.errorBody().toString());
+                            Log.e("Error", response.toString()+" "+response.code() + "" + response.message() + "" + response.errorBody().string() + response.raw() + response.body() + response.headers()+" "+response.errorBody().toString());
                         } catch (Exception e) {
 
 
@@ -330,7 +339,7 @@ binding.spinnertype.setAdapter(typeAdapter);
         dialog.setCancelable(false);
         dialog.show();
       //  Log.e("data",userModel.getUser().getId()+" "+order_upload_model.getCategory_id()+" "+order_upload_model.getSubcategory_id()+" "+order_upload_model.getCity_id()+" "+type_id+" "+order_upload_model.getTitle()+" "+order_upload_model.getDetails()+" "+order_upload_model.getAddress()+" "+order_upload_model.getLongitude()+" "+order_upload_model.getLatitude()+" "+views_num+" "+is_Special+" "+is_Install+" "+commented);
-        RequestBody user_part = Common.getRequestBodyText(userModel.getId() + "");
+        RequestBody user_part = Common.getRequestBodyText(userModel.getUser().getId() + "");
 
         RequestBody category_part = Common.getRequestBodyText(cat_id);
         RequestBody type_part = Common.getRequestBodyText(type_id);

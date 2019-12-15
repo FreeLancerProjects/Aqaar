@@ -179,7 +179,7 @@
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
                     android:inputType="numberDecimal"
-                    android:text="@={orderModel.details}"
+                    android:text="@={orderModel.num_rooms}"
                     />
 
                 <EditText
@@ -195,8 +195,8 @@
                     android:hint="@string/description"
                     android:padding="8dp"
                     android:gravity="top"
-                    android:text="@={orderModel.num_rooms}"
-                    android:inputType="number"
+                    android:text="@={orderModel.details}"
+                    error="@{orderModel.detials_error}"
                     />
 
                 <TextView

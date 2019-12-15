@@ -205,6 +205,8 @@
     <string name="metr_price">Metr Price</string>
     <string name="accommodation_type">Accommodation type</string>
     <string name="Choose_aqaar_type">Choose Aqaar Type</string>
+    <string name="email_the_advertiser">Email the advertiser</string>
+    <string name="last_show">Last Show</string>
 
 
 </resources>

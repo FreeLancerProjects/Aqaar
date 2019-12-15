@@ -1,4 +1,4 @@
-package com.creative.share.apps.aqaar.activities_fragments.Department;
+package com.creative.share.apps.aqaar.activities_fragments.department;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
