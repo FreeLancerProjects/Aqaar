@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -67,6 +68,7 @@ public class Ad2DetailsActivity extends AppCompatActivity implements Listeners.B
         binding.setBackListener(this);
         binding.setLang(lang);
         binding.setAdModel(adModel);
+        Log.e("data",Tags.base_url+adModel.getImage());
         Picasso.with(this).load(Uri.parse(Tags.base_url+adModel.getImage())).fit().into(binding.image);
         initMap();
         binding.tvuser.setOnClickListener(new View.OnClickListener() {

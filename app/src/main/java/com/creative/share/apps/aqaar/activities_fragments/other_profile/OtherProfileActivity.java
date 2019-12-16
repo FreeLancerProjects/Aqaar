@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.creative.share.apps.aqaar.R;
+import com.creative.share.apps.aqaar.activities_fragments.activity_home.HomeActivity;
 import com.creative.share.apps.aqaar.activities_fragments.chat_activity.ChatActivity;
 import com.creative.share.apps.aqaar.adapters.MyAdsAdapter;
 import com.creative.share.apps.aqaar.databinding.ActivityMyProfileBinding;
@@ -92,14 +93,17 @@ binding.recMyads.setAdapter(myAdsAdapter);
 binding.btnemail.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
+        if(preferences.getUserData(OtherProfileActivity.this)!=null){
         if(userModel.getUser()!=null){
         Intent intent=new Intent(OtherProfileActivity.this, ChatActivity.class);
         intent.putExtra("data",userModel.getUser().getId()+"");
         intent.putExtra("name",userModel.getUser().getUser_name());
         intent.putExtra("phone",userModel.getUser().getUser_phone());
 
-        startActivity(intent);}
+        startActivity(intent);}}
+
         else {
+            Common.CreateDialogAlert(OtherProfileActivity.this, getString(R.string.please_sign_in_or_sign_up));
 
         }
     }

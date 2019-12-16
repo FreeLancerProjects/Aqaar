@@ -137,6 +137,7 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, MyProfileActivity.class);
                 startActivity(intent);}
             else {
+                Common.CreateDialogAlert(HomeActivity.this, getString(R.string.please_sign_in_or_sign_up));
 
             }
         });
@@ -145,6 +146,7 @@ public class HomeActivity extends AppCompatActivity {
             if(userModel!=null){
             Logout();}
             else {
+                Common.CreateDialogAlert(HomeActivity.this, getString(R.string.please_sign_in_or_sign_up));
 
             }
         });
@@ -153,6 +155,10 @@ public class HomeActivity extends AppCompatActivity {
 
             Intent intent = new Intent(this, DepartmentActivity.class);
             startActivity(intent);}
+            else {
+            Common.CreateDialogAlert(HomeActivity.this, getString(R.string.please_sign_in_or_sign_up));
+
+        }
         });
 
 

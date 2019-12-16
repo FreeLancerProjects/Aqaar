@@ -17,6 +17,11 @@ public class UserModel implements Serializable {
         private String user_name;
         private String user_email;
         private long last_login;
+        private String created_at;
+
+        public String getCreated_at() {
+            return created_at;
+        }
 
         public int getId() {
             return id;
@@ -92,6 +97,7 @@ private List<UserModel.AdModel> ads;
         private String city_name;
         private String category_name;
         private int councomments;
+
 
 
         public int getId() {
