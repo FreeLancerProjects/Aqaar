@@ -71,10 +71,12 @@ public class AdDetailsActivity extends AppCompatActivity implements Listeners.Ba
         binding.tvuser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdDetailsActivity.this, OtherProfileActivity.class);
+                if(adModel.getUser_name()!=null){
+
+                    Intent intent = new Intent(AdDetailsActivity.this, OtherProfileActivity.class);
                 intent.putExtra("id",adModel.getUser_id()+"");
                 startActivity(intent);
-                finish();
+                finish();}
             }
         });
     }

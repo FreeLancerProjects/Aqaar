@@ -92,12 +92,16 @@ binding.recMyads.setAdapter(myAdsAdapter);
 binding.btnemail.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
+        if(userModel.getUser()!=null){
         Intent intent=new Intent(OtherProfileActivity.this, ChatActivity.class);
         intent.putExtra("data",userModel.getUser().getId()+"");
         intent.putExtra("name",userModel.getUser().getUser_name());
         intent.putExtra("phone",userModel.getUser().getUser_phone());
 
-        startActivity(intent);
+        startActivity(intent);}
+        else {
+
+        }
     }
 });
         if(userModel!=null){
@@ -185,9 +189,9 @@ binding.btnemail.setOnClickListener(new View.OnClickListener() {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1002){
-            userModel=preferences.getUserData(this);
+            //userModel=preferences.getUserData(this);
             //updateprofile(userModel);
-            getprofiledata();
+          //  getprofiledata();
         }
     }
 

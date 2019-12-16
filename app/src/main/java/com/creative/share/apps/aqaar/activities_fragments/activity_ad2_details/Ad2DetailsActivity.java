@@ -72,10 +72,11 @@ public class Ad2DetailsActivity extends AppCompatActivity implements Listeners.B
         binding.tvuser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(adModel.getUser_name()!=null){
                 Intent intent = new Intent(Ad2DetailsActivity.this, OtherProfileActivity.class);
                 intent.putExtra("id",adModel.getUser_id()+"");
                 startActivity(intent);
-                finish();
+                finish();}
             }
         });
 
