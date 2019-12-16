@@ -18,7 +18,7 @@ public class UserModel implements Serializable {
         private String user_email;
         private long last_login;
         private String created_at;
-
+private String user_photo;
         public String getCreated_at() {
             return created_at;
         }
@@ -47,7 +47,9 @@ public class UserModel implements Serializable {
             return last_login;
         }
 
-
+        public String getUser_photo() {
+            return user_photo;
+        }
     }
 private List<UserModel.AdModel> ads;
 

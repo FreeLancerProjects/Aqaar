@@ -218,5 +218,6 @@
     <string name="email_the_advertiser">مراسلة المعلن</string>
     <string name="last_show">اخر ظهور</string>
     <string name="joined_since">انضم منذ</string>
+    <string name="num_salon">عدد الصالات</string>
 
 </resources>

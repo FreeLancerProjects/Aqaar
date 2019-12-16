@@ -40,6 +40,7 @@ import com.creative.share.apps.aqaar.preferences.Preferences;
 import com.creative.share.apps.aqaar.share.Common;
 import com.creative.share.apps.aqaar.tags.Tags;
 import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.Locale;
@@ -168,8 +169,8 @@ public class HomeActivity extends AppCompatActivity {
     private void updateuserimage()
     {
 
-      //  Picasso.with(this).load(Tags.base_url + userModel.getUser_photo()).placeholder(R.drawable.ic_user_drawer).into(binding.imageUser);
-
+        Picasso.with(this).load(Tags.base_url + userModel.getUser().getUser_photo()).placeholder(R.drawable.ic_user_drawer).into(binding.imageUser);
+binding.tvName.setText(userModel.getUser().getUser_name());
     }
 
 

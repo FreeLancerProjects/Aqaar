@@ -208,6 +208,7 @@
     <string name="email_the_advertiser">Email the advertiser</string>
     <string name="last_show">Last Show</string>
     <string name="joined_since">Joined since</string>
+    <string name="num_salon">Num Salon</string>
 
 
 </resources>

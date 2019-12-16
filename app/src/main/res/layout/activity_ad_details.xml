@@ -808,7 +808,7 @@
                         android:paddingRight="5dp"
                         android:textColor="@color/black"
                         android:textSize="14sp"
-                        android:text="@string/num_rooms"
+                        android:text="@string/num_salon"
                         android:background="@color/white"
                         android:minHeight="50dp"
                         android:gravity="center_vertical"
