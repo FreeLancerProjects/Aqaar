@@ -5,12 +5,21 @@ import java.util.List;
 
 public class UserModel implements Serializable {
     private User user;
+private int user_id;
+
+    public int getUser_id() {
+        return user_id;
+    }
 
     public User getUser() {
         return user;
     }
 
-    public class User implements Serializable {
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public static class User implements Serializable {
         private int id;
         private String user_phone_code;
         private String user_phone;
@@ -19,6 +28,11 @@ public class UserModel implements Serializable {
         private long last_login;
         private String created_at;
 private String user_photo;
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
         public String getCreated_at() {
             return created_at;
         }
