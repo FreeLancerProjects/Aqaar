@@ -75,7 +75,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="10dp"
-                    android:text="@{@string/select_location_on_map(usermodel.user_name)}"
+                    android:text="@{@string/joined_since(usermodel.created_at)}"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="13sp"
                     app:layout_constraintStart_toEndOf="@id/fl"
