@@ -164,7 +164,7 @@ public class DepartmentActivity extends AppCompatActivity implements Listeners.B
     }
 
 
-    public void setitem(String s) {
+    public void setitem(CategoryDataModel.CategoryModel s) {
         Intent intent = new Intent(this, TermsActivity.class);
         intent.putExtra("type","1");
         intent.putExtra("depart",s);

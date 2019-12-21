@@ -18,6 +18,9 @@
         <variable
             name="lang"
             type="String" />
+        <variable
+            name="catmodel"
+            type="com.creative.share.apps.aqaar.models.CategoryDataModel.CategoryModel" />
 
     </data>
     <LinearLayout
@@ -65,7 +68,7 @@
                     android:clickable="false"
                     android:longClickable="false"
                     android:textSize="16sp"
-                    android:text="@string/building_and_contracting"
+                    android:text='@{lang.equals("ar")?catmodel.title_ar:catmodel.tite_en}'
                     />
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>

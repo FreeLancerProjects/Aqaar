@@ -41,6 +41,7 @@ import com.creative.share.apps.aqaar.databinding.ActivityBuildAndContractBinding
 import com.creative.share.apps.aqaar.databinding.DialogSelectImageBinding;
 import com.creative.share.apps.aqaar.interfaces.Listeners;
 import com.creative.share.apps.aqaar.language.LanguageHelper;
+import com.creative.share.apps.aqaar.models.CategoryDataModel;
 import com.creative.share.apps.aqaar.models.CityDataModel;
 import com.creative.share.apps.aqaar.models.Order_Upload_Model;
 import com.creative.share.apps.aqaar.models.SelectedLocation;
@@ -90,6 +91,7 @@ private List<CityDataModel.CityModel> cDataList;
 private Preferences preferences;
 private UserModel userModel;
     private String city_id,type_id,cat_id;
+    private CategoryDataModel.CategoryModel categoryModel;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -110,8 +112,10 @@ private UserModel userModel;
         getdatafromintent();
     }
     private void getdatafromintent() {
-        if(getIntent().getStringExtra("depart")!=null){
-            cat_id=getIntent().getStringExtra("depart");
+        if(getIntent().getSerializableExtra("depart")!=null){
+            categoryModel= (CategoryDataModel.CategoryModel) getIntent().getSerializableExtra("depart");
+            cat_id=categoryModel.getId()+"";
+binding.setCatmodel(categoryModel);
 
         }
     }

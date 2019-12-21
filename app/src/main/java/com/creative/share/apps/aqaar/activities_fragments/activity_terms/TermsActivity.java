@@ -18,6 +18,7 @@ import com.creative.share.apps.aqaar.databinding.ActivityTermsBinding;
 import com.creative.share.apps.aqaar.interfaces.Listeners;
 import com.creative.share.apps.aqaar.language.LanguageHelper;
 import com.creative.share.apps.aqaar.models.App_Data_Model;
+import com.creative.share.apps.aqaar.models.CategoryDataModel;
 import com.creative.share.apps.aqaar.remote.Api;
 import com.creative.share.apps.aqaar.tags.Tags;
 
@@ -33,7 +34,7 @@ public class TermsActivity extends AppCompatActivity implements Listeners.BackLi
     private ActivityTermsBinding binding;
     private String lang;
     private String type;
-    private String depart_id;
+    private CategoryDataModel.CategoryModel depart_id;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -54,7 +55,7 @@ getdatafromintent();
         if(getIntent().getStringExtra("type")!=null){
             type=getIntent().getStringExtra("type");
             if(type.equals("1")){
-                depart_id=getIntent().getStringExtra("depart");
+                depart_id= (CategoryDataModel.CategoryModel) getIntent().getSerializableExtra("depart");
             }
             else {
                 binding.btnapplay.setVisibility(View.GONE);
@@ -77,6 +78,7 @@ binding.btnapplay.setOnClickListener(new View.OnClickListener() {
     public void onClick(View v) {
         Intent intent = new Intent(TermsActivity.this, AddAdsActivity.class);
         intent.putExtra("depart",depart_id);
+
         startActivity(intent);
         finish();
     }

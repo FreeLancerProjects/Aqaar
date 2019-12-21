@@ -49,7 +49,7 @@ holder.binding.setLang(lang);
 holder.itemView.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        departmentActivity.setitem(list.get(holder.getLayoutPosition()).getId()+"");
+        departmentActivity.setitem(list.get(holder.getLayoutPosition()));
     }
 });
 
