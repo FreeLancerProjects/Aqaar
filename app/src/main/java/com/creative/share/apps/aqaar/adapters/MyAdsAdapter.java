@@ -43,6 +43,7 @@ public class MyAdsAdapter extends RecyclerView.Adapter<MyAdsAdapter.Service_Hold
     @Override
     public void onBindViewHolder(@NonNull final Service_Holder holder, final int i) {
         UserModel.AdModel adModel = list.get(i);
+       // Log.e("data",adModel.getImage());
 
         try {
             if (adModel.getAqar_title()!=null&&!adModel.getAqar_title().isEmpty())
@@ -114,8 +115,6 @@ public class MyAdsAdapter extends RecyclerView.Adapter<MyAdsAdapter.Service_Hold
                 holder.binding.tvAddress.setText(adModel.getCity_name());
 
             }
-
-
             Picasso.with(context).load(Uri.parse(Tags.base_url+adModel.getImage())).fit().into(holder.binding.image, new com.squareup.picasso.Callback() {
                 @Override
                 public void onSuccess() {

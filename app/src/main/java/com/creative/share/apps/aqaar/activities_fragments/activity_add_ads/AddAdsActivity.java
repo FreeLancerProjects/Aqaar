@@ -362,21 +362,32 @@ binding.spinnertype.setAdapter(typeAdapter);
         RequestBody address_part;
         RequestBody long_part;
         RequestBody lat_part;
+        RequestBody num_part;
+        RequestBody skan_part;
         if(order_upload_model.getAddress()!=null){
          address_part = Common.getRequestBodyText(order_upload_model.getAddress());
          long_part = Common.getRequestBodyText(order_upload_model.getLongitude());
     lat_part = Common.getRequestBodyText(order_upload_model.getLatitude());}
     else {
-            address_part = Common.getRequestBodyText("");
-            long_part = Common.getRequestBodyText("");
-            lat_part = Common.getRequestBodyText("");
+            address_part = Common.getRequestBodyText("0");
+            long_part = Common.getRequestBodyText("0");
+            lat_part = Common.getRequestBodyText("0");
         }
-
-RequestBody num_part=Common.getRequestBodyText(order_upload_model.getNum_rooms());
+if(order_upload_model.getNum_rooms()!=null){
+    num_part=Common.getRequestBodyText(order_upload_model.getNum_rooms());}
+else {
+    num_part=Common.getRequestBodyText("0");
+}
        // RequestBody is_Special_part=Common.getRequestBodyText(is_Special+"");
         //RequestBody is_Install_part=Common.getRequestBodyText(is_Install+"");
         //RequestBody commented_part=Common.getRequestBodyText(commented+"");
-        RequestBody skan_part=Common.getRequestBodyText(order_upload_model.getType_skan());
+        if(order_upload_model.getType_skan()!=null){
+            skan_part=Common.getRequestBodyText(order_upload_model.getType_skan());
+        }
+        else {
+            skan_part=Common.getRequestBodyText("0");
+        }
+
 
         List<MultipartBody.Part> partimageList = getMultipartBodyList(urlList, "image[]");
         try {
