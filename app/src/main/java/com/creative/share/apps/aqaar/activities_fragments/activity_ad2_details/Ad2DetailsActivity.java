@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.creative.share.apps.aqaar.R;
+import com.creative.share.apps.aqaar.activities_fragments.activity_ad_details.AdDetailsActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_ad_details.FragmentMapTouchListener;
 import com.creative.share.apps.aqaar.activities_fragments.activity_terms.TermsActivity;
 import com.creative.share.apps.aqaar.activities_fragments.other_profile.OtherProfileActivity;
@@ -79,6 +80,18 @@ public class Ad2DetailsActivity extends AppCompatActivity implements Listeners.B
                 intent.putExtra("id",adModel.getUser_id()+"");
                 startActivity(intent);
                 finish();}
+            }
+        });
+        binding.tvchat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(adModel.getUser_name()!=null){
+
+                    Intent intent = new Intent(Ad2DetailsActivity.this, OtherProfileActivity.class);
+                    intent.putExtra("data",adModel.getUser_id()+"");
+                    intent.putExtra("name",adModel.getUser_name());
+                    startActivity(intent);
+                    finish();}
             }
         });
 

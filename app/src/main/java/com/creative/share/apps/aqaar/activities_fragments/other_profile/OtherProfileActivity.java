@@ -98,7 +98,6 @@ binding.btnemail.setOnClickListener(new View.OnClickListener() {
         Intent intent=new Intent(OtherProfileActivity.this, ChatActivity.class);
         intent.putExtra("data",userModel.getUser().getId()+"");
         intent.putExtra("name",userModel.getUser().getUser_name());
-        intent.putExtra("phone",userModel.getUser().getUser_phone());
 
         startActivity(intent);}}
 

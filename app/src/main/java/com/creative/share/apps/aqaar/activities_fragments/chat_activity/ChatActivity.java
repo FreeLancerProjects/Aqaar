@@ -62,7 +62,7 @@ public class ChatActivity extends AppCompatActivity implements Listeners.BackLis
     private LinearLayoutManager manager;
     private Preferences preferences;
     private UserModel userModel;
-    private String reciver_id = "0",reciver_name,phone;
+    private String reciver_id = "0",reciver_name;
 
 
     @Override
@@ -120,9 +120,7 @@ public class ChatActivity extends AppCompatActivity implements Listeners.BackLis
         if (getIntent().getStringExtra("name") != null) {
             reciver_name = getIntent().getStringExtra("name");
         }
-        if (getIntent().getStringExtra("phone") != null) {
-            phone = getIntent().getStringExtra("phone");
-        }
+
     }
 
     private void checkdata() {
