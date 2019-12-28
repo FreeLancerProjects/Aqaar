@@ -77,7 +77,7 @@ public class AdDetailsActivity extends AppCompatActivity implements Listeners.Ba
             public void onClick(View v) {
                 if(adModel.getUser_name()!=null){
 
-                    Intent intent = new Intent(AdDetailsActivity.this, OtherProfileActivity.class);
+                    Intent intent = new Intent(AdDetailsActivity.this, ChatActivity.class);
                     intent.putExtra("data",adModel.getUser_id()+"");
                     intent.putExtra("name",adModel.getUser_name());
                 startActivity(intent);
@@ -89,7 +89,7 @@ public class AdDetailsActivity extends AppCompatActivity implements Listeners.Ba
             public void onClick(View v) {
                 if(adModel.getUser_name()!=null){
 
-                    Intent intent = new Intent(AdDetailsActivity.this, ChatActivity.class);
+                    Intent intent = new Intent(AdDetailsActivity.this, OtherProfileActivity.class);
                     intent.putExtra("id",adModel.getUser_id()+"");
                     startActivity(intent);
                     finish();}

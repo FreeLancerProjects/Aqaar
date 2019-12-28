@@ -14,6 +14,7 @@ import com.creative.share.apps.aqaar.R;
 import com.creative.share.apps.aqaar.activities_fragments.activity_ad_details.AdDetailsActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_ad_details.FragmentMapTouchListener;
 import com.creative.share.apps.aqaar.activities_fragments.activity_terms.TermsActivity;
+import com.creative.share.apps.aqaar.activities_fragments.chat_activity.ChatActivity;
 import com.creative.share.apps.aqaar.activities_fragments.other_profile.OtherProfileActivity;
 import com.creative.share.apps.aqaar.databinding.ActivityAd2DetailsBinding;
 import com.creative.share.apps.aqaar.interfaces.Listeners;
@@ -87,7 +88,7 @@ public class Ad2DetailsActivity extends AppCompatActivity implements Listeners.B
             public void onClick(View v) {
                 if(adModel.getUser_name()!=null){
 
-                    Intent intent = new Intent(Ad2DetailsActivity.this, OtherProfileActivity.class);
+                    Intent intent = new Intent(Ad2DetailsActivity.this, ChatActivity.class);
                     intent.putExtra("data",adModel.getUser_id()+"");
                     intent.putExtra("name",adModel.getUser_name());
                     startActivity(intent);

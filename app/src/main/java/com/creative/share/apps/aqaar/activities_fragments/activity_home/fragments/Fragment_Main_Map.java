@@ -483,7 +483,7 @@ public class Fragment_Main_Map extends Fragment implements OnMapReadyCallback {
                                 }
                             }
 
-
+Log.e("data",Tags.base_url+adModel.getImage());
 
                         Picasso.with(activity).load(Uri.parse(Tags.base_url+adModel.getImage())).fit().into(image, new com.squareup.picasso.Callback() {
                             @Override

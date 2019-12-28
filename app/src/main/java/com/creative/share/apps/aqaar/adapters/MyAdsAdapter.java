@@ -43,7 +43,13 @@ public class MyAdsAdapter extends RecyclerView.Adapter<MyAdsAdapter.Service_Hold
     @Override
     public void onBindViewHolder(@NonNull final Service_Holder holder, final int i) {
         UserModel.AdModel adModel = list.get(i);
-       // Log.e("data",adModel.getImage());
+        try {
+            Log.e("data"+i,adModel.getImage());
+
+        }
+        catch (Exception e){
+
+        }
 
         try {
             if (adModel.getAqar_title()!=null&&!adModel.getAqar_title().isEmpty())
