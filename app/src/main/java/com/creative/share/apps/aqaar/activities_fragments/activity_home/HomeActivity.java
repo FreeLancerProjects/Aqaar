@@ -18,6 +18,8 @@ import androidx.fragment.app.FragmentManager;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.creative.share.apps.aqaar.R;
+import com.creative.share.apps.aqaar.activities_fragments.activity_my_profile.MyProfileActivity;
+import com.creative.share.apps.aqaar.activities_fragments.department.DepartmentActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_about.AboutActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_contact.ContactActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_home.fragments.Fragment_Chat;
@@ -130,12 +132,35 @@ public class HomeActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
         });
+        binding.imageUser.setOnClickListener(view ->
+        {
+            if(userModel!=null){
+                Intent intent = new Intent(this, MyProfileActivity.class);
+                startActivity(intent);}
+            else {
+                Common.CreateDialogAlert(HomeActivity.this, getString(R.string.please_sign_in_or_sign_up));
 
+            }
+        });
         binding.llLogout.setOnClickListener(view ->
         {
-            Logout();
-        });
+            if(userModel!=null){
+            Logout();}
+            else {
+                Common.CreateDialogAlert(HomeActivity.this, getString(R.string.please_sign_in_or_sign_up));
 
+            }
+        });
+        binding.llAddad.setOnClickListener(view ->
+        {            if(userModel!=null){
+
+            Intent intent = new Intent(this, DepartmentActivity.class);
+            startActivity(intent);}
+            else {
+            Common.CreateDialogAlert(HomeActivity.this, getString(R.string.please_sign_in_or_sign_up));
+
+        }
+        });
 
 
 
@@ -144,8 +169,8 @@ public class HomeActivity extends AppCompatActivity {
     private void updateuserimage()
     {
 
-        Picasso.with(this).load(Tags.base_url + userModel.getUser_photo()).placeholder(R.drawable.ic_user_drawer).into(binding.imageUser);
-
+        Picasso.with(this).load(Tags.base_url + userModel.getUser().getUser_photo()).placeholder(R.drawable.ic_user_drawer).into(binding.imageUser);
+binding.tvName.setText(userModel.getUser().getUser_name());
     }
 
 

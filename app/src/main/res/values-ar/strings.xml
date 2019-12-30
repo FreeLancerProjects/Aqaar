@@ -205,5 +205,19 @@
     <string name="metre_price2">سعر المتر</string>
     <string name="size">المساحة</string>
     <string name="street_width">عرض الشارع</string>
+    <string name="type_amessage">اكتب الرساله</string>
+    <string name="choose_departmnet">اختر القسم </string>
+    <string name="no_department_to_select">لا يوجد قسم </string>
+    <string name="applay">اوافق</string>
+    <string name="description">الوصف</string>
+    <string name="building_and_contracting">البناء والمقاولات</string>
+    <string name="title">عنوان</string>
+    <string name="metr_price">سعر المتر </string>
+    <string name="accommodation_type">نوع السكن</string>
+    <string name="Choose_aqaar_type">اختر نوع العقار</string>
+    <string name="email_the_advertiser">مراسلة المعلن</string>
+    <string name="last_show">اخر ظهور</string>
+    <string name="joined_since">انضم منذ</string>
+    <string name="num_salon">عدد الصالات</string>
 
 </resources>

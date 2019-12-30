@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+    <data>
+        <variable
+            name="location"
+            type="com.creative.share.apps.aqaar.models.SelectedLocation" />
+        <variable
+            name="backListener"
+            type="com.creative.share.apps.aqaar.interfaces.Listeners.BackListener"
+            />
+        <variable
+            name="orderModel"
+            type="com.creative.share.apps.aqaar.models.Order_Upload_Model" />
+        <variable
+            name="lang"
+            type="String" />
+        <variable
+            name="catmodel"
+            type="com.creative.share.apps.aqaar.models.CategoryDataModel.CategoryModel" />
+
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray0"
+        android:orientation="vertical"
+
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/colorPrimary"
+            app:contentInsetEnd="0dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:onClick="@{()->backListener.back()}"
+                >
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/ic_left_arrow"
+                    android:tint="@color/white"
+                    android:padding="8dp"
+                    android:clickable="false"
+                    android:longClickable="false"
+                    android:rotation='@{lang.equals("ar")?180:0}'
+                    />
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:textColor="@color/white"
+                    android:clickable="false"
+                    android:longClickable="false"
+                    android:textSize="16sp"
+                    android:text='@{lang.equals("ar")?catmodel.title_ar:catmodel.tite_en}'
+                    />
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:fillViewport="true"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                >
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edt_bg"
+                    >
+                    <Spinner
+                        android:id="@+id/spinneradcity"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:backgroundTint="@color/colorPrimary"
+                        >
+
+                    </Spinner>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edt_bg"
+                    >
+                    <Spinner
+                        android:id="@+id/spinnertype"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:backgroundTint="@color/colorPrimary"
+
+
+                        >
+
+                    </Spinner>
+                </FrameLayout>
+
+
+                <EditText
+                    android:id="@+id/edtAdTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:singleLine="true"
+                    android:background="@drawable/edt_bg"
+                    android:layout_marginTop="8dp"
+                    android:textColorHint="@color/gray4"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:hint="@string/title"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    error="@{orderModel.title_error}"
+                    android:text="@={orderModel.title}"
+
+                    />
+                <EditText
+                    android:id="@+id/edtAdPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:singleLine="true"
+                    android:background="@drawable/edt_bg"
+                    android:layout_marginTop="8dp"
+                    android:textColorHint="@color/gray4"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:hint="@string/metr_price"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:inputType="numberDecimal"
+                    android:text="@={orderModel.price}"
+                    />
+                <EditText
+                    android:id="@+id/edtaccommodation_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:singleLine="true"
+                    android:background="@drawable/edt_bg"
+                    android:layout_marginTop="8dp"
+                    android:textColorHint="@color/gray4"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:hint="@string/accommodation_type"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@={orderModel.type_skan}"
+                    />
+                <EditText
+                    android:id="@+id/edtroomnum"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:singleLine="true"
+                    android:background="@drawable/edt_bg"
+                    android:layout_marginTop="8dp"
+                    android:textColorHint="@color/gray4"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:hint="@string/num_rooms"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:inputType="numberDecimal"
+                    android:text="@={orderModel.num_rooms}"
+                    />
+
+                <EditText
+                    android:id="@+id/edtAdDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:singleLine="true"
+                    android:background="@drawable/edt_bg"
+                    android:layout_marginTop="8dp"
+                    android:textColorHint="@color/gray4"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:hint="@string/description"
+                    android:padding="8dp"
+                    android:gravity="top"
+                    android:text="@={orderModel.details}"
+                    error="@{orderModel.detials_error}"
+                    />
+
+                <TextView
+                    android:id="@+id/tvLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edt_bg"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textColorHint="@color/gray4"
+                    android:hint="@string/location"
+                    android:textSize="13sp"
+                    android:text="@{location.address}"
+                    android:singleLine="true"
+                    error="@{orderModel.address_error}"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/ads_photos"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp"
+                    >
+                    <ImageView
+                        android:id="@+id/imageSelectPhoto"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/edt_bg"
+                        android:src="@drawable/ic_camera"
+                        android:padding="20dp"
+                        android:tint="@color/gray3"
+
+                        />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        >
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </LinearLayout>
+                <Button
+                    android:id="@+id/btnSend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:text="@string/send"
+                    android:background="@drawable/btn_login"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:layout_marginBottom="30dp"
+                    />
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

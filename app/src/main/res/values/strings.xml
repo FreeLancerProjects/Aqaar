@@ -195,6 +195,20 @@
     <string name="metre_price2">Metre price</string>
     <string name="size">Size</string>
     <string name="street_width">Street width</string>
+    <string name="type_amessage">Type Amessage</string>
+    <string name="choose_departmnet">Choose Departmnet</string>
+    <string name="no_department_to_select">No Department To Select</string>
+    <string name="applay">Applay</string>
+    <string name="description">Description</string>
+    <string name="building_and_contracting">Building and contracting</string>
+    <string name="title">Title</string>
+    <string name="metr_price">Metr Price</string>
+    <string name="accommodation_type">Accommodation type</string>
+    <string name="Choose_aqaar_type">Choose Aqaar Type</string>
+    <string name="email_the_advertiser">Email the advertiser</string>
+    <string name="last_show">Last Show</string>
+    <string name="joined_since">Joined since</string>
+    <string name="num_salon">Num Salon</string>
 
 
 </resources>

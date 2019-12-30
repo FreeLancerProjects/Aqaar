@@ -4,12 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.creative.share.apps.aqaar.R;
+import com.creative.share.apps.aqaar.activities_fragments.activity_ad_details.AdDetailsActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_ad_details.FragmentMapTouchListener;
+import com.creative.share.apps.aqaar.activities_fragments.activity_terms.TermsActivity;
+import com.creative.share.apps.aqaar.activities_fragments.chat_activity.ChatActivity;
+import com.creative.share.apps.aqaar.activities_fragments.other_profile.OtherProfileActivity;
 import com.creative.share.apps.aqaar.databinding.ActivityAd2DetailsBinding;
 import com.creative.share.apps.aqaar.interfaces.Listeners;
 import com.creative.share.apps.aqaar.language.LanguageHelper;
@@ -64,8 +70,31 @@ public class Ad2DetailsActivity extends AppCompatActivity implements Listeners.B
         binding.setBackListener(this);
         binding.setLang(lang);
         binding.setAdModel(adModel);
+        Log.e("data",Tags.base_url+adModel.getImage());
         Picasso.with(this).load(Uri.parse(Tags.base_url+adModel.getImage())).fit().into(binding.image);
         initMap();
+        binding.tvuser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(adModel.getUser_name()!=null){
+                Intent intent = new Intent(Ad2DetailsActivity.this, OtherProfileActivity.class);
+                intent.putExtra("id",adModel.getUser_id()+"");
+                startActivity(intent);
+                finish();}
+            }
+        });
+        binding.tvchat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(adModel.getUser_name()!=null){
+
+                    Intent intent = new Intent(Ad2DetailsActivity.this, ChatActivity.class);
+                    intent.putExtra("data",adModel.getUser_id()+"");
+                    intent.putExtra("name",adModel.getUser_name());
+                    startActivity(intent);
+                    finish();}
+            }
+        });
 
     }
 

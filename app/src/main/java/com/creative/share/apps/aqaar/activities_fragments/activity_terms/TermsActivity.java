@@ -1,6 +1,7 @@
 package com.creative.share.apps.aqaar.activities_fragments.activity_terms;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,10 +13,12 @@ import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.creative.share.apps.aqaar.R;
+import com.creative.share.apps.aqaar.activities_fragments.activity_add_ads.AddAdsActivity;
 import com.creative.share.apps.aqaar.databinding.ActivityTermsBinding;
 import com.creative.share.apps.aqaar.interfaces.Listeners;
 import com.creative.share.apps.aqaar.language.LanguageHelper;
 import com.creative.share.apps.aqaar.models.App_Data_Model;
+import com.creative.share.apps.aqaar.models.CategoryDataModel;
 import com.creative.share.apps.aqaar.remote.Api;
 import com.creative.share.apps.aqaar.tags.Tags;
 
@@ -30,6 +33,8 @@ import retrofit2.Response;
 public class TermsActivity extends AppCompatActivity implements Listeners.BackListener {
     private ActivityTermsBinding binding;
     private String lang;
+    private String type;
+    private CategoryDataModel.CategoryModel depart_id;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -42,7 +47,21 @@ public class TermsActivity extends AppCompatActivity implements Listeners.BackLi
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_terms);
         initView();
+getdatafromintent();
 
+    }
+
+    private void getdatafromintent() {
+        if(getIntent().getStringExtra("type")!=null){
+            type=getIntent().getStringExtra("type");
+            if(type.equals("1")){
+                depart_id= (CategoryDataModel.CategoryModel) getIntent().getSerializableExtra("depart");
+            }
+            else {
+                binding.btnapplay.setVisibility(View.GONE);
+
+            }
+        }
     }
 
 
@@ -54,7 +73,16 @@ public class TermsActivity extends AppCompatActivity implements Listeners.BackLi
         binding.setBackListener(this);
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
         getTerms();
+binding.btnapplay.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(TermsActivity.this, AddAdsActivity.class);
+        intent.putExtra("depart",depart_id);
 
+        startActivity(intent);
+        finish();
+    }
+});
 
     }
 

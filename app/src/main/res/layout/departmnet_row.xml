@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <data>
+        <variable
+            name="catogryModel"
+            type="com.creative.share.apps.aqaar.models.CategoryDataModel.CategoryModel" />
+        <variable
+            name="lang"
+            type="String" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+>   <TextView
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:layout_weight="1"
+        android:text='@{lang.equals("ar")?catogryModel.title_ar:catogryModel.tite_en}'
+        />
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_left_arrow"
+            android:tint="@color/colorPrimary"
+            android:padding="8dp"
+            android:clickable="false"
+            android:longClickable="false"
+            android:rotation='@{lang.equals("en")?180:0}'
+            />
+    </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimary"
+            />
+    </LinearLayout>
+</layout>

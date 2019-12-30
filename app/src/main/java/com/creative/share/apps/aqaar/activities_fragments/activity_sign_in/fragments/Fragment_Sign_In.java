@@ -31,6 +31,9 @@ import com.mukesh.countrypicker.Country;
 import com.mukesh.countrypicker.CountryPicker;
 import com.mukesh.countrypicker.listeners.OnCountryPickerListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.Locale;
 
@@ -145,18 +148,54 @@ public class Fragment_Sign_In extends Fragment implements Listeners.LoginListene
                             dialog.dismiss();
                             if (response.isSuccessful()&&response.body()!=null)
                             {
-                              activity.displayFragmentCodeVerification(response.body());
-
+                             // activity.displayFragmentCodeVerification(response.body());
+                                preferences.create_update_userData(activity,response.body());
+                                preferences.createSession(activity, Tags.session_login);
+                                Intent intent = new Intent(activity,HomeActivity.class);
+                                startActivity(intent);
+                                activity.finish();
                             }else
                             {
-                                try {
+                               /* try {
 
                                     Log.e("error",response.code()+"_"+response.errorBody().string());
                                 } catch (IOException e) {
                                     e.printStackTrace();
-                                }
+                                }*/
                                 if (response.code() == 422) {
-                                    Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                   // Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                   // userModel.setUser(new UserModel.User().setId());
+                                    //response.body().setUser(new UserModel.User());
+                                    //response.body().getUser().setId(response.body().getUser_id());
+                                    //
+                                    try {
+
+                                        JSONObject obj = null;
+
+                                        try {
+                                            String re=response.errorBody().string();
+                                            Log.e("data",re);
+                                            obj = new JSONObject(re);
+                                           // Log.e("data",obj.stri);
+
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                            Log.e("data",e.getMessage());
+                                        }
+                                        UserModel userModel=new UserModel();
+
+                                        userModel.setUser(new UserModel.User());
+                                        Log.e("data",obj.toString());
+
+                                        Log.e("data",obj.get("user_id").toString());
+                                        userModel.getUser().setId(Integer.parseInt(obj.get("user_id").toString()));
+                                        activity.displayFragmentCodeVerification(userModel);
+
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    //    Log.e("data",e.getMessage());
+                                    }
+
                                     //  Log.e("error",response.code()+"_"+response.errorBody()+response.message()+password+phone+phone_code);
 
                                 }else if (response.code()==404)
