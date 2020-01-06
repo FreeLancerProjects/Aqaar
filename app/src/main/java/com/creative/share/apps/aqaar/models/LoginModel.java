@@ -75,7 +75,7 @@ public class LoginModel extends BaseObservable {
     {
         if (!TextUtils.isEmpty(phone_code)&&
                 !TextUtils.isEmpty(phone)&&
-                password.length()>=6
+                password.length()>=3
         )
         {
             error_phone_code.set(null);

@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.creative.share.apps.aqaar.R;
+import com.creative.share.apps.aqaar.activities_fragments.activity_add2.Add1Activity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_add_ads.AddAdsActivity;
 import com.creative.share.apps.aqaar.databinding.ActivityTermsBinding;
 import com.creative.share.apps.aqaar.interfaces.Listeners;
@@ -76,12 +77,19 @@ getdatafromintent();
 binding.btnapplay.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        if(depart_id.equals("1")){
+        if(depart_id.getId()==1){
         Intent intent = new Intent(TermsActivity.this, AddAdsActivity.class);
         intent.putExtra("depart",depart_id);
 
         startActivity(intent);
         finish();}
+        else {
+            Intent intent = new Intent(TermsActivity.this, Add1Activity.class);
+            intent.putExtra("depart",depart_id);
+
+            startActivity(intent);
+            finish();
+        }
 
     }
 });

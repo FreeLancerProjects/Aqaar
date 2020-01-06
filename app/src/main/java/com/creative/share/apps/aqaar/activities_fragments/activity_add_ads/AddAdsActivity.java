@@ -184,7 +184,7 @@ public class AddAdsActivity extends AppCompatActivity implements Listeners.BackL
 
         }
 
-
+typeAdapter.notifyDataSetChanged();
     }
 
     private void initView() {
