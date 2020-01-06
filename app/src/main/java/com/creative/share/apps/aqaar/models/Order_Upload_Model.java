@@ -17,19 +17,25 @@ import java.io.Serializable;
 public class Order_Upload_Model extends BaseObservable implements Serializable {
     private String type_id;
     private String city_id;
-    private String title;
+    private String other_interface;
+private String title;
     private String longitude;
     private String latitude;
     private String address;
     private String details;
     private String price;
-    private String type_skan;
+    private String other_size;
 
-private String num_rooms;
+private String other_street_width;
 
     public ObservableField<String> address_error = new ObservableField<>();
+    public ObservableField<String> other_interface_error = new ObservableField<>();
     public ObservableField<String> title_error = new ObservableField<>();
+    public ObservableField<String> price_error = new ObservableField<>();
+
     public ObservableField<String> detials_error = new ObservableField<>();
+    public ObservableField<String> other_size_error = new ObservableField<>();
+    public ObservableField<String> other_street_width_error = new ObservableField<>();
 
 
     public boolean isDataValidStep1(Context context)
@@ -37,18 +43,23 @@ private String num_rooms;
         if (
                 !type_id.equals("")&&
                 !city_id.equals("")&&
-                !TextUtils.isEmpty(title)&&
-                !TextUtils.isEmpty(details)
+                !TextUtils.isEmpty(other_interface)&&
+                !TextUtils.isEmpty(details)&&
+                        !TextUtils.isEmpty(other_size)
+&&!TextUtils.isEmpty(title)
+                        &&!TextUtils.isEmpty(address)
 
-
+                        &&!TextUtils.isEmpty(other_street_width)&&!TextUtils.isEmpty(price)
 
         )
         {
             address_error.set(null);
-            title_error.set(null);
+            other_interface_error.set(null);
             detials_error.set(null);
-
-
+other_size_error.set(null);
+other_street_width_error.set(null);
+title_error.set(null);
+price_error.set(null);
             return true;
         }else
             {
@@ -64,8 +75,31 @@ private String num_rooms;
                     Toast.makeText(context, R.string.ch_city, Toast.LENGTH_SHORT).show();
                 }
 
+                if (TextUtils.isEmpty(address))
+                {
+                    address_error.set(context.getString(R.string.field_req));
+                }else
+                {
+                    address_error.set(null);
 
+                }
 
+                if (TextUtils.isEmpty(other_interface))
+                {
+                    other_interface_error.set(context.getString(R.string.field_req));
+                }else
+                {
+                    other_interface_error.set(null);
+
+                }
+                if (TextUtils.isEmpty(price))
+                {
+                    price_error.set(context.getString(R.string.field_req));
+                }else
+                {
+                    other_interface_error.set(null);
+
+                }
                 if (TextUtils.isEmpty(title))
                 {
                     title_error.set(context.getString(R.string.field_req));
@@ -74,7 +108,22 @@ private String num_rooms;
                     title_error.set(null);
 
                 }
+                if (TextUtils.isEmpty(other_size))
+                {
+                    other_size_error.set(context.getString(R.string.field_req));
+                }else
+                {
+                    other_size_error.set(null);
 
+                }
+                if (TextUtils.isEmpty(other_street_width))
+                {
+                    other_street_width_error.set(context.getString(R.string.field_req));
+                }else
+                {
+                    other_street_width_error.set(null);
+
+                }
                 if (TextUtils.isEmpty(details))
                 {
                     detials_error.set(context.getString(R.string.field_req));
@@ -115,11 +164,6 @@ private String num_rooms;
 
     }
 
-
-
-
-
-
     @Bindable
     public String getTitle() {
         return title;
@@ -128,6 +172,20 @@ private String num_rooms;
     public void setTitle(String title) {
         this.title = title;
         notifyPropertyChanged(BR.title);
+
+    }
+
+
+
+
+    @Bindable
+    public String getOther_interface() {
+        return other_interface;
+    }
+
+    public void setOther_interface(String other_interface) {
+        this.other_interface = other_interface;
+        notifyPropertyChanged(BR.other_interface);
 
     }
     @Bindable
@@ -181,24 +239,24 @@ private String num_rooms;
 
     }
     @Bindable
-    public String getType_skan() {
-        return type_skan;
+    public String getOther_size() {
+        return other_size;
     }
 
-    public void setType_skan(String type_skan) {
-        this.type_skan = type_skan;
-        notifyPropertyChanged(BR.type_skan);
+    public void setOther_size(String other_size) {
+        this.other_size = other_size;
+        notifyPropertyChanged(BR.other_size);
 
     }
 
     @Bindable
-    public String getNum_rooms() {
-        return num_rooms;
+    public String getOther_street_width() {
+        return other_street_width;
     }
 
-    public void setNum_rooms(String num_rooms) {
-        this.num_rooms = num_rooms;
-        notifyPropertyChanged(BR.num_rooms);
+    public void setOther_street_width(String other_street_width) {
+        this.other_street_width = other_street_width;
+        notifyPropertyChanged(BR.other_street_width);
 
     }
 }

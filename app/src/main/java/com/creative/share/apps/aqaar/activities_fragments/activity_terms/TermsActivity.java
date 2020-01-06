@@ -76,11 +76,13 @@ getdatafromintent();
 binding.btnapplay.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
+        if(depart_id.equals("1")){
         Intent intent = new Intent(TermsActivity.this, AddAdsActivity.class);
         intent.putExtra("depart",depart_id);
 
         startActivity(intent);
-        finish();
+        finish();}
+
     }
 });
 

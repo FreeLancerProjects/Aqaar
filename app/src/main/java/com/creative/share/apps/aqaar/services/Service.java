@@ -121,43 +121,56 @@ public interface Service {
 
     @GET("api/advertisement_types")
     Call<TypeDataModel> gettype();
-    @FormUrlEncoded
-    @POST("api/add_advertisement")
-    Call<ResponseBody> sendorderwithoutimage
-            (
-                    @Field("user_id") String user_id,
-                    @Field("main_cat_id_fk") String main_cat_id_fk,
-                    @Field("city") String city,
-                    @Field("aqar_type") String aqar_type,
-                    @Field("aqar_title") String aqar_title,
-                    @Field("aqar_text") String aqar_text,
-                    @Field("metr_price") String metr_price,
-                    @Field("aqar_makan") String aqar_makan,
-                    @Field("aqar_long") String aqar_long,
-                    @Field("aqar_lat") String aqar_lat,
-                    @Field("num_rooms") String num_rooms,
-                    @Field("type_sakn") String type_sakn
 
-//
-            );
     @Multipart
     @POST("api/add_advertisement")
     Call<ResponseBody> Sendorder
             (@Part("user_id") RequestBody user_id,
              @Part("main_cat_id_fk") RequestBody main_cat_id_fk,
              @Part("city") RequestBody city,
-             @Part("aqar_type") RequestBody aqar_type,
+             @Part("other_type_sakn") RequestBody other_type_sakn,
              @Part("aqar_title") RequestBody aqar_title,
-             @Part("aqar_text") RequestBody aqar_text,
-             @Part("metr_price") RequestBody metr_price,
+             @Part("other_aqar_text") RequestBody other_aqar_text,
+             @Part("other_metr_price") RequestBody other_metr_price,
              @Part("aqar_makan") RequestBody aqar_makan,
              @Part("aqar_long") RequestBody aqar_long,
              @Part("aqar_lat") RequestBody aqar_lat,
-             @Part("num_rooms") RequestBody num_rooms,
-             @Part("type_sakn") RequestBody type_sakn,
+             @Part("other_interface") RequestBody other_interface,
+             @Part("other_street_width") RequestBody other_street_width,
+             @Part("other_size") RequestBody other_size,
+
              @Part List<MultipartBody.Part> partimageInsideList
 
 //
+            );
+    @Multipart
+    @POST("api/add_advertisement")
+    Call<ResponseBody> Sendorder2
+            (@Part("user_id") RequestBody user_id,
+             @Part("main_cat_id_fk") RequestBody main_cat_id_fk,
+             @Part("city") RequestBody city,
+             @Part("type_skan") RequestBody type_skan,
+             @Part("type_aqar") RequestBody type_aqar,
+
+             @Part("aqar_title") RequestBody aqar_title,
+             @Part("aqar_text") RequestBody other_aqar_text,
+             @Part("metr_price") RequestBody other_metr_price,
+             @Part("metr_price_to") RequestBody other_metr_price_to,
+             @Part("aqar_makan") RequestBody aqar_makan,
+             @Part("aqar_long") RequestBody aqar_long,
+             @Part("aqar_lat") RequestBody aqar_lat,
+             @Part("type_advertise") RequestBody type_advertise,
+             @Part("complement") RequestBody complement,
+             @Part("garag") RequestBody garag,
+             @Part("aqaar_period") RequestBody aqaar_period,
+             @Part("num_bathroom") RequestBody num_bathroom,
+             @Part("num_salon") RequestBody num_salon,
+             @Part("num_rooms") RequestBody num_rooms,
+             @Part("kitchen") RequestBody kitchen,
+             @Part("lift") RequestBody lift,
+             @Part("aqaar_size") RequestBody aqaar_size,
+             @Part("aqaar_size_to") RequestBody aqaar_size_to,
+             @Part List<MultipartBody.Part> partimageInsideList
             );
     @FormUrlEncoded
     @POST("api/my_account")

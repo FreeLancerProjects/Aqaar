@@ -219,5 +219,12 @@
     <string name="last_show">اخر ظهور</string>
     <string name="joined_since">انضم منذ</string>
     <string name="num_salon">عدد الصالات</string>
+    <string name="other_size">Other Size</string>
+    <string name="other_street_size">Other Street Size</string>
+    <string name="interfaces">Interfaces</string>
+    <string name="aqar_size">Aqar Size</string>
+    <string name="aqar_size_to">Aqar Size To</string>
+    <string name="aqaar_adversiment_addation">Aqaar Adversiment Addation</string>
+    <string name="metr_price_to">Metr Price To</string>
 
 </resources>
