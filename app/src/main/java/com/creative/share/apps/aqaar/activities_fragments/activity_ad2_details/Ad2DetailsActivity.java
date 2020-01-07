@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil;
 import com.creative.share.apps.aqaar.R;
 import com.creative.share.apps.aqaar.activities_fragments.activity_ad_details.AdDetailsActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_ad_details.FragmentMapTouchListener;
+import com.creative.share.apps.aqaar.activities_fragments.activity_my_profile.MyProfileActivity;
 import com.creative.share.apps.aqaar.activities_fragments.activity_terms.TermsActivity;
 import com.creative.share.apps.aqaar.activities_fragments.chat_activity.ChatActivity;
 import com.creative.share.apps.aqaar.activities_fragments.other_profile.OtherProfileActivity;
@@ -20,6 +21,8 @@ import com.creative.share.apps.aqaar.databinding.ActivityAd2DetailsBinding;
 import com.creative.share.apps.aqaar.interfaces.Listeners;
 import com.creative.share.apps.aqaar.language.LanguageHelper;
 import com.creative.share.apps.aqaar.models.AdModel;
+import com.creative.share.apps.aqaar.models.UserModel;
+import com.creative.share.apps.aqaar.preferences.Preferences;
 import com.creative.share.apps.aqaar.tags.Tags;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -41,7 +44,8 @@ public class Ad2DetailsActivity extends AppCompatActivity implements Listeners.B
     private final float zoom = 11.0f;
     private FragmentMapTouchListener fragment;
     private GoogleMap mMap;
-
+private UserModel userModel;
+private Preferences preferences;
     @Override
     protected void attachBaseContext(Context newBase) {
         Paper.init(newBase);
@@ -66,6 +70,8 @@ public class Ad2DetailsActivity extends AppCompatActivity implements Listeners.B
 
     private void initView() {
         Paper.init(this);
+        preferences=Preferences.newInstance();
+        userModel=preferences.getUserData(this);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setBackListener(this);
         binding.setLang(lang);
@@ -76,17 +82,34 @@ public class Ad2DetailsActivity extends AppCompatActivity implements Listeners.B
         binding.tvuser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(adModel.getUser_name()!=null){
-                Intent intent = new Intent(Ad2DetailsActivity.this, OtherProfileActivity.class);
-                intent.putExtra("id",adModel.getUser_id()+"");
+                if(adModel.getUser_name()!=null&&userModel!=null){
+                    if(adModel.getUser_id().equals(userModel.getUser().getId()+"")){
+
+                        Intent intent = new Intent(Ad2DetailsActivity.this, MyProfileActivity.class);
                 startActivity(intent);
                 finish();}
+
+                else {
+                        Intent intent = new Intent(Ad2DetailsActivity.this, OtherProfileActivity.class);
+                        intent.putExtra("id",adModel.getUser_id()+"");
+                        startActivity(intent);
+                        finish();
+                    }
+                }
             }
         });
+        if(userModel!=null&&adModel.getUser_id()!=null){
+            Log.e("datasss",userModel.getUser_id()+" "+adModel.getUser_id());
+
+            if(adModel.getUser_id().equals(userModel.getUser().getId()+"")){
+                binding.consEmail.setVisibility(View.GONE);
+            }
+
+        }
         binding.tvchat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(adModel.getUser_name()!=null){
+                if(adModel.getUser_name()!=null&&userModel!=null){
 
                     Intent intent = new Intent(Ad2DetailsActivity.this, ChatActivity.class);
                     intent.putExtra("data",adModel.getUser_id()+"");
