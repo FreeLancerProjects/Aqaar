@@ -62,7 +62,7 @@
 
     <string name="call">اتصال</string>
     <string name="message">رسالة</string>
-    <string name="location">موقعي</string>
+    <string name="location">اضف العنوان بالتفصيل </string>
     <string name="share">شارك</string>
     <string name="edit">تعديل</string>
     <string name="price">سعر</string>
@@ -209,9 +209,9 @@
     <string name="choose_departmnet">اختر القسم </string>
     <string name="no_department_to_select">لا يوجد قسم </string>
     <string name="applay">اوافق</string>
-    <string name="description">الوصف</string>
+    <string name="description">تفاصيل الاعلان</string>
     <string name="building_and_contracting">البناء والمقاولات</string>
-    <string name="title">عنوان</string>
+    <string name="title">عنوان الاعلان</string>
     <string name="metr_price">سعر المتر </string>
     <string name="accommodation_type">نوع السكن</string>
     <string name="Choose_aqaar_type">اختر نوع العقار</string>
@@ -219,12 +219,25 @@
     <string name="last_show">اخر ظهور</string>
     <string name="joined_since">انضم منذ</string>
     <string name="num_salon">عدد الصالات</string>
-    <string name="other_size">Other Size</string>
-    <string name="other_street_size">Other Street Size</string>
-    <string name="interfaces">Interfaces</string>
-    <string name="aqar_size">Aqar Size</string>
-    <string name="aqar_size_to">Aqar Size To</string>
-    <string name="aqaar_adversiment_addation">Aqaar Adversiment Addation</string>
-    <string name="metr_price_to">Metr Price To</string>
+    <string name="other_size">المساحه</string>
+    <string name="other_street_size">عرض الشارع</string>
+    <string name="interfaces">الواجهه</string>
+    <string name="aqar_size">المساحه من </string>
+    <string name="aqar_size_to">المساحه الى </string>
+    <string name="aqaar_adversiment_addation">إضافة  إعلان</string>
+    <string name="metr_price_to">سعر المتر من </string>
+    <string name="metr_price_from">سعر المتر </string>
+    <string name="descriptions">المحتوى</string>
+    <string name="choose_num_bathroom">اختر عدد دورات المياه</string>
+    <string name="choose_advertise_type">اختر تجاى ام سكنى</string>
+    <string name="choose_complement">اختر ملحق</string>
+    <string name="choose_type_sakn">اختر عوائل ام عزاب</string>
+    <string name="choose_garag">اختر مدخل  السيارات</string>
+    <string name="choose_aqar_peroid">اختر مدة الايجار</string>
+    <string name="choose_kitchen">اختر مطبخ</string>
+    <string name="choose_salon">اختر عدد الصالات</string>
+    <string name="choose_num_rooms">اختر عدد غرف النوم</string>
+    <string name="choose_left">اختر مصعد </string>
+    <string name="complete_info">استكمال البيانات</string>
 
 </resources>

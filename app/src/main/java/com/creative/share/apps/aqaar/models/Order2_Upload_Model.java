@@ -137,8 +137,35 @@ public class Order2_Upload_Model extends BaseObservable implements Serializable 
         } else {
 
 
-            if (type_aqar == null || type_aqar.equals("")) {
-                Toast.makeText(context, R.string.Choose_aqaar_type, Toast.LENGTH_SHORT).show();
+            if (num_bathroom == null || num_bathroom.equals("")) {
+                Toast.makeText(context, R.string.choose_num_bathroom, Toast.LENGTH_SHORT).show();
+            }
+            if (type_advertise == null || type_advertise.equals("")) {
+                Toast.makeText(context, R.string.choose_advertise_type, Toast.LENGTH_SHORT).show();
+            }
+            if (complement == null || complement.equals("")) {
+                Toast.makeText(context, R.string.choose_complement, Toast.LENGTH_SHORT).show();
+            }
+            if (type_sakn == null || type_sakn.equals("")) {
+                Toast.makeText(context, R.string.choose_type_sakn, Toast.LENGTH_SHORT).show();
+            }
+            if (garag == null || garag.equals("")) {
+                Toast.makeText(context, R.string.choose_garag, Toast.LENGTH_SHORT).show();
+            }
+            if (aqar_peroid == null || aqar_peroid.equals("")) {
+                Toast.makeText(context, R.string.choose_aqar_peroid, Toast.LENGTH_SHORT).show();
+            }
+            if (kitchen == null || kitchen.equals("")) {
+                Toast.makeText(context, R.string.choose_kitchen, Toast.LENGTH_SHORT).show();
+            }
+            if (salon == null || salon.equals("")) {
+                Toast.makeText(context, R.string.choose_salon, Toast.LENGTH_SHORT).show();
+            }
+            if (num_rooms == null || num_rooms.equals("")) {
+                Toast.makeText(context, R.string.choose_num_rooms, Toast.LENGTH_SHORT).show();
+            }
+            if (left == null || left.equals("")) {
+                Toast.makeText(context, R.string.choose_left, Toast.LENGTH_SHORT).show();
             }
 
             if (city_id == null || city_id.equals("")) {

@@ -161,19 +161,20 @@ public class Add1Activity extends AppCompatActivity implements Listeners.BackLis
 
     private void updatetypeAdapter() {
         if (lang.equals("ar")) {
-            typeModelList.add(new TypeDataModel.TypeModel("اختر"));
+            typeModelList.add(new TypeDataModel.TypeModel("اختر تجارى ام سكنى "));
 
             typeModelList.add(new TypeDataModel.TypeModel("تجارى"));
             typeModelList.add(new TypeDataModel.TypeModel("سكنى"));
 
         } else {
 
-            typeModelList.add(new TypeDataModel.TypeModel("choose"));
+            typeModelList.add(new TypeDataModel.TypeModel("choose Commercial Or residential"));
             typeModelList.add(new TypeDataModel.TypeModel("commercial"));
             typeModelList.add(new TypeDataModel.TypeModel("residential"));
 
 
         }
+        typeAdapter.notifyDataSetChanged();
 
 
     }
@@ -229,7 +230,7 @@ binding.spinneradcity.setAdapter(cityadapter);
 
                 }
                 //  Log.e("cc",city_id);
-                order_upload_model.setCity_id(type_id);
+                order_upload_model.setCity_id(city_id);
                 binding.setOrderModel(order_upload_model);
             }
 

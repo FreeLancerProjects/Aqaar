@@ -127,7 +127,7 @@
                     android:textColorHint="@color/gray4"
                     android:textColor="@color/black"
                     android:textSize="13sp"
-                    android:hint="@string/interfaces"
+                    android:hint="@string/title"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
                     error="@{orderModel.title_error}"

@@ -197,20 +197,20 @@ public class Add2Activity extends AppCompatActivity implements Listeners.BackLis
             numbathModelList.add(new TypeDataModel.TypeModel("2"));
             numbathModelList.add(new TypeDataModel.TypeModel("3"));
 
-            advertiseModelList.add(new TypeDataModel.TypeModel("اختر بيع ام شراء"));
+            advertiseModelList.add(new TypeDataModel.TypeModel("اختر بيع ام شراء ام تقبيل"));
             advertiseModelList.add(new TypeDataModel.TypeModel("بيع"));
             advertiseModelList.add(new TypeDataModel.TypeModel("شراء"));
-            advertiseModelList.add(new TypeDataModel.TypeModel("تبديل"));
+            advertiseModelList.add(new TypeDataModel.TypeModel("تقبيل"));
 
             complementModelList.add(new TypeDataModel.TypeModel("اختر الملحق"));
             complementModelList.add(new TypeDataModel.TypeModel("يوجد"));
             complementModelList.add(new TypeDataModel.TypeModel("لا يوجد"));
 
-            typeModelList.add(new TypeDataModel.TypeModel("اختر نوع العوائل"));
+            typeModelList.add(new TypeDataModel.TypeModel("اختر عوائل ام عزاب"));
             typeModelList.add(new TypeDataModel.TypeModel("عوائل"));
             typeModelList.add(new TypeDataModel.TypeModel("عزاب"));
 
-            garageModelList.add(new TypeDataModel.TypeModel("اختر مدخل السيارات"));
+            garageModelList.add(new TypeDataModel.TypeModel("اختر مدخل سيارات"));
             garageModelList.add(new TypeDataModel.TypeModel("يوجد"));
             garageModelList.add(new TypeDataModel.TypeModel("لا يوجد"));
 
@@ -218,7 +218,7 @@ public class Add2Activity extends AppCompatActivity implements Listeners.BackLis
             beriodModelList.add(new TypeDataModel.TypeModel("سنه"));
             beriodModelList.add(new TypeDataModel.TypeModel("سنتين"));
 
-            kithchenModelList.add(new TypeDataModel.TypeModel("يوجد مطبخ ؟"));
+            kithchenModelList.add(new TypeDataModel.TypeModel("اختر مطبخ "));
             kithchenModelList.add(new TypeDataModel.TypeModel("نعم"));
             kithchenModelList.add(new TypeDataModel.TypeModel("لا"));
 
@@ -227,14 +227,14 @@ public class Add2Activity extends AppCompatActivity implements Listeners.BackLis
             salonnModelList.add(new TypeDataModel.TypeModel("2"));
             salonnModelList.add(new TypeDataModel.TypeModel("3"));
 
-            numroomModelList.add(new TypeDataModel.TypeModel("اختر عدد الغرف"));
+            numroomModelList.add(new TypeDataModel.TypeModel("اختر عدد غرف النوم"));
             numroomModelList.add(new TypeDataModel.TypeModel("1"));
             numroomModelList.add(new TypeDataModel.TypeModel("2"));
             numroomModelList.add(new TypeDataModel.TypeModel("3"));
 
-            leftModelList.add(new TypeDataModel.TypeModel("يوجد مصعد ؟"));
-            numroomModelList.add(new TypeDataModel.TypeModel("نعم"));
-            numroomModelList.add(new TypeDataModel.TypeModel("لا"));
+            leftModelList.add(new TypeDataModel.TypeModel("اختر مصعد"));
+            leftModelList.add(new TypeDataModel.TypeModel("نعم"));
+            leftModelList.add(new TypeDataModel.TypeModel("لا"));
 
 
 
@@ -245,16 +245,16 @@ public class Add2Activity extends AppCompatActivity implements Listeners.BackLis
             numbathModelList.add(new TypeDataModel.TypeModel("2"));
             numbathModelList.add(new TypeDataModel.TypeModel("3"));
 
-            advertiseModelList.add(new TypeDataModel.TypeModel("choose bath room num"));
+            advertiseModelList.add(new TypeDataModel.TypeModel("choose sell or buy or taqbil"));
             advertiseModelList.add(new TypeDataModel.TypeModel("sell"));
             advertiseModelList.add(new TypeDataModel.TypeModel("buy"));
-            advertiseModelList.add(new TypeDataModel.TypeModel("Convert"));
+            advertiseModelList.add(new TypeDataModel.TypeModel("taqbil"));
 
             complementModelList.add(new TypeDataModel.TypeModel("choose Complement"));
             complementModelList.add(new TypeDataModel.TypeModel("Found"));
             complementModelList.add(new TypeDataModel.TypeModel("Not Found"));
 
-            typeModelList.add(new TypeDataModel.TypeModel("Choose a family type"));
+            typeModelList.add(new TypeDataModel.TypeModel("Choose Families or  Singles"));
             typeModelList.add(new TypeDataModel.TypeModel("Families"));
             typeModelList.add(new TypeDataModel.TypeModel("Singles"));
 
@@ -266,7 +266,7 @@ public class Add2Activity extends AppCompatActivity implements Listeners.BackLis
             beriodModelList.add(new TypeDataModel.TypeModel("year"));
             beriodModelList.add(new TypeDataModel.TypeModel("2 years"));
 
-            kithchenModelList.add(new TypeDataModel.TypeModel(" Kitchen Found"));
+            kithchenModelList.add(new TypeDataModel.TypeModel("Choose Kitchen"));
             kithchenModelList.add(new TypeDataModel.TypeModel("yes"));
             kithchenModelList.add(new TypeDataModel.TypeModel("No"));
 
@@ -275,18 +275,28 @@ public class Add2Activity extends AppCompatActivity implements Listeners.BackLis
             salonnModelList.add(new TypeDataModel.TypeModel("2"));
             salonnModelList.add(new TypeDataModel.TypeModel("3"));
 
-            numroomModelList.add(new TypeDataModel.TypeModel("Choose Room Nums"));
+            numroomModelList.add(new TypeDataModel.TypeModel("Choose bedrooms num"));
             numroomModelList.add(new TypeDataModel.TypeModel("1"));
             numroomModelList.add(new TypeDataModel.TypeModel("2"));
             numroomModelList.add(new TypeDataModel.TypeModel("3"));
 
-            leftModelList.add(new TypeDataModel.TypeModel("Left Found ?"));
-            numroomModelList.add(new TypeDataModel.TypeModel("yes"));
-            numroomModelList.add(new TypeDataModel.TypeModel("No"));
+            leftModelList.add(new TypeDataModel.TypeModel("choose lift"));
+            leftModelList.add(new TypeDataModel.TypeModel("yes"));
+            leftModelList.add(new TypeDataModel.TypeModel("No"));
 
         }
+        numbathAdapter.notifyDataSetChanged();
 
-
+        advertiseAdapter.notifyDataSetChanged();
+        complementAdapter.notifyDataSetChanged();
+        typeAdapter.notifyDataSetChanged();
+        garageAdapter.notifyDataSetChanged();
+        beriodAdapter.notifyDataSetChanged();
+        kitchenAdapter.notifyDataSetChanged();
+        salonAdapter.notifyDataSetChanged();
+        numbathAdapter.notifyDataSetChanged();
+        numroomAdapter.notifyDataSetChanged();
+leftAdapter.notifyDataSetChanged();
     }
 
     private void initView() {
@@ -555,7 +565,7 @@ binding.spinnerleft.setAdapter(leftAdapter);
             }
         });
         binding.btnSend.setOnClickListener(view -> {
-            if (order_upload_model.isDataValidStep1(this)) {
+            if (order_upload_model.isDataValidStep2(this)) {
                 if (userModel != null) {
                     if (urlList != null && urlList.size() > 0) {
                         sendorderWithImage(order_upload_model);
@@ -593,7 +603,7 @@ binding.spinnerleft.setAdapter(leftAdapter);
         RequestBody user_part = Common.getRequestBodyText(userModel.getUser().getId() + "");
 
       RequestBody cat_part=Common.getRequestBodyText(cat_id);
-        RequestBody city_part=Common.getRequestBodyText(cat_id);
+        RequestBody city_part=Common.getRequestBodyText(order_upload_model.getCity_id());
 
         RequestBody title_part=Common.getRequestBodyText(order_upload_model.getTitle());
         RequestBody price_part=Common.getRequestBodyText(order_upload_model.getMetr_price());
@@ -621,7 +631,7 @@ binding.spinnerleft.setAdapter(leftAdapter);
         RequestBody room_part=Common.getRequestBodyText(order_upload_model.getNum_rooms());
         RequestBody left_part=Common.getRequestBodyText(order_upload_model.getLeft());
         RequestBody detials_part=Common.getRequestBodyText(order_upload_model.getAqar_text());
-
+Log.e("beriod",order_upload_model.getAqar_peroid());
         List<MultipartBody.Part> partimageList = getMultipartBodyList(urlList, "image[]");
         try {
             Api.getService(Tags.base_url)

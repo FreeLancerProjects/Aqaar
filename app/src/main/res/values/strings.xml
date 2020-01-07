@@ -199,9 +199,9 @@
     <string name="choose_departmnet">Choose Departmnet</string>
     <string name="no_department_to_select">No Department To Select</string>
     <string name="applay">Applay</string>
-    <string name="description">Description</string>
+    <string name="description">Adversiment ِDetials</string>
     <string name="building_and_contracting">Building and contracting</string>
-    <string name="title">Title</string>
+    <string name="title">Adversiment ِTitle</string>
     <string name="metr_price">Metr Price</string>
     <string name="accommodation_type">Accommodation type</string>
     <string name="Choose_aqaar_type">Choose Aqaar Type</string>
@@ -212,10 +212,23 @@
     <string name="other_size">Other Size</string>
     <string name="other_street_size">Other Street Width</string>
     <string name="interfaces">Interfaces</string>
-    <string name="aqar_size">Aqar Size</string>
+    <string name="aqar_size">Aqar Siz From</string>
     <string name="aqar_size_to">Aqar Size To</string>
     <string name="aqaar_adversiment_addation">Aqaar Adversiment Addation</string>
     <string name="metr_price_to">Metr Price To</string>
+    <string name="metr_price_from">Metr Price From</string>
+    <string name="descriptions">Descriptions</string>
+    <string name="choose_num_bathroom">Choose  Bathroom Num</string>
+    <string name="choose_advertise_type">choose sell or buy or taqbil</string>
+    <string name="choose_complement">Choose Complement</string>
+    <string name="choose_type_sakn">Choose Families or  Singles</string>
+    <string name="choose_garag">Choose the car entrance</string>
+    <string name="choose_aqar_peroid">Choose Beriod</string>
+    <string name="choose_kitchen">Choose Kitchen</string>
+    <string name="choose_salon">Choose Salon Num</string>
+    <string name="choose_num_rooms">Choose bedrooms num</string>
+    <string name="choose_left">Choose Lift</string>
+    <string name="complete_info">Complete Information</string>
 
 
 </resources>
