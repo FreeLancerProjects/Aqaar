@@ -183,6 +183,8 @@
                     android:hint="@string/other_size"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
+                    android:inputType="numberDecimal"
+
                     error="@{orderModel.other_size_error}"
 
                     android:text="@={orderModel.other_size}"

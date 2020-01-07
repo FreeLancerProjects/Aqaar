@@ -149,7 +149,7 @@ public interface Service {
             (@Part("user_id") RequestBody user_id,
              @Part("main_cat_id_fk") RequestBody main_cat_id_fk,
              @Part("city") RequestBody city,
-             @Part("type_skan") RequestBody type_skan,
+             @Part("type_sakn") RequestBody type_skan,
              @Part("type_aqar") RequestBody type_aqar,
 
              @Part("aqar_title") RequestBody aqar_title,
@@ -162,14 +162,14 @@ public interface Service {
              @Part("type_advertise") RequestBody type_advertise,
              @Part("complement") RequestBody complement,
              @Part("garag") RequestBody garag,
-             @Part("aqaar_period") RequestBody aqaar_period,
+             @Part("egar_peroid") RequestBody egar_peroid,
              @Part("num_bathroom") RequestBody num_bathroom,
              @Part("num_salon") RequestBody num_salon,
              @Part("num_rooms") RequestBody num_rooms,
              @Part("kitchen") RequestBody kitchen,
              @Part("lift") RequestBody lift,
-             @Part("aqaar_size") RequestBody aqaar_size,
-             @Part("aqaar_size_to") RequestBody aqaar_size_to,
+             @Part("aqar_size") RequestBody aqaar_size,
+             @Part("aqar_size_to") RequestBody aqaar_size_to,
              @Part List<MultipartBody.Part> partimageInsideList
             );
     @FormUrlEncoded

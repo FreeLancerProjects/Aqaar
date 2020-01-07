@@ -642,7 +642,11 @@ Log.e("beriod",order_upload_model.getAqar_peroid());
                     if (response.isSuccessful()) {
                         // Common.CreateSignAlertDialog(adsActivity,getResources().getString(R.string.suc));
                         Toast.makeText(Add2Activity.this, getString(R.string.suc), Toast.LENGTH_SHORT).show();
-
+                        try {
+                            Log.e("datassss",response.body().string());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         //  adsActivity.finish(response.body().getId_advertisement());
                         //  Intent intent = new Intent(AddAdsActivity.this, AddAdsActivity.class);
 

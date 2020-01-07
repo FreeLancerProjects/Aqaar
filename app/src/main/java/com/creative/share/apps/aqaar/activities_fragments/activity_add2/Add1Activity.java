@@ -204,7 +204,7 @@ binding.spinneradcity.setAdapter(cityadapter);
                     type_id = "";
 
                 } else {
-                    type_id = String.valueOf(typeModelList.get(i).getId());
+                    type_id = String.valueOf(i+"");
 
 
                 }

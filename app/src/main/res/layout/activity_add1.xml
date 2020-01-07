@@ -183,6 +183,8 @@
                     android:hint="@string/aqar_size"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
+                    android:inputType="numberDecimal"
+
                     error="@{orderModel.aqar_size_error}"
 
                     android:text="@={orderModel.aqar_size}"
