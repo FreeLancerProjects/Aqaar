@@ -377,7 +377,7 @@ typeAdapter.notifyDataSetChanged();
 
     private void updateCityAdapter(CityDataModel body) {
 
-        cDataList.add(new CityDataModel.CityModel("اختر", "choose"));
+        cDataList.add(new CityDataModel.CityModel("اختر المدينه", "choose city"));
         if (body.getData() != null) {
             cDataList.addAll(body.getData());
             cityadapter.notifyDataSetChanged();
