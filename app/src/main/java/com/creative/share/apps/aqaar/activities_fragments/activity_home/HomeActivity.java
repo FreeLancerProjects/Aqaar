@@ -452,7 +452,7 @@ binding.tvName.setText(userModel.getUser().getUser_name());
         }
 
         if (fragment_main_map_area != null && fragment_main_map_area.isAdded()) {
-            manager.beginTransaction().hide(fragment_chat).commit();
+            manager.beginTransaction().hide(fragment_main_map_area).commit();
         }
 
         if (fragment_main_ads != null && fragment_main_ads.isAdded()) {
