@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,16 +60,16 @@ public class Fragment_Main_Map extends Fragment implements OnMapReadyCallback {
     private UserModel userModel;
     private String lang;
     private GoogleMap mMap;
-    private static final String TAG="DATA";
+    private static final String TAG = "DATA";
     private CityDataModel.CityModel cityModel;
     private List<CategoryDataModel.CategoryModel> categoryModelList;
+    private Marker marker = null;
+    private WindowInfo windowInfo;
 
 
-
-    public static Fragment_Main_Map newInstance(CityDataModel.CityModel cityModel)
-    {
+    public static Fragment_Main_Map newInstance(CityDataModel.CityModel cityModel) {
         Bundle bundle = new Bundle();
-        bundle.putSerializable(TAG,cityModel);
+        bundle.putSerializable(TAG, cityModel);
         Fragment_Main_Map fragment_main_map = new Fragment_Main_Map();
         fragment_main_map.setArguments(bundle);
 
@@ -81,7 +80,7 @@ public class Fragment_Main_Map extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_map,container,false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_map, container, false);
         initView();
         return binding.getRoot();
     }
@@ -97,8 +96,7 @@ public class Fragment_Main_Map extends Fragment implements OnMapReadyCallback {
         initMap();
 
         Bundle bundle = getArguments();
-        if (bundle!=null)
-        {
+        if (bundle != null) {
             cityModel = (CityDataModel.CityModel) bundle.getSerializable(TAG);
         }
 
@@ -106,15 +104,13 @@ public class Fragment_Main_Map extends Fragment implements OnMapReadyCallback {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int pos = tab.getPosition();
-                if (pos==0)
-                {
-                    getAds(cityModel.getId_city(),"all","all","all");
+                if (pos == 0) {
+                    getAds(cityModel.getId_city(), "all", "all", "all");
 
-                }else
-                {
+                } else {
                     CategoryDataModel.CategoryModel categoryModel = categoryModelList.get(pos);
 
-                    getAds(cityModel.getId_city(),"all","all",String.valueOf(categoryModel.getId()));
+                    getAds(cityModel.getId_city(), "all", "all", String.valueOf(categoryModel.getId()));
 
                 }
             }
@@ -131,13 +127,11 @@ public class Fragment_Main_Map extends Fragment implements OnMapReadyCallback {
         });
 
 
-
     }
 
     private void initMap() {
         SupportMapFragment fragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-        if (fragment!=null)
-        {
+        if (fragment != null) {
             fragment.getMapAsync(this);
 
         }
@@ -147,35 +141,32 @@ public class Fragment_Main_Map extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        if (googleMap!=null)
-        {
+        if (googleMap != null) {
             mMap = googleMap;
             mMap.setBuildingsEnabled(false);
             mMap.setIndoorEnabled(false);
             mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-            mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(activity,R.raw.maps));
+            mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(activity, R.raw.maps));
             mMap.setTrafficEnabled(false);
             try {
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(cityModel.getGoogle_latitude(),cityModel.getGoogle_longitude()),6.3f));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(cityModel.getGoogle_latitude(), cityModel.getGoogle_longitude()), 6.3f));
 
-            }catch (Exception e)
-            {
-                Log.e("error",e.getMessage()+"__");
+            } catch (Exception e) {
+                Log.e("error", e.getMessage() + "__");
             }
+
             mMap.setInfoWindowAdapter(new WindowInfo());
+
             mMap.setOnInfoWindowClickListener(marker -> {
                 AdModel adModel = (AdModel) marker.getTag();
-                if (adModel!=null)
-                {
-                    if (adModel.getMain_cat_id_fk()==1)
-                    {
+                if (adModel != null) {
+                    if (adModel.getMain_cat_id_fk() == 1) {
                         Intent intent = new Intent(activity, Ad2DetailsActivity.class);
-                        intent.putExtra("data",adModel);
+                        intent.putExtra("data", adModel);
                         startActivity(intent);
-                    }else
-                    {
+                    } else {
                         Intent intent = new Intent(activity, AdDetailsActivity.class);
-                        intent.putExtra("data",adModel);
+                        intent.putExtra("data", adModel);
                         startActivity(intent);
                     }
 
@@ -183,12 +174,12 @@ public class Fragment_Main_Map extends Fragment implements OnMapReadyCallback {
                 }
             });
             getAllCategories();
-            getAds(cityModel.getId_city(),"all","all","all");
+            getAds(cityModel.getId_city(), "all", "all", "all");
 
         }
     }
 
-    private void getAds(int city_id,String lat,String lng,String category_id) {
+    private void getAds(int city_id, String lat, String lng, String category_id) {
 
         activity.city_id = String.valueOf(city_id);
         activity.lat = lat;
@@ -198,30 +189,27 @@ public class Fragment_Main_Map extends Fragment implements OnMapReadyCallback {
         mMap.clear();
         binding.progBar.setVisibility(View.VISIBLE);
         Api.getService(Tags.base_url)
-                .getAdsByCityAndCategory(String.valueOf(city_id),lat,lng,category_id)
+                .getAdsByCityAndCategory(String.valueOf(city_id), lat, lng, category_id)
                 .enqueue(new Callback<AdDataModel>() {
                     @Override
                     public void onResponse(Call<AdDataModel> call, Response<AdDataModel> response) {
                         binding.progBar.setVisibility(View.GONE);
                         if (response.isSuccessful() && response.body() != null && response.body().getData() != null) {
                             updateDataMapUI(response.body().getData());
-                        }else
-                            {
-                                binding.progBar.setVisibility(View.GONE);
+                        } else {
+                            binding.progBar.setVisibility(View.GONE);
 
-                                try {
-                                    Log.e("Error code",response.code()+"__"+response.errorBody().string());
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                                if (response.code()==500)
-                                {
-                                    Toast.makeText(activity, "Server error", Toast.LENGTH_SHORT).show();
-                                }else
-                                    {
-                                        Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
-                                    }
+                            try {
+                                Log.e("Error code", response.code() + "__" + response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
                             }
+                            if (response.code() == 500) {
+                                Toast.makeText(activity, "Server error", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                            }
+                        }
                     }
 
                     @Override
@@ -278,25 +266,21 @@ public class Fragment_Main_Map extends Fragment implements OnMapReadyCallback {
                 });
 
 
-
     }
 
     private void updateTabUI(List<CategoryDataModel.CategoryModel> data) {
-        CategoryDataModel.CategoryModel categoryModel = new CategoryDataModel.CategoryModel(0,"الكل","All");
-        data.add(0,categoryModel);
+        CategoryDataModel.CategoryModel categoryModel = new CategoryDataModel.CategoryModel(0, "الكل", "All");
+        data.add(0, categoryModel);
         categoryModelList.clear();
         categoryModelList.addAll(data);
-        for (CategoryDataModel.CategoryModel categoryModel1:data)
-        {
-            if (lang.equals("ar"))
-            {
+        for (CategoryDataModel.CategoryModel categoryModel1 : data) {
+            if (lang.equals("ar")) {
                 binding.tab.addTab(binding.tab.newTab().setText(categoryModel1.getTitle_ar()));
 
-            }else
-                {
-                    binding.tab.addTab(binding.tab.newTab().setText(categoryModel1.getTite_en()));
+            } else {
+                binding.tab.addTab(binding.tab.newTab().setText(categoryModel1.getTite_en()));
 
-                }
+            }
         }
 
         new Handler().postDelayed(
@@ -306,54 +290,42 @@ public class Fragment_Main_Map extends Fragment implements OnMapReadyCallback {
     }
 
     private void updateDataMapUI(List<AdModel> data) {
-        if (data.size()>0)
-        {
-            for (AdModel adModel :data)
-            {
+        if (data.size() > 0) {
+            for (AdModel adModel : data) {
                 addMarker(adModel);
             }
-
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(cityModel.getGoogle_latitude(),cityModel.getGoogle_longitude()),6.3f));
-        }else
-        {
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(cityModel.getGoogle_latitude(), cityModel.getGoogle_longitude()), 6.3f));
+        } else {
             Toast.makeText(activity, R.string.no_ads, Toast.LENGTH_LONG).show();
         }
     }
 
 
-
-    private void addMarker(AdModel adModel)
-    {
+    private void addMarker(AdModel adModel) {
         IconGenerator iconGenerator = new IconGenerator(activity);
-        iconGenerator.setContentPadding(15,15,15,15);
+        iconGenerator.setContentPadding(15, 15, 15, 15);
         iconGenerator.setTextAppearance(R.style.iconGenText);
-        iconGenerator.setBackground(ContextCompat.getDrawable(activity,R.drawable.marker1_bg));
+        iconGenerator.setBackground(ContextCompat.getDrawable(activity, R.drawable.marker1_bg));
 
         Marker marker;
 
-        if (adModel!=null&&adModel.getMain_cat_id_fk()==1)
-        {
+        if (adModel != null && adModel.getMain_cat_id_fk() == 1) {
 
-            if (adModel.getOther_metr_price()!=null&&!adModel.getOther_metr_price().isEmpty())
-            {
-                marker = mMap.addMarker(new MarkerOptions().position(new LatLng(adModel.getAqar_lat(),adModel.getAqar_long())).icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(adModel.getOther_metr_price()+" "+getString(R.string.sar)))));
+            if (adModel.getOther_metr_price() != null && !adModel.getOther_metr_price().isEmpty()) {
+                marker = mMap.addMarker(new MarkerOptions().position(new LatLng(adModel.getAqar_lat(), adModel.getAqar_long())).icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(adModel.getOther_metr_price() + " " + getString(R.string.sar)))));
 
-            }else
-            {
-                marker = mMap.addMarker(new MarkerOptions().position(new LatLng(adModel.getAqar_lat(),adModel.getAqar_long())).icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(getString(R.string.no_price)))));
+            } else {
+                marker = mMap.addMarker(new MarkerOptions().position(new LatLng(adModel.getAqar_lat(), adModel.getAqar_long())).icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(getString(R.string.no_price)))));
 
             }
 
-        }else
-        {
+        } else {
 
-            if (adModel!=null&&adModel.getMetr_price()!=null&&!adModel.getMetr_price().isEmpty())
-            {
-                marker = mMap.addMarker(new MarkerOptions().position(new LatLng(adModel.getAqar_lat(),adModel.getAqar_long())).icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(adModel.getMetr_price()+" "+getString(R.string.sar)))));
+            if (adModel != null && adModel.getMetr_price() != null && !adModel.getMetr_price().isEmpty()) {
+                marker = mMap.addMarker(new MarkerOptions().position(new LatLng(adModel.getAqar_lat(), adModel.getAqar_long())).icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(adModel.getMetr_price() + " " + getString(R.string.sar)))));
 
-            }else
-            {
-                marker = mMap.addMarker(new MarkerOptions().position(new LatLng(adModel.getAqar_lat(),adModel.getAqar_long())).icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(getString(R.string.no_price)))));
+            } else {
+                marker = mMap.addMarker(new MarkerOptions().position(new LatLng(adModel.getAqar_lat(), adModel.getAqar_long())).icon(BitmapDescriptorFactory.fromBitmap(iconGenerator.makeIcon(getString(R.string.no_price)))));
 
             }
 
@@ -362,8 +334,8 @@ public class Fragment_Main_Map extends Fragment implements OnMapReadyCallback {
         marker.setTag(adModel);
     }
 
-    public  class WindowInfo implements GoogleMap.InfoWindowAdapter
-    {
+    private class WindowInfo implements GoogleMap.InfoWindowAdapter {
+
 
         @Override
         public View getInfoWindow(Marker marker) {
@@ -373,144 +345,128 @@ public class Fragment_Main_Map extends Fragment implements OnMapReadyCallback {
 
         @Override
         public View getInfoContents(Marker marker) {
+
+
             AdModel adModel = (AdModel) marker.getTag();
-            if (adModel==null)
-            {
+            if (adModel == null) {
                 return null;
-            }else
-                {
-                    View view = LayoutInflater.from(activity).inflate(R.layout.window_info_view,null);
-                    TextView tvTitle = view.findViewById(R.id.tvTitle);
-                    TextView tvPrice = view.findViewById(R.id.tvPrice);
-                    TextView tvDetails = view.findViewById(R.id.tvDetails);
-                    TextView tvAddress = view.findViewById(R.id.tvAddress);
-                    ImageView image = view.findViewById(R.id.image);
+            } else {
+                marker.setTag(adModel);
+                View view = LayoutInflater.from(activity).inflate(R.layout.window_info_view, null);
+                TextView tvTitle = view.findViewById(R.id.tvTitle);
+                TextView tvPrice = view.findViewById(R.id.tvPrice);
+                TextView tvDetails = view.findViewById(R.id.tvDetails);
+                TextView tvAddress = view.findViewById(R.id.tvAddress);
+                ImageView image = view.findViewById(R.id.image);
 
-                    ProgressBar progBar = view.findViewById(R.id.progBar);
 
-                    try {
+                try {
 
-                        if (adModel.getAqar_title()!=null&&!adModel.getAqar_title().isEmpty())
-                        {
+                    if (adModel.getAqar_title() != null && !adModel.getAqar_title().isEmpty()) {
+                        tvTitle.setText(adModel.getAqar_title());
+
+                    } else {
+                        tvTitle.setText(getString(R.string.no_name));
+
+                    }
+
+                    if (adModel.getMain_cat_id_fk() == 1) {
+
+
+                        if (adModel.getOther_metr_price() != null && !adModel.getOther_metr_price().isEmpty()) {
+                            tvPrice.setText(String.format("%s %s", adModel.getOther_metr_price(), getString(R.string.sar)));
+
+                        } else {
+                            tvPrice.setText(getString(R.string.no_price));
+
+                        }
+
+
+                        if (adModel.getOther_aqar_text() != null && !adModel.getOther_aqar_text().isEmpty()) {
+                            tvDetails.setText(adModel.getOther_aqar_text());
+
+                        } else {
+                            tvDetails.setText(getString(R.string.no_details));
+
+                        }
+
+                        if (adModel.getAqar_makan() != null && !adModel.getAqar_makan().isEmpty()) {
+                            tvAddress.setText(String.format("%s %s", adModel.getAqar_makan(), adModel.getCity_name()));
+
+                        } else {
+                            tvAddress.setText(adModel.getCity_name());
+
+                        }
+
+
+                    } else {
+                        if (adModel.getAqar_title() != null && !adModel.getAqar_title().isEmpty()) {
                             tvTitle.setText(adModel.getAqar_title());
 
-                        }else
-                        {
+                        } else {
                             tvTitle.setText(getString(R.string.no_name));
 
                         }
 
-                        if (adModel.getMain_cat_id_fk()==1)
-                        {
+                        if (adModel.getMetr_price() != null && !adModel.getMetr_price().isEmpty()) {
+                            tvPrice.setText(String.format("%s %s", adModel.getMetr_price(), getString(R.string.sar)));
+
+                        } else {
+                            tvPrice.setText(getString(R.string.no_price));
+
+                        }
 
 
+                        if (adModel.getAqar_text() != null && !adModel.getAqar_text().isEmpty()) {
+                            tvDetails.setText(adModel.getAqar_text());
 
-                            if (adModel.getOther_metr_price()!=null&&!adModel.getOther_metr_price().isEmpty())
-                            {
-                                tvPrice.setText(String.format("%s %s",adModel.getOther_metr_price(),getString(R.string.sar)));
+                        } else {
+                            tvDetails.setText(getString(R.string.no_details));
 
-                            }else
-                            {
-                                tvPrice.setText(getString(R.string.no_price));
+                        }
 
-                            }
+                        if (adModel.getAqar_makan() != null && !adModel.getAqar_makan().isEmpty()) {
+                            tvAddress.setText(String.format("%s %s", adModel.getAqar_makan(), adModel.getCity_name()));
 
+                        } else {
+                            tvAddress.setText(adModel.getCity_name());
 
-
-                            if (adModel.getOther_aqar_text()!=null&&!adModel.getOther_aqar_text().isEmpty())
-                            {
-                                tvDetails.setText(adModel.getOther_aqar_text());
-
-                            }else
-                            {
-                                tvDetails.setText(getString(R.string.no_details));
-
-                            }
-
-                            if (adModel.getAqar_makan()!=null&&!adModel.getAqar_makan().isEmpty())
-                            {
-                                tvAddress.setText(String.format("%s %s",adModel.getAqar_makan(),adModel.getCity_name()));
-
-                            }else
-                            {
-                                tvAddress.setText(adModel.getCity_name());
-
-                            }
-
-
-                        }else
-                            {
-                                if (adModel.getAqar_title()!=null&&!adModel.getAqar_title().isEmpty())
-                                {
-                                    tvTitle.setText(adModel.getAqar_title());
-
-                                }else
-                                {
-                                    tvTitle.setText(getString(R.string.no_name));
-
-                                }
-
-                                if (adModel.getMetr_price()!=null&&!adModel.getMetr_price().isEmpty())
-                                {
-                                    tvPrice.setText(String.format("%s %s",adModel.getMetr_price(),getString(R.string.sar)));
-
-                                }else
-                                {
-                                    tvPrice.setText(getString(R.string.no_price));
-
-                                }
-
-
-
-                                if (adModel.getAqar_text()!=null&&!adModel.getAqar_text().isEmpty())
-                                {
-                                    tvDetails.setText(adModel.getAqar_text());
-
-                                }else
-                                {
-                                    tvDetails.setText(getString(R.string.no_details));
-
-                                }
-
-                                if (adModel.getAqar_makan()!=null&&!adModel.getAqar_makan().isEmpty())
-                                {
-                                    tvAddress.setText(String.format("%s %s",adModel.getAqar_makan(),adModel.getCity_name()));
-
-                                }else
-                                {
-                                    tvAddress.setText(adModel.getCity_name());
-
-                                }
-                            }
-
-Log.e("data",Tags.base_url+adModel.getImage());
-
-                        Picasso.with(activity).load(Uri.parse(Tags.base_url+adModel.getImage())).fit().into(image, new com.squareup.picasso.Callback() {
-                            @Override
-                            public void onSuccess() {
-                                progBar.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onError() {
-                                progBar.setVisibility(View.GONE);
-
-                            }
-                        });
-
-                    }catch (Exception e)
-                    {
-                        if (e!=null&&e.getMessage()!=null)
-                        {
-                            Log.e("error",e.getMessage());
                         }
                     }
 
-                    return view;
+                    Log.e("data", Tags.base_url + adModel.getImage());
+
+
+                    Picasso.with(activity).load(Uri.parse(Tags.base_url + adModel.getImage())).resizeDimen(R.dimen.imageWidth,R.dimen.imageHeight).onlyScaleDown().into(image, new com.squareup.picasso.Callback() {
+                        @Override
+                        public void onSuccess() {
+                            if(marker.isInfoWindowShown())
+                            {
+                                marker.hideInfoWindow();
+                                marker.showInfoWindow();
+
+                            }
+                        }
+
+                        @Override
+                        public void onError() {
+
+                        }
+                    });
+
+                } catch (Exception e) {
+                    if (e != null && e.getMessage() != null) {
+                        Log.e("error", e.getMessage());
+                    }
                 }
+
+                return view;
+            }
 
         }
 
 
     }
+
+
 }
