@@ -14,11 +14,13 @@
             />
         <variable
             name="orderModel"
-            type="com.creative.share.apps.aqaar.models.Order_Upload_Model" />
+            type="com.creative.share.apps.aqaar.models.Order2_Upload_Model" />
         <variable
             name="lang"
             type="String" />
-
+        <variable
+            name="catmodel"
+            type="com.creative.share.apps.aqaar.models.CategoryDataModel.CategoryModel" />
 
     </data>
     <LinearLayout
@@ -66,7 +68,7 @@
                     android:clickable="false"
                     android:longClickable="false"
                     android:textSize="16sp"
-                    android:text="@string/add_ad"
+                    android:text='@{lang.equals("ar")?catmodel.title_ar:catmodel.tite_en}'
                     />
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -91,7 +93,7 @@
                     android:background="@drawable/edt_bg"
                     >
                     <Spinner
-                        android:id="@+id/spinneradcity"
+                        android:id="@+id/spinnerbathnum"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:backgroundTint="@color/colorPrimary"
@@ -106,7 +108,7 @@
                     android:background="@drawable/edt_bg"
                     >
                     <Spinner
-                        android:id="@+id/spinnertype"
+                        android:id="@+id/spinnertype_advertise"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:backgroundTint="@color/colorPrimary"
@@ -117,113 +119,143 @@
                     </Spinner>
                 </FrameLayout>
 
-                <EditText
-                    android:id="@+id/edtAdtitle"
+
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:singleLine="true"
-                    android:background="@drawable/edt_bg"
                     android:layout_marginTop="8dp"
-                    android:textColorHint="@color/gray4"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:hint="@string/title"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    error="@{orderModel.title_error}"
-                    android:text="@={orderModel.title}"
+                    android:background="@drawable/edt_bg"
+                    >
+                    <Spinner
+                        android:id="@+id/spinnertype_complement"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:backgroundTint="@color/colorPrimary"
 
-                    />
 
-                <EditText
-                    android:id="@+id/edtAdinterface"
+                        >
+
+                    </Spinner>
+                </FrameLayout>
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:singleLine="true"
-                    android:background="@drawable/edt_bg"
                     android:layout_marginTop="8dp"
-                    android:textColorHint="@color/gray4"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:hint="@string/interfaces"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    error="@{orderModel.other_interface_error}"
-                    android:text="@={orderModel.other_interface}"
+                    android:background="@drawable/edt_bg"
+                    >
+                    <Spinner
+                        android:id="@+id/spinnertype_sakn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:backgroundTint="@color/colorPrimary"
 
-                    />
-                <EditText
-                    android:id="@+id/edtAdPrice"
+
+                        >
+
+                    </Spinner>
+                </FrameLayout>
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:singleLine="true"
-                    android:background="@drawable/edt_bg"
                     android:layout_marginTop="8dp"
-                    android:textColorHint="@color/gray4"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:hint="@string/metr_price"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:inputType="numberDecimal"
-                    error="@{orderModel.price_error}"
+                    android:background="@drawable/edt_bg"
+                    >
+                    <Spinner
+                        android:id="@+id/spinnergarage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:backgroundTint="@color/colorPrimary"
 
-                    android:text="@={orderModel.price}"
-                    />
-                <EditText
-                    android:id="@+id/edtaccommodation_type"
+
+                        >
+
+                    </Spinner>
+                </FrameLayout>
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:singleLine="true"
-                    android:background="@drawable/edt_bg"
                     android:layout_marginTop="8dp"
-                    android:textColorHint="@color/gray4"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:hint="@string/other_size"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:inputType="numberDecimal"
+                    android:background="@drawable/edt_bg"
+                    >
+                    <Spinner
+                        android:id="@+id/spinneraqaar_beriod"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:backgroundTint="@color/colorPrimary"
 
-                    error="@{orderModel.other_size_error}"
 
-                    android:text="@={orderModel.other_size}"
-                    />
-                <EditText
-                    android:id="@+id/edtroomnum"
+                        >
+
+                    </Spinner>
+                </FrameLayout>
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:singleLine="true"
-                    android:background="@drawable/edt_bg"
                     android:layout_marginTop="8dp"
-                    android:textColorHint="@color/gray4"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:hint="@string/other_street_size"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:inputType="numberDecimal"
-                    error="@{orderModel.other_street_width_error}"
-                    android:text="@={orderModel.other_street_width}"
-                    />
+                    android:background="@drawable/edt_bg"
+                    >
+                    <Spinner
+                        android:id="@+id/spinnerkitchen"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:backgroundTint="@color/colorPrimary"
 
-                <EditText
-                    android:id="@+id/edtAdDetails"
+
+                        >
+
+                    </Spinner>
+                </FrameLayout>
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:singleLine="true"
-                    android:background="@drawable/edt_bg"
+                    android:layout_height="40dp"
                     android:layout_marginTop="8dp"
-                    android:textColorHint="@color/gray4"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:hint="@string/description"
-                    android:padding="8dp"
-                    android:gravity="top"
-                    android:text="@={orderModel.details}"
-                    error="@{orderModel.detials_error}"
-                    />
+                    android:background="@drawable/edt_bg"
+                    >
+                    <Spinner
+                        android:id="@+id/spinnersalon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:backgroundTint="@color/colorPrimary"
 
+
+                        >
+
+                    </Spinner>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edt_bg"
+                    >
+                    <Spinner
+                        android:id="@+id/spinnernumroom"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:backgroundTint="@color/colorPrimary"
+
+
+                        >
+
+                    </Spinner>
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edt_bg"
+                    >
+                    <Spinner
+                        android:id="@+id/spinnerleft"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:backgroundTint="@color/colorPrimary"
+
+
+                        >
+
+                    </Spinner>
+                </FrameLayout>
                 <TextView
                     android:id="@+id/tvLocation"
                     android:layout_width="match_parent"
