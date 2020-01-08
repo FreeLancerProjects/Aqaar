@@ -99,7 +99,7 @@ private Preferences preferences;
             }
         });
         if(userModel!=null&&adModel.getUser_id()!=null){
-            Log.e("datasss",userModel.getUser_id()+" "+adModel.getUser_id());
+         //   Log.e("datasss",userModel.getUser_id()+" "+adModel.getUser_id());
 
             if(adModel.getUser_id().equals(userModel.getUser().getId()+"")){
                 binding.consEmail.setVisibility(View.GONE);

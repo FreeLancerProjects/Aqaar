@@ -79,7 +79,7 @@ public class AdDetailsActivity extends AppCompatActivity implements Listeners.Ba
         Picasso.with(this).load(Uri.parse(Tags.base_url+adModel.getImage())).fit().into(binding.image);
         initMap();
         if(userModel!=null&&adModel.getUser_id()!=null){
-            Log.e("datasss",userModel.getUser().getId()+" "+adModel.getUser_id());
+          //  Log.e("datasss",userModel.getUser().getId()+" "+adModel.getUser_id());
             if(adModel.getUser_id().equals(userModel.getUser().getId()+"")){
                 binding.consEmail.setVisibility(View.GONE);
             }
