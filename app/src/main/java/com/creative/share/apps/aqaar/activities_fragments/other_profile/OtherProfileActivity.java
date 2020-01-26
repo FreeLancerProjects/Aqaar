@@ -138,7 +138,7 @@ binding.btnemail.setOnClickListener(new View.OnClickListener() {
                                 updateprofile(response.body());
                             } else {
 
-                                Toast.makeText(OtherProfileActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                               // Toast.makeText(OtherProfileActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                 try {
 
@@ -157,9 +157,9 @@ binding.btnemail.setOnClickListener(new View.OnClickListener() {
                                 if (t.getMessage() != null) {
                                     Log.e("error", t.getMessage());
                                     if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                        Toast.makeText(OtherProfileActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                     ////   Toast.makeText(OtherProfileActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Toast.makeText(OtherProfileActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                      //  Toast.makeText(OtherProfileActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 

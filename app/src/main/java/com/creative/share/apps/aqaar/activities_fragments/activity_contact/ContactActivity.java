@@ -92,13 +92,13 @@ sendmessge(contactUsModel);
                                 finish();
                             } else {
                                 if (response.code() == 422) {
-                                    Toast.makeText(ContactActivity.this,getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                              //      Toast.makeText(ContactActivity.this,getString(R.string.failed), Toast.LENGTH_SHORT).show();
                                 } else if (response.code() == 500) {
-                                    Toast.makeText(ContactActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                //    Toast.makeText(ContactActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
                                 }else
                                 {
-                                    Toast.makeText(ContactActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                  //  Toast.makeText(ContactActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                     try {
 
@@ -118,9 +118,9 @@ sendmessge(contactUsModel);
                                 if (t.getMessage() != null) {
                                     Log.e("error", t.getMessage());
                                     if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                        Toast.makeText(ContactActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                //        Toast.makeText(ContactActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Toast.makeText(ContactActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                  //      Toast.makeText(ContactActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 

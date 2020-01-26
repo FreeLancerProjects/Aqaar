@@ -90,7 +90,7 @@ public class BanksActivity extends AppCompatActivity implements Listeners.BackLi
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            Toast.makeText(BanksActivity.this,getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(BanksActivity.this,getString(R.string.failed), Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -99,7 +99,7 @@ public class BanksActivity extends AppCompatActivity implements Listeners.BackLi
                         try {
 
                           //  progBar.setVisibility(View.GONE);
-                            Toast.makeText(BanksActivity.this, getString(R.string.something), Toast.LENGTH_LONG).show();
+                            //Toast.makeText(BanksActivity.this, getString(R.string.something), Toast.LENGTH_LONG).show();
                         }catch (Exception e)
                         {
                         }

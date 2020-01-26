@@ -115,10 +115,10 @@ binding.btnapplay.setOnClickListener(new View.OnClickListener() {
                                 e.printStackTrace();
                             }
                             if (response.code() == 500) {
-                                Toast.makeText(TermsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                              //  Toast.makeText(TermsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
                             } else {
-                                Toast.makeText(TermsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(TermsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
 
                             }
@@ -132,9 +132,9 @@ binding.btnapplay.setOnClickListener(new View.OnClickListener() {
                             if (t.getMessage() != null) {
                                 Log.e("error", t.getMessage());
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                    Toast.makeText(TermsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                  //  Toast.makeText(TermsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(TermsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(TermsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
 

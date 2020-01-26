@@ -344,7 +344,7 @@ binding.spinnergarage.setAdapter(garageAdapter);
 binding.spinneraqaarBeriod.setAdapter(beriodAdapter);
 binding.spinnerkitchen.setAdapter(kitchenAdapter);
 binding.spinnersalon.setAdapter(salonAdapter);
-binding.spinnernumroom.setAdapter(numbathAdapter);
+binding.spinnernumroom.setAdapter(numroomAdapter);
 binding.spinnerleft.setAdapter(leftAdapter);
         binding.spinnerbathnum.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -656,7 +656,7 @@ Log.e("beriod",order_upload_model.getAqar_peroid());
 
                         try {
 
-                            Toast.makeText(Add2Activity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(Add2Activity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                             Log.e("Error", response.toString() + " " + response.code() + "" + response.message() + "" + response.errorBody().string() + response.raw() + response.body() + response.headers() + " " + response.errorBody().toString());
                         } catch (Exception e) {
 
@@ -669,7 +669,7 @@ Log.e("beriod",order_upload_model.getAqar_peroid());
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
                     dialog.dismiss();
                     try {
-                        Toast.makeText(Add2Activity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(Add2Activity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
                         Log.e("Error", t.getMessage());
                     } catch (Exception e) {
 

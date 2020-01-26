@@ -203,11 +203,11 @@ public class Fragment_Sign_In extends Fragment implements Listeners.LoginListene
                                     Toast.makeText(activity, R.string.inc_phone_pas, Toast.LENGTH_SHORT).show();
 
                                 }else if (response.code() == 500) {
-                                    Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
+                    //                Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
 
                                 }else
                                 {
-                                    Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                      //              Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
 
                                 }
@@ -223,10 +223,10 @@ public class Fragment_Sign_In extends Fragment implements Listeners.LoginListene
                                     Log.e("error",t.getMessage());
                                     if (t.getMessage().toLowerCase().contains("failed to connect")||t.getMessage().toLowerCase().contains("unable to resolve host"))
                                     {
-                                        Toast.makeText(activity,R.string.something, Toast.LENGTH_SHORT).show();
+                        //                Toast.makeText(activity,R.string.something, Toast.LENGTH_SHORT).show();
                                     }else
                                     {
-                                        Toast.makeText(activity,t.getMessage(), Toast.LENGTH_SHORT).show();
+                          //              Toast.makeText(activity,t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 

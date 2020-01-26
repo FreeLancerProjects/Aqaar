@@ -77,10 +77,10 @@ public class AboutActivity extends AppCompatActivity implements Listeners.BackLi
                                 e.printStackTrace();
                             }
                             if (response.code() == 500) {
-                                Toast.makeText(AboutActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                              //  Toast.makeText(AboutActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
                             } else {
-                                Toast.makeText(AboutActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                              //  Toast.makeText(AboutActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
 
                             }
@@ -94,9 +94,9 @@ public class AboutActivity extends AppCompatActivity implements Listeners.BackLi
                             if (t.getMessage() != null) {
                                 Log.e("error", t.getMessage());
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                    Toast.makeText(AboutActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                   // Toast.makeText(AboutActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(AboutActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                  //  Toast.makeText(AboutActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
 

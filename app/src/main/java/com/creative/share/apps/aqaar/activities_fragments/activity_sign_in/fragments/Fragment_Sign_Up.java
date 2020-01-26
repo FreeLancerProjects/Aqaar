@@ -164,7 +164,7 @@ activity.displayFragmentCodeVerification(response.body());
 
                             } else {
                                 if (response.code() == 422) {
-                                    Toast.makeText(activity,getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                   // Toast.makeText(activity,getString(R.string.failed), Toast.LENGTH_SHORT).show();
                                     try {
 
                                         Log.e("error",response.code()+"_"+response.errorBody().string());
@@ -173,14 +173,14 @@ activity.displayFragmentCodeVerification(response.body());
                                     }
 
                                 } else if (response.code() == 500) {
-                                    Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
+                                 //   Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
 
                                 }else if (response.code() == 406) {
                                     Toast.makeText(activity,getString(R.string.em_exist), Toast.LENGTH_SHORT).show();
 
                                 }else
                                 {
-                                    Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                  //  Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                     try {
 
@@ -200,9 +200,9 @@ activity.displayFragmentCodeVerification(response.body());
                                 if (t.getMessage() != null) {
                                     Log.e("error", t.getMessage());
                                     if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                        Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                                       Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                     //   Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 

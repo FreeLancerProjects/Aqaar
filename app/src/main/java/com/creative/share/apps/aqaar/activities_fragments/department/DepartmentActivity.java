@@ -110,7 +110,7 @@ public class DepartmentActivity extends AppCompatActivity implements Listeners.B
 
                             }else
                             { if (response.code() == 500) {
-                                    Toast.makeText(DepartmentActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                   // Toast.makeText(DepartmentActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
 
                                 }else if (response.code()==401)
@@ -119,7 +119,7 @@ public class DepartmentActivity extends AppCompatActivity implements Listeners.B
 
                                 }else
                                 {
-                                    Toast.makeText(DepartmentActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(DepartmentActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                     try {
 
@@ -140,10 +140,10 @@ public class DepartmentActivity extends AppCompatActivity implements Listeners.B
                                     Log.e("error",t.getMessage());
                                     if (t.getMessage().toLowerCase().contains("failed to connect")||t.getMessage().toLowerCase().contains("unable to resolve host"))
                                     {
-                                        Toast.makeText(DepartmentActivity.this,R.string.something, Toast.LENGTH_SHORT).show();
+                                       // Toast.makeText(DepartmentActivity.this,R.string.something, Toast.LENGTH_SHORT).show();
                                     }else
                                     {
-                                        Toast.makeText(DepartmentActivity.this,t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(DepartmentActivity.this,t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 

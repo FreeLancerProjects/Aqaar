@@ -127,7 +127,7 @@ binding.recMyads.setAdapter(myAdsAdapter);
                                 updateprofile(response.body());
                             } else {
 
-                                Toast.makeText(MyProfileActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                              //  Toast.makeText(MyProfileActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                 try {
 
@@ -146,9 +146,9 @@ binding.recMyads.setAdapter(myAdsAdapter);
                                 if (t.getMessage() != null) {
                                     Log.e("error", t.getMessage());
                                     if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                        Toast.makeText(MyProfileActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                      //  Toast.makeText(MyProfileActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Toast.makeText(MyProfileActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(MyProfileActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 

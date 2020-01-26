@@ -349,7 +349,7 @@ typeAdapter.notifyDataSetChanged();
 
                         try {
 
-                            Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                         //   Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                             Log.e("Error", response.toString() + " " + response.code() + "" + response.message() + "" + response.errorBody().string() + response.raw() + response.body() + response.headers() + " " + response.errorBody().toString());
                         } catch (Exception e) {
 
@@ -362,7 +362,7 @@ typeAdapter.notifyDataSetChanged();
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
                     dialog.dismiss();
                     try {
-                        Toast.makeText(AddAdsActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(AddAdsActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
                         Log.e("Error", t.getMessage());
                     } catch (Exception e) {
 
@@ -412,11 +412,11 @@ typeAdapter.notifyDataSetChanged();
                                     e.printStackTrace();
                                 }
                                 if (response.code() == 500) {
-                                    Toast.makeText(AddAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                  //  Toast.makeText(AddAdsActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
 
                                 } else {
-                                    Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                              //      Toast.makeText(AddAdsActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
 
                                 }
@@ -430,9 +430,9 @@ typeAdapter.notifyDataSetChanged();
                                 if (t.getMessage() != null) {
                                     Log.e("error", t.getMessage());
                                     if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                        Toast.makeText(AddAdsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                   //     Toast.makeText(AddAdsActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Toast.makeText(AddAdsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                     //   Toast.makeText(AddAdsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 

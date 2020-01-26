@@ -230,7 +230,7 @@ public class ChatActivity extends AppCompatActivity implements Listeners.BackLis
                     } else {
                         try {
 
-                            Toast.makeText(ChatActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(ChatActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                             Log.e("Error", response.toString() + " " + response.code() + "" + response.message() + "" + response.errorBody() + response.raw() + response.body() + response.headers() + " " + response.errorBody().toString());
                         } catch (Exception e) {
 
@@ -243,7 +243,7 @@ public class ChatActivity extends AppCompatActivity implements Listeners.BackLis
                 public void onFailure(Call<MessageModel> call, Throwable t) {
                     dialog.dismiss();
                     try {
-                        Toast.makeText(ChatActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(ChatActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
                         Log.e("Error", t.getMessage());
                     } catch (Exception e) {
 
